@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "352123723619",
+    "project_id": "voterrecord-95705",
+    "storage_bucket": "voterrecord-95705.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352123723619:android:bdeec167bd65f7bed8bd56",
+        "android_client_info": {
+          "package_name": "com.example.voterrecord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352123723619-cpivvqah66gcmbmsm8jj4rsqig39us23.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.voterrecord",
+            "certificate_hash": "28e955ec328d10240894ce9250f787683d3bf3f2"
+          }
+        },
+        {
+          "client_id": "352123723619-vamraus46re3deliraj5gaqrnlh1fjsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLSIsteDYKBsbcsWjONKKsOgg8_ynenxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352123723619-vamraus46re3deliraj5gaqrnlh1fjsg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
