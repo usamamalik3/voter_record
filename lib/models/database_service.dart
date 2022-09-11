@@ -22,16 +22,18 @@ class DatabaseService{
 
   }
  
-// Future<List<Voter>> retrieveVoter() async {
-//     QuerySnapshot<Map<String, dynamic>> snapshot =
-//         await _db.collection("Voter").get();
-//  List<Voter> list = snapshot.docs
-//         .map((docSnapshot) => Voter.fromMap(docSnapshot.data()["cnic"])).where((element) => true)
-//         .toList();
-//         print(list);
-//         return list;
+Future<List<Voter>> retrieveVoter() async {
+    QuerySnapshot<Map<String, dynamic>> snapshot =
+        await _db.collection("Voters").get();
+        print(snapshot);
+return snapshot.docs
+        .map((docSnapshot) => Voter.fromMap(docSnapshot.data()))
+        .toList();
        
-//   }
+        
+     
+       
+  }
       
    
   }

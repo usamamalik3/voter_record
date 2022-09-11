@@ -2,10 +2,11 @@
 import 'dart:convert';
 
 
+
 class Voter {
-  String? name;
+    String? name;
 String? fathername;
-int? cnic;
+String? cnic;
 int? serialno;
 int? householdno;
 String? gender;
@@ -27,7 +28,7 @@ String? polingstion;
   Voter copyWith({
     String? name,
     String? fathername,
-    int? cnic,
+    String? cnic,
     int? serialno,
     int? householdno,
     String? gender,
@@ -66,7 +67,7 @@ String? polingstion;
     return Voter(
       name: map['name'] != null ? map['name'] as String : null,
       fathername: map['fathername'] != null ? map['fathername'] as String : null,
-      cnic: map['cnic'] != null ? map['cnic'] as int : null,
+      cnic: map['cnic'] != null ? map['cnic'] as String : null,
       serialno: map['serialno'] != null ? map['serialno'] as int : null,
       householdno: map['householdno'] != null ? map['householdno'] as int : null,
       gender: map['gender'] != null ? map['gender'] as String : null,

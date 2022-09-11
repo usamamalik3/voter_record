@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
     TextEditingController cnicController = TextEditingController();
   bool isLoading =false;
-  String? searchKey;
+String? searchKey;
 Stream? streamQuery;
 
   final _formKey = GlobalKey<FormState>();
@@ -37,10 +37,13 @@ Stream? streamQuery;
                 width: width*0.95,
                 child: TextFormField(
                    onChanged: (value){
+                    if(value != ""){
+
+                    
                   setState(() {
                     searchKey = value;
                    
-                  });
+                  });}
     },
                     
                       keyboardType: TextInputType.number,
@@ -78,7 +81,16 @@ Stream? streamQuery;
                 backgroundColor: MaterialStateProperty.all<
                         Color>(
                   const Color(0Xff008000))),
-            onPressed: (){
+            onPressed: () async{
+               DatabaseService service = DatabaseService();
+                  setState(() {
+                    isLoading = true;
+                });
+                await service.retrieveVoter();
+                setState(() {
+                  
+                    isLoading = false;
+                });
           
             },
             child: const Text("Submit",style: TextStyle(fontSize: 20),)),
@@ -86,7 +98,39 @@ Stream? streamQuery;
          )
          : const Center(
         child: CircularProgressIndicator(),),
-           ]),
+        searchKey != ""?
+        StreamBuilder(
+          
+    stream: FirebaseFirestore.instance
+    .collection('Voters')
+    .where('cnic',isLessThanOrEqualTo: searchKey)
+    .snapshots(),
+    builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshort) {
+       if (streamSnapshort.connectionState == ConnectionState.waiting){
+     
+          const Center(
+              child: CupertinoActivityIndicator()
+          );
+       }
+       print(streamSnapshort.data!.docs);
+   
+      // if (streamSnapshort.hasData) {
+         return ListView.builder(
+        shrinkWrap: true,
+        itemCount: streamSnapshort.data!.docs.length,
+        itemBuilder: (context, index) =>
+            _buildListItem(streamSnapshort.data!.docs[index]),
+      );
+        
+      // } 
+      // else{
+        return const Text("Loading"); 
+      
+        // }    },
+
+    }  ):
+    Container(),
+          ]),
         ),
         
       ),
@@ -104,8 +148,8 @@ Stream? streamQuery;
 
 Widget _buildListItem(DocumentSnapshot document) {
   return  ListTile(
-    title: document['name'],
-    subtitle: document['fathername'],
+    title: Text(document['name']),
+    subtitle: Text(document['fathername']),
   );
 }
 

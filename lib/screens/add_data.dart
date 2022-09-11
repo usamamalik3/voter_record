@@ -150,7 +150,7 @@ class _AddDataState extends State<AddData> {
                Voter voter = Voter(
                 name:nameController.text,
                 fathername: fnameController.text,
-                cnic: int.parse(cnicController.text),
+                cnic: cnicController.text,
                 serialno: int.parse(snoController.text),
                 householdno: int.parse(hnoController.text),
                 gender: genderController.text,
