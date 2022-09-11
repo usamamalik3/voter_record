@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^3.8.0
   firebase_core: ^1.22.0
+  mask_text_input_formatter: ^2.4.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
@@ -57,8 +58,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - images/
+  # assets:
+    # - images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

@@ -1,18 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Voter {
-    String? name;
-String? fathername;
-String? cnic;
-int? serialno;
-int? householdno;
-String? gender;
-int? age;
-String? address;
-String? polingstion;
+  String? name;
+  String? fathername;
+  String? cnic;
+  int? serialno;
+  int? householdno;
+  String? gender;
+  int? age;
+  String? address;
+  String? polingstion;
   Voter({
     this.name,
     this.fathername,
@@ -66,20 +66,40 @@ String? polingstion;
   factory Voter.fromMap(Map<String, dynamic> map) {
     return Voter(
       name: map['name'] != null ? map['name'] as String : null,
-      fathername: map['fathername'] != null ? map['fathername'] as String : null,
+      fathername:
+          map['fathername'] != null ? map['fathername'] as String : null,
       cnic: map['cnic'] != null ? map['cnic'] as String : null,
       serialno: map['serialno'] != null ? map['serialno'] as int : null,
-      householdno: map['householdno'] != null ? map['householdno'] as int : null,
+      householdno:
+          map['householdno'] != null ? map['householdno'] as int : null,
       gender: map['gender'] != null ? map['gender'] as String : null,
       age: map['age'] != null ? map['age'] as int : null,
       address: map['address'] != null ? map['address'] as String : null,
-      polingstion: map['polingstion'] != null ? map['polingstion'] as String : null,
+      polingstion:
+          map['polingstion'] != null ? map['polingstion'] as String : null,
     );
   }
 
+  factory Voter.fromDocumentSnapshot(DocumentSnapshot doc) {
+    return Voter(
+      name: doc['name'] != null ? doc['name'] as String : null,
+      fathername:
+          doc['fathername'] != null ? doc['fathername'] as String : null,
+      cnic: doc['cnic'] != null ? doc['cnic'] as String : null,
+      serialno: doc['serialno'] != null ? doc['serialno'] as int : null,
+      householdno:
+          doc['householdno'] != null ? doc['householdno'] as int : null,
+      gender: doc['gender'] != null ? doc['gender'] as String : null,
+      age: doc['age'] != null ? doc['age'] as int : null,
+      address: doc['address'] != null ? doc['address'] as String : null,
+      polingstion:
+          doc['polingstion'] != null ? doc['polingstion'] as String : null,
+    );
+  }
   String toJson() => json.encode(toMap());
 
-  factory Voter.fromJson(String source) => Voter.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Voter.fromJson(String source) =>
+      Voter.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -89,29 +109,28 @@ String? polingstion;
   @override
   bool operator ==(covariant Voter other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.name == name &&
-      other.fathername == fathername &&
-      other.cnic == cnic &&
-      other.serialno == serialno &&
-      other.householdno == householdno &&
-      other.gender == gender &&
-      other.age == age &&
-      other.address == address &&
-      other.polingstion == polingstion;
+
+    return other.name == name &&
+        other.fathername == fathername &&
+        other.cnic == cnic &&
+        other.serialno == serialno &&
+        other.householdno == householdno &&
+        other.gender == gender &&
+        other.age == age &&
+        other.address == address &&
+        other.polingstion == polingstion;
   }
 
   @override
   int get hashCode {
     return name.hashCode ^
-      fathername.hashCode ^
-      cnic.hashCode ^
-      serialno.hashCode ^
-      householdno.hashCode ^
-      gender.hashCode ^
-      age.hashCode ^
-      address.hashCode ^
-      polingstion.hashCode;
+        fathername.hashCode ^
+        cnic.hashCode ^
+        serialno.hashCode ^
+        householdno.hashCode ^
+        gender.hashCode ^
+        age.hashCode ^
+        address.hashCode ^
+        polingstion.hashCode;
   }
 }
