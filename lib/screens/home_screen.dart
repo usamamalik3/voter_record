@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
     TextEditingController cnicController = TextEditingController();
   bool isLoading =false;
-String? searchKey;
+String searchKey = '';
 Stream? streamQuery;
 
   final _formKey = GlobalKey<FormState>();
@@ -63,72 +63,28 @@ Stream? streamQuery;
                     ),
 
               ),
-              const SizedBox(
-                height: 20,
-              ),
-
-               !isLoading
-    ? Center(
-        child: ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-    RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(25.0),
-      side:const  BorderSide(color: Color(0Xff0080))
-    )
-  ),
-                minimumSize:MaterialStateProperty.all(const Size(200,50)),
-                backgroundColor: MaterialStateProperty.all<
-                        Color>(
-                  const Color(0Xff008000))),
-            onPressed: () async{
-               DatabaseService service = DatabaseService();
-                  setState(() {
-                    isLoading = true;
-                });
-                await service.retrieveVoter();
-                setState(() {
-                  
-                    isLoading = false;
-                });
-          
-            },
-            child: const Text("Submit",style: TextStyle(fontSize: 20),)),
-      
-         )
-         : const Center(
-        child: CircularProgressIndicator(),),
         searchKey != ""?
         StreamBuilder(
           
     stream: FirebaseFirestore.instance
     .collection('Voters')
-    .where('cnic',isLessThanOrEqualTo: searchKey)
+    .where('cnic',isEqualTo: searchKey)
     .snapshots(),
     builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshort) {
-       if (streamSnapshort.connectionState == ConnectionState.waiting){
-     
-          const Center(
-              child: CupertinoActivityIndicator()
-          );
-       }
-       print(streamSnapshort.data!.docs);
-   
-      // if (streamSnapshort.hasData) {
-         return ListView.builder(
+       if (streamSnapshort.connectionState == ConnectionState.active){
+          return ListView.builder(
         shrinkWrap: true,
         itemCount: streamSnapshort.data!.docs.length,
         itemBuilder: (context, index) =>
             _buildListItem(streamSnapshort.data!.docs[index]),
       );
-        
-      // } 
-      // else{
-        return const Text("Loading"); 
-      
-        // }    },
-
-    }  ):
+       }
+       else {
+         return  const Center(
+              child: CupertinoActivityIndicator()
+          );
+       }
+   } ):
     Container(),
           ]),
         ),
@@ -146,11 +102,12 @@ Stream? streamQuery;
     );
   }
 
+
+
+}
 Widget _buildListItem(DocumentSnapshot document) {
   return  ListTile(
     title: Text(document['name']),
     subtitle: Text(document['fathername']),
   );
-}
-
 }
