@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:voterrecord/models/database_service.dart';
 import 'package:voterrecord/models/voter.dart';
-
 
 class AddData extends StatefulWidget {
   const AddData({Key? key}) : super(key: key);
@@ -22,7 +20,7 @@ class _AddDataState extends State<AddData> {
   TextEditingController genderController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController pollingstController = TextEditingController();
-  bool isLoading =false;
+  bool isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -32,7 +30,7 @@ class _AddDataState extends State<AddData> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0Xff008000),
-        title: const Center(child: Text("Add detail")),
+        title: const Center(child: Text("Add Voter")),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -129,58 +127,55 @@ class _AddDataState extends State<AddData> {
                   controler: pollingstController,
                   validattor: RequiredValidator(errorText: "Required"),
                 )),
-                !isLoading
-    ? Center(
-        child: ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-    RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(25.0),
-      side:const  BorderSide(color: Color(0Xff0080))
-    )
-  ),
-                minimumSize:MaterialStateProperty.all(const Size(200,50)),
-                backgroundColor: MaterialStateProperty.all<
-                        Color>(
-                  const Color(0Xff008000))),
-            onPressed: (() async {
-                if (_formKey.currentState!.validate()) {
-                DatabaseService service = DatabaseService();
-                
-               Voter voter = Voter(
-                name:nameController.text,
-                fathername: fnameController.text,
-                cnic: cnicController.text,
-                serialno: int.parse(snoController.text),
-                householdno: int.parse(hnoController.text),
-                gender: genderController.text,
-                age:  int.parse(ageController.text),
-                address: addressController.text,
-                polingstion: pollingstController.text
+            !isLoading
+                ? Center(
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    side: const BorderSide(
+                                        color: Color(0Xff0080)))),
+                            minimumSize:
+                                MaterialStateProperty.all(const Size(200, 50)),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color(0Xff008000))),
+                        onPressed: (() async {
+                          if (_formKey.currentState!.validate()) {
+                            DatabaseService service = DatabaseService();
 
+                            Voter voter = Voter(
+                                name: nameController.text,
+                                fathername: fnameController.text,
+                                cnic: cnicController.text,
+                                serialno: int.parse(snoController.text),
+                                householdno: int.parse(hnoController.text),
+                                gender: genderController.text,
+                                age: int.parse(ageController.text),
+                                address: addressController.text,
+                                polingstion: pollingstController.text);
 
-               );
-               
-               
-                setState(() {
-                    isLoading = true;
-                });
-                await service.addVoter(voter);
-                setState(() {
-                  
-                    isLoading = false;
-                });
-                }
-            }),
-            child: const Text("Submit",style: TextStyle(fontSize: 20),)),
-        )
-    : const Center(
-        child: CircularProgressIndicator(),
-        )
+                            setState(() {
+                              isLoading = true;
+                            });
+                            await service.addVoter(voter);
+                            setState(() {
+                              isLoading = false;
+                            });
+                          }
+                        }),
+                        child: const Text(
+                          "Submit",
+                          style: TextStyle(fontSize: 20),
+                        )),
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  )
           ]),
         ),
       ),
-    
     );
   }
 }
@@ -191,7 +186,8 @@ class CustomField extends StatelessWidget {
     required this.hint,
     required this.fldltxt,
     required this.controler,
-    this.validattor, this.keyboardType,
+    this.validattor,
+    this.keyboardType,
   }) : super(key: key);
 
   final String hint;
@@ -211,19 +207,16 @@ class CustomField extends StatelessWidget {
           )),
       minLeadingWidth: 8.0,
       subtitle: TextFormField(
-      
         keyboardType: keyboardType,
         controller: controler,
         validator: validattor,
         textAlign: TextAlign.right,
         textDirection: TextDirection.rtl,
         decoration: InputDecoration(
-        
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8))),
           contentPadding: const EdgeInsets.symmetric(horizontal: 10),
           hintText: hint,
-          
         ),
       ),
     );
