@@ -15,12 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-<<<<<<< HEAD
-    TextEditingController cnicController = TextEditingController();
-  bool isLoading =false;
-String searchKey = '';
-Stream? streamQuery;
-=======
   TextEditingController cnicController = TextEditingController();
   bool isLoading = false;
   String searchKey = '';
@@ -29,7 +23,6 @@ Stream? streamQuery;
       mask: '#####-#######-#',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
->>>>>>> 10a42304cf8e13ce14b2f66cc7b5c8752c036661
 
   final _formKey = GlobalKey<FormState>();
   @override
@@ -52,50 +45,57 @@ Stream? streamQuery;
                 onChanged: (value) {
                   setState(() {
                     searchKey = value;
-                   
-                  });}
-    },
-                    
-                      keyboardType: TextInputType.number,
-                      controller: cnicController,
-                      validator: RequiredValidator(errorText: "Required"),
-                      textAlign: TextAlign.right,
-                      textDirection: TextDirection.rtl,
-                      decoration: const InputDecoration(
-                        label: Text("تلاش کریں", style: TextStyle(fontFamily: "NotoNastaliqUrdu"),),
-                        border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8))),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        hintText: "شناختی کارڈ درج کریں",
-                      
-                        
-                      ),
-                    ),
-
+                  });
+                },
+                keyboardType: TextInputType.number,
+                textDirection: TextDirection.rtl,
+                textAlign: TextAlign.right,
+                controller: cnicController,
+                inputFormatters: [maskFormatter],
+                validator: RequiredValidator(errorText: "Required"),
+                decoration: const InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  hintText: "شناختی کارڈ درج کریں",
+                ),
               ),
-        searchKey != ""?
-        StreamBuilder(
-          
-    stream: FirebaseFirestore.instance
-    .collection('Voters')
-    .where('cnic',isEqualTo: searchKey)
-    .snapshots(),
-    builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshort) {
-       if (streamSnapshort.connectionState == ConnectionState.active){
-          return ListView.builder(
-        shrinkWrap: true,
-        itemCount: streamSnapshort.data!.docs.length,
-        itemBuilder: (context, index) =>
-            _buildListItem(streamSnapshort.data!.docs[index]),
-      );
-       }
-       else {
-         return  const Center(
-              child: CupertinoActivityIndicator()
-          );
-       }
-   } ):
-    Container(),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: StreamBuilder(
+                  stream: searchKey != ''
+                      ? FirebaseFirestore.instance
+                          .collection('Voters')
+                          .where('cnic', isGreaterThanOrEqualTo: searchKey)
+                          .where('cnic', isLessThan: '${searchKey}z')
+                          .snapshots()
+                      : null,
+                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      List<Voter> voters = snapshot.data!.docs
+                          .map((docSnapshot) =>
+                              Voter.fromDocumentSnapshot(docSnapshot))
+                          .toList();
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: voters.length,
+                        itemBuilder: (context, index) =>
+                            _buildListItem(voters[index]),
+                      );
+                    }
+
+                    return searchKey != ''
+                        ? const Center(child: CupertinoActivityIndicator())
+                        : Container();
+
+                    // }
+                    // else{
+                  }),
+            )
           ]),
         ),
       ),
@@ -111,16 +111,6 @@ Stream? streamQuery;
     );
   }
 
-<<<<<<< HEAD
-
-
-}
-Widget _buildListItem(DocumentSnapshot document) {
-  return  ListTile(
-    title: Text(document['name']),
-    subtitle: Text(document['fathername']),
-  );
-=======
   Widget _buildListItem(Voter voter) {
     return Card(
         color: Colors.white.withOpacity(.9),
@@ -162,5 +152,4 @@ Widget _buildListItem(DocumentSnapshot document) {
           ),
         ));
   }
->>>>>>> 10a42304cf8e13ce14b2f66cc7b5c8752c036661
 }
