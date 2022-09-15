@@ -30,7 +30,7 @@ class _AddDataState extends State<AddData> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0Xff008000),
-        title: const Center(child: Text("Add Voter")),
+        title: const Center(child: Text("ووٹر شامل کریں")),
       ),
       body: SingleChildScrollView(
         child: Form(

@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:voterrecord/models/database_service.dart';
 import 'package:voterrecord/models/voter.dart';
 import 'package:voterrecord/screens/add_data.dart';
+import 'package:voterrecord/utils/search_filtters.dart';
+
+import '../utils/textfield_mask.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,7 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController cnicController = TextEditingController();
   bool isLoading = false;
   String searchKey = '';
-  Stream? streamQuery;
+  Filters selectedFliter = Filters.byCNIC;
+
   final maskFormatter = MaskTextInputFormatter(
       mask: '#####-#######-#',
       filter: {"#": RegExp(r'[0-9]')},
@@ -27,39 +30,58 @@ class _HomeScreenState extends State<HomeScreen> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         backgroundColor: const Color(0Xff008000),
-        title: const Center(child: Text("Search")),
+        title: const Center(child: Text("ووٹر تلاش کری")),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12).copyWith(top: 20),
         child: Form(
           key: _formKey,
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            SizedBox(
-              width: width * 0.95,
-              child: TextFormField(
-                onChanged: (value) {
-                  setState(() {
-                    searchKey = value;
-                  });
-                },
-                keyboardType: TextInputType.number,
-                textDirection: TextDirection.rtl,
-                textAlign: TextAlign.right,
-                controller: cnicController,
-                inputFormatters: [maskFormatter],
-                validator: RequiredValidator(errorText: "Required"),
-                decoration: const InputDecoration(
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8))),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                  hintText: "شناختی کارڈ درج کریں",
+            TextFormField(
+              onChanged: (value) {
+                setState(() {
+                  searchKey = value;
+                });
+              },
+              keyboardType: TextInputType.number,
+              textDirection: TextDirection.rtl,
+              textAlign: TextAlign.right,
+              controller: cnicController,
+              inputFormatters: [getTextFieldMask(Filters.byCNIC)],
+              validator: RequiredValidator(errorText: "Required"),
+              decoration: InputDecoration(
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: SizedBox(
+                    width: 100,
+                    child: DropdownButton(
+                      isExpanded: true,
+                      items: Filters.values.map(
+                        (val) {
+                          return DropdownMenuItem(
+                            value: val,
+                            child: Text(getFliterName(val)),
+                          );
+                        },
+                      ).toList(),
+                      value: selectedFliter,
+                      onChanged: (Filters? value) {
+                        setState(() {
+                          selectedFliter = value!;
+                        });
+                      },
+                    ),
+                  ),
                 ),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8))),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                hintText: "${getFliterName(selectedFliter)} درج کریں ",
               ),
             ),
             const SizedBox(
@@ -70,8 +92,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   stream: searchKey != ''
                       ? FirebaseFirestore.instance
                           .collection('Voters')
-                          .where('cnic', isGreaterThanOrEqualTo: searchKey)
-                          .where('cnic', isLessThan: '${searchKey}z')
+                          .where(getFliterVariable(selectedFliter),
+                              isGreaterThanOrEqualTo: searchKey)
+                          .where(getFliterVariable(selectedFliter),
+                              isLessThan: '${searchKey}z')
                           .snapshots()
                       : null,
                   builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
