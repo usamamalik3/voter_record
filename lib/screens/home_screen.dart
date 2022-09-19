@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   searchKey = value;
                 });
               },
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.right,
               controller: cnicController,

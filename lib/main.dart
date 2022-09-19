@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:voterrecord/screens/Dashboard.dart';
 import 'package:voterrecord/screens/home_screen.dart';
 
 void main()async {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: DashBoard(),
     );
   }
 }
