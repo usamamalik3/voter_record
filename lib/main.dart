@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           iconTheme: const IconThemeData(color: Color(0Xff008000), size: 40),
           primarySwatch: Colors.blue,
           cardTheme: const CardTheme(
-            elevation: 3,
+            elevation: 4,
           ),
           inputDecorationTheme: InputDecorationTheme(
               focusedBorder: OutlineInputBorder(
