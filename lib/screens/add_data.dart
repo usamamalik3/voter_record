@@ -127,52 +127,55 @@ class _AddDataState extends State<AddData> {
                   controler: pollingstController,
                   validattor: RequiredValidator(errorText: "Required"),
                 )),
-            !isLoading
-                ? Center(
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                    side: const BorderSide(
-                                        color: Color(0Xff0080)))),
-                            minimumSize:
-                                MaterialStateProperty.all(const Size(200, 50)),
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color(0Xff008000))),
-                        onPressed: (() async {
-                          if (_formKey.currentState!.validate()) {
-                            DatabaseService service = DatabaseService();
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: !isLoading
+                  ? Center(
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      side: const BorderSide(
+                                          color: Color(0Xff0080)))),
+                              minimumSize: MaterialStateProperty.all(
+                                  const Size(200, 50)),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  const Color(0Xff008000))),
+                          onPressed: (() async {
+                            if (_formKey.currentState!.validate()) {
+                              DatabaseService service = DatabaseService();
 
-                            Voter voter = Voter(
-                                name: nameController.text,
-                                fathername: fnameController.text,
-                                cnic: cnicController.text,
-                                serialno: int.parse(snoController.text),
-                                householdno: int.parse(hnoController.text),
-                                gender: genderController.text,
-                                age: int.parse(ageController.text),
-                                address: addressController.text,
-                                polingstion: pollingstController.text);
+                              Voter voter = Voter(
+                                  name: nameController.text,
+                                  fathername: fnameController.text,
+                                  cnic: cnicController.text,
+                                  serialno: int.parse(snoController.text),
+                                  householdno: int.parse(hnoController.text),
+                                  gender: genderController.text,
+                                  age: int.parse(ageController.text),
+                                  address: addressController.text,
+                                  polingstion: pollingstController.text);
 
-                            setState(() {
-                              isLoading = true;
-                            });
-                            await service.addVoter(voter);
-                            setState(() {
-                              isLoading = false;
-                            });
-                          }
-                        }),
-                        child: const Text(
-                          "Submit",
-                          style: TextStyle(fontSize: 20),
-                        )),
-                  )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  )
+                              setState(() {
+                                isLoading = true;
+                              });
+                              await service.addVoter(voter);
+                              setState(() {
+                                isLoading = false;
+                              });
+                            }
+                          }),
+                          child: const Text(
+                            "Submit",
+                            style: TextStyle(fontSize: 20),
+                          )),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+            )
           ]),
         ),
       ),
