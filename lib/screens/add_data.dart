@@ -29,7 +29,7 @@ class _AddDataState extends State<AddData> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 20,
+        backgroundColor: const Color(0Xff008000),
         title: const Center(child: Text("ووٹر شامل کریں")),
       ),
       body: SingleChildScrollView(
