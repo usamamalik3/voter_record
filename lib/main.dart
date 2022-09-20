@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
                     color: Color(0Xff008000),
                   ))),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home: const DashBoard(),
+      home: DashBoard(),
     );
   }
 }
