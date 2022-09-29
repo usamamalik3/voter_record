@@ -209,17 +209,21 @@ class CustomField extends StatelessWidget {
             style: const TextStyle(fontFamily: "NotoNastaliqUrdu"),
           )),
       minLeadingWidth: 8.0,
-      subtitle: TextFormField(
-        keyboardType: keyboardType,
-        controller: controler,
-        validator: validattor,
-        textAlign: TextAlign.right,
-        textDirection: TextDirection.rtl,
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8))),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-          hintText: hint,
+      subtitle: Material(
+        borderRadius: const BorderRadius.all(Radius.circular(100.0)),
+        elevation: 3,
+        shadowColor: Colors.grey,
+        child: TextFormField(
+          keyboardType: keyboardType,
+          controller: controler,
+          validator: validattor,
+          textAlign: TextAlign.right,
+          textDirection: TextDirection.rtl,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+            hintText: hint,
+          ),
         ),
       ),
     );

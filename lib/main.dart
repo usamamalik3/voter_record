@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'AL hayat 360',
       themeMode: ThemeMode.dark,
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white.withOpacity(.98),
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           ),
           inputDecorationTheme: InputDecorationTheme(
               focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(100),
                   borderSide: const BorderSide(
                     width: 2,
                     color: Color(0Xff008000),
