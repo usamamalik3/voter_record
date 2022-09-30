@@ -19,19 +19,32 @@ class MyApp extends StatelessWidget {
       title: 'AL hayat 360',
       themeMode: ThemeMode.dark,
       theme: ThemeData(
+          primaryColor: Colors.green,
           scaffoldBackgroundColor: Colors.white.withOpacity(.98),
-          iconTheme: const IconThemeData(color: Color(0Xff008000), size: 40),
-          primarySwatch: Colors.blue,
-          cardTheme: const CardTheme(
-            elevation: 4,
+          iconTheme: const IconThemeData(
+            color: Color(0Xff008000),
           ),
+          primarySwatch: Colors.blue,
+          cardTheme: CardTheme(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12))),
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Colors.green,
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  elevation: 3,
+                  minimumSize: const Size(300, 45))),
           inputDecorationTheme: InputDecorationTheme(
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(100),
-                  borderSide: const BorderSide(
-                    width: 2,
-                    color: Color(0Xff008000),
-                  ))),
+              filled: true,
+              fillColor: Colors.greenAccent.withOpacity(.3),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
       home: DashBoard(),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:voterrecord/global/widgets/textfield.dart';
 import 'package:voterrecord/models/database_service.dart';
 import 'package:voterrecord/models/voter.dart';
 
@@ -128,21 +129,11 @@ class _AddDataState extends State<AddData> {
                   validattor: RequiredValidator(errorText: "Required"),
                 )),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 24).copyWith(top: 30),
               child: !isLoading
                   ? Center(
                       child: ElevatedButton(
-                          style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      side: const BorderSide(
-                                          color: Color(0Xff0080)))),
-                              minimumSize: MaterialStateProperty.all(
-                                  const Size(200, 50)),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color(0Xff008000))),
                           onPressed: (() async {
                             if (_formKey.currentState!.validate()) {
                               DatabaseService service = DatabaseService();
@@ -177,53 +168,6 @@ class _AddDataState extends State<AddData> {
                     ),
             )
           ]),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomField extends StatelessWidget {
-  const CustomField({
-    Key? key,
-    required this.hint,
-    required this.fldltxt,
-    required this.controler,
-    this.validattor,
-    this.keyboardType,
-  }) : super(key: key);
-
-  final String hint;
-  final String fldltxt;
-  final TextEditingController controler;
-  final String? Function(String?)? validattor;
-  final TextInputType? keyboardType;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Align(
-          alignment: Alignment.topRight,
-          child: Text(
-            fldltxt,
-            style: const TextStyle(fontFamily: "NotoNastaliqUrdu"),
-          )),
-      minLeadingWidth: 8.0,
-      subtitle: Material(
-        borderRadius: const BorderRadius.all(Radius.circular(100.0)),
-        elevation: 3,
-        shadowColor: Colors.grey,
-        child: TextFormField(
-          keyboardType: keyboardType,
-          controller: controler,
-          validator: validattor,
-          textAlign: TextAlign.right,
-          textDirection: TextDirection.rtl,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-            hintText: hint,
-          ),
         ),
       ),
     );
