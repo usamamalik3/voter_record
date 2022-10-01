@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:voterrecord/models/dashboardItem.dart';
 import 'package:voterrecord/screens/add_data.dart';
+import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/votersearch.dart';
 import 'package:voterrecord/utils/dashboard_item_list.dart';
 
 class DashBoard extends StatefulWidget {
@@ -48,10 +50,10 @@ class _DashBoardState extends State<DashBoard> {
                       splashColor: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(12),
                       onTap: () {
-                        Navigator.push(
+                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AddData()),
+                              builder: (context) => const PartyForm()),
                         );
                       },
                       child: Container(

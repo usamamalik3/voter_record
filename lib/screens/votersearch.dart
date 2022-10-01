@@ -9,14 +9,14 @@ import 'package:voterrecord/utils/search_filtters.dart';
 
 import '../utils/textfield_mask.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class VoterSearch extends StatefulWidget {
+  const VoterSearch({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<VoterSearch> createState() => _VoterSearchState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _VoterSearchState extends State<VoterSearch> {
   TextEditingController cnicController = TextEditingController();
   bool isLoading = false;
   String searchKey = '';
@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   searchKey = value;
                 });
               },
+
               keyboardType: TextInputType.text,
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.right,
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               inputFormatters: [getTextFieldMask(Filters.byCNIC)],
               validator: RequiredValidator(errorText: "Required"),
               decoration: InputDecoration(
+                
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: SizedBox(

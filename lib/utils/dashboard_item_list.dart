@@ -20,12 +20,14 @@ List<Items> myList = [
     onPressed: () {},
   ),
   Items(
-    title: "ووٹر لسٹ",
+    title: "ووٹر پرچی",
     icon: const Icon(
       Icons.list_alt_outlined,
       size: 50,
     ),
-    onPressed: () {},
+    onPressed: () {
+      
+    },
   ),
   Items(
     title: "ڈاکیومنٹ",
