@@ -12,7 +12,7 @@ List<Items> myList = [
       ),
       onPressed: () {}),
   Items(
-    title: " پندرہ رکنی باڈی",
+    title: " تنظیم سازی",
     icon: const Icon(
       Icons.group_outlined,
       size: 50,
@@ -30,7 +30,7 @@ List<Items> myList = [
     },
   ),
   Items(
-    title: "ڈاکیومنٹ",
+    title: "شماریات",
     icon: const Icon(
       Icons.document_scanner_outlined,
       size: 50,
@@ -45,6 +45,27 @@ List<Items> myList = [
       ),
       onPressed: () {}),
   Items(
+      title: "شعبه جات",
+      icon: const Icon(
+        Icons.contact_page_outlined,
+        size: 50,
+      ),
+      onPressed: () {}),
+      Items(
+      title: "ہمارے بارے میں",
+      icon: const Icon(
+        Icons.contact_page_outlined,
+        size: 50,
+      ),
+      onPressed: () {}),
+      Items(
+      title: "ڈاکیومنٹ",
+      icon: const Icon(
+        Icons.contact_page_outlined,
+        size: 50,
+      ),
+      onPressed: () {}),
+      Items(
       title: "ہم سے رابطہ کریں",
       icon: const Icon(
         Icons.contact_page_outlined,

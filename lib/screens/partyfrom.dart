@@ -214,6 +214,28 @@ String dropdownvalue = 'پنجاب';
                     )),
               ],
             ),
+             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                    width: width * 0.5,
+                    child: CustomField(
+                      keyboardType: TextInputType.number,
+                      fldltxt: 'صوبائی حلقہ',
+                      hint: 'یہاں لکھیں۔',
+                      controler: ageController,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    )),
+                SizedBox(
+                    width: width * 0.5,
+                    child: CustomField(
+                      fldltxt: 'قومی حلقہ',
+                      hint: 'یہاں لکھیں۔',
+                      controler: genderController,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    )),
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -236,6 +258,7 @@ String dropdownvalue = 'پنجاب';
                     )),
               ],
             ),
+             
              Material(
               child: Checkbox(
                 value: agree,
