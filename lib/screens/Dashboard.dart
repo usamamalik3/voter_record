@@ -50,11 +50,7 @@ class _DashBoardState extends State<DashBoard> {
                       splashColor: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(12),
                       onTap: () {
-                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PartyForm()),
-                        );
+                      data.onPressed();
                       },
                       child: Container(
                         clipBehavior: Clip.antiAlias,

@@ -1,7 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:voterrecord/screens/Dashboard.dart';
+import 'package:voterrecord/screens/add_data.dart';
+import 'package:voterrecord/screens/partyfrom.dart';
 import 'package:voterrecord/screens/votersearch.dart';
+import 'package:voterrecord/utils/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,10 +16,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  // This wid1get is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'AL hayat 360',
       themeMode: ThemeMode.dark,
       theme: ThemeData(
@@ -46,7 +50,10 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home: DashBoard(),
+       initialRoute: '/',
+      //when initial Route is given no need to add home widget for initial start point of app
+      //full app route structure
+     getPages: Routes.routes,
     );
   }
 }
