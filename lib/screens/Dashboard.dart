@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:voterrecord/models/dashboardItem.dart';
-import 'package:voterrecord/screens/add_data.dart';
-import 'package:voterrecord/screens/partyfrom.dart';
-import 'package:voterrecord/screens/votersearch.dart';
+
 import 'package:voterrecord/utils/dashboard_item_list.dart';
 
 class DashBoard extends StatefulWidget {
-  DashBoard({Key? key}) : super(key: key);
+  const DashBoard({Key? key}) : super(key: key);
 
   @override
   State<DashBoard> createState() => _DashBoardState();
@@ -57,7 +54,7 @@ class _DashBoardState extends State<DashBoard> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color:
-                              Theme.of(context).inputDecorationTheme.fillColor!,
+                              Colors.grey.withOpacity(0.09),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

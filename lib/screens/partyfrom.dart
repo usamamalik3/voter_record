@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+
 import 'package:voterrecord/global/widgets/textfield.dart';
 import 'package:voterrecord/models/database_service.dart';
 import 'package:voterrecord/models/voter.dart';
 
 class PartyForm extends StatefulWidget {
   const PartyForm({Key? key}) : super(key: key);
-
+ 
   @override
   State<PartyForm> createState() => _PartyFormState();
 }
@@ -25,6 +27,22 @@ class _PartyFormState extends State<PartyForm> {
  bool agree = false;
   final _formKey = GlobalKey<FormState>();
 String dropdownvalue = 'پنجاب';
+String divsionvalue = 'ڈویژن';
+List<dynamic> divisons = [];
+ getdata(distric) async{
+   await FirebaseFirestore.instance
+    .collection("Divsion")
+    .doc(distric)
+    .get()
+    .then((value) {
+      setState(() {
+         divisons = value.data()!["ڈویژن"];
+      });
+      
+    
+    });
+    
+  }
     var items = [
       'پنجاب',
       'سندھ',
@@ -33,6 +51,7 @@ String dropdownvalue = 'پنجاب';
       'گلگت بلتستان',
       'آزاد جموں و کشمیر',
     ];
+ 
   @override
   Widget build(BuildContext context) {
     
@@ -187,12 +206,57 @@ String dropdownvalue = 'پنجاب';
                   }).toList(),
                   onChanged: (String? newValue) {
                     setState(() {
+                      getdata(newValue);
                       dropdownvalue = newValue!;
                     });
                   },
                 ),
               ),
-            ),Row(
+            ),
+             const ListTile(
+              title: Padding(
+                padding: EdgeInsets.only(right: 8, bottom: 4),
+                child: Align(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      "ڈویژن",
+                      style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                    )),
+              ),
+            ),
+
+
+          //TODO is ko check krna is mai baqi sb thek hy lakin jab division select kr k dobara
+          // province change krty hain tu item is null error ata hy baqi voice pe bta don ga
+            Padding(
+              padding: const EdgeInsets.only(left: 200),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.greenAccent
+                      .withOpacity(.3), //background color of dropdown button
+
+                  borderRadius: BorderRadius.circular(
+                      12), //border raiuds of dropdown button
+                ),
+                child: DropdownButton(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  
+                  value: divsionvalue,
+                  items: divisons.map((e) {
+                    return DropdownMenuItem(
+                      value: e,
+                      child: Text(e.toString()),
+                  );
+                  }).toList(),
+                  onChanged: (newValue) {
+                    setState(() {
+                      divsionvalue = newValue.toString();
+                    });
+                  },
+                ),
+              ),
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(
@@ -270,12 +334,15 @@ String dropdownvalue = 'پنجاب';
                 },
               ),
             ),
-            const Text(
-             
+            const Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 15),
+              child:  Text(
+               
          'میں نے تحریک لبیک یا رسول اللہ صلی اللہ علیہ وآلہ وسلم کے اغراض و مقاصد کا مطالعہ کر لیا ہے اور مجھے ان سے مکمل اتفاق ہے۔ میں عہد کرتا/کرتی ہوں کہ تحریک لبیک یا رسول اللہ صلی اللہ علیہ وآلہ وسلم کے اغراض و مقاصد اور منشور(اسلام، پاکستان اور عوام)کی کامیابی کے لئے دل و جان سے کوشش کروں گا/گی اور ان اغراض و مقاصد کے خلاف سرگرمیوں سے مکمل اجتناب کروں گا/گی۔',
-         maxLines: 2,
+         maxLines: 7,
 
-              overflow: TextOverflow.ellipsis,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Padding(
               padding:

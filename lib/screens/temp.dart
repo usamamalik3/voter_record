@@ -16,9 +16,9 @@ class Temp extends StatefulWidget {
 
  void _setData() async{
    
-   firestoreInstance.collection("Divsion").doc('Balochistan').set(
+   firestoreInstance.collection("Divsion").doc('سندھ').set(
        {
-         "ڈویژن" : ["ژوب" , "سبی" ,"قلات ", " رخشان","کوئٹہ" ,"لورالائی", "مکران", "نصیر آباد"],
+         "ڈویژن" : ["بھمبھور","حیدر آباد","سکھر", " کراچی", "لاڑکانہ", " میرپور خاص" ,"شہید بینظیر آباد"],
         
          }
        ).then((_){
@@ -30,17 +30,7 @@ TextEditingController tempcontroller = TextEditingController();
 bool isLoading = false;
 
 class _TempState extends State<Temp> {
-  List<dynamic> divisons = [];
-  getdata(){
-    FirebaseFirestore.instance
-    .collection("Divsion")
-    .doc("Punjab")
-    .get()
-    .then((value) {
-       divisons = value.data()!["ڈویژن"];
-       print(divisons);
-    });
-  }
+ 
   
   @override
   Widget build(BuildContext context) {
@@ -57,7 +47,7 @@ class _TempState extends State<Temp> {
                   ? Center(
                       child: ElevatedButton(
                           onPressed: (){
-                            getdata();
+                           _setData();
                           } ,
                             
                           child: const Text(
@@ -68,7 +58,8 @@ class _TempState extends State<Temp> {
                   : const Center(
                       child: CircularProgressIndicator(),
                     ),
-            )
+            ),
+            
       ],
     ),
     );

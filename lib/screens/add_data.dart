@@ -5,14 +5,14 @@ import 'package:voterrecord/global/widgets/textfield.dart';
 import 'package:voterrecord/models/database_service.dart';
 import 'package:voterrecord/models/voter.dart';
 
-class AddData extends StatefulWidget {
-  const AddData({Key? key}) : super(key: key);
+class AddVoterData extends StatefulWidget {
+  const AddVoterData({Key? key}) : super(key: key);
 
   @override
-  State<AddData> createState() => _AddDataState();
+  State<AddVoterData> createState() => _AddVoterDataState();
 }
 
-class _AddDataState extends State<AddData> {
+class _AddVoterDataState extends State<AddVoterData> {
   TextEditingController nameController = TextEditingController();
   TextEditingController fnameController = TextEditingController();
   TextEditingController cnicController = TextEditingController();

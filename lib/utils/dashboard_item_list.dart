@@ -9,7 +9,7 @@ List<Items> myList = [
         size: 50,
       ),
       onPressed: (context) {
-        Navigator.pushNamed(context, '/register');
+        Navigator.pushNamed(context, '/partyform');
       }),
   Items(
     title: " تنظیم سازی",
@@ -17,7 +17,9 @@ List<Items> myList = [
       Icons.group_outlined,
       size: 50,
     ),
-    onPressed: (context) {},
+    onPressed: (context) {
+       
+    },
   ),
   Items(
     title: "ووٹر پرچی",
@@ -26,6 +28,8 @@ List<Items> myList = [
       size: 50,
     ),
     onPressed: (context) {
+      Navigator.pushNamed(context, '/voter');
+     
       
     },
   ),

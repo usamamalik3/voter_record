@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/screens/Dashboard.dart';
+import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/temp.dart';
 import 'configs/routes.dart';
 
 void main() async {
@@ -18,23 +20,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       themeMode: ThemeMode.dark,
-      onGenerateRoute: Routes().generateRoute,
+      // onGenerateRoute: Routes().generateRoute,
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white.withOpacity(.98),
-          iconTheme: const IconThemeData(color: Color(0Xff008000), size: 40),
-          primarySwatch: Colors.blue,
+          iconTheme: const IconThemeData(color: Color(0Xff008000), ),
+          primarySwatch: Colors.green,
           cardTheme: const CardTheme(
             elevation: 4,
           ),
           inputDecorationTheme: InputDecorationTheme(
               focusedBorder: OutlineInputBorder(
+                
                   borderRadius: BorderRadius.circular(10),
                   borderSide: const BorderSide(
                     width: 2,
                     color: Color(0Xff008000),
                   ))),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home: DashBoard(),
+     home: PartyForm(),
     );
   }
 }
