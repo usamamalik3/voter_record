@@ -50,7 +50,7 @@ class _DashBoardState extends State<DashBoard> {
                       splashColor: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(12),
                       onTap: () {
-                      data.onPressed();
+                      data.onPressed(context);
                       },
                       child: Container(
                         clipBehavior: Clip.antiAlias,

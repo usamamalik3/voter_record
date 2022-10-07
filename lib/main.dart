@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/screens/Dashboard.dart';
-import 'package:voterrecord/screens/home_screen.dart';
+import 'configs/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       themeMode: ThemeMode.dark,
+      onGenerateRoute: Routes().generateRoute,
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white.withOpacity(.98),
           iconTheme: const IconThemeData(color: Color(0Xff008000), size: 40),
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
                     color: Color(0Xff008000),
                   ))),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home: const DashBoard(),
+      home: DashBoard(),
     );
   }
 }

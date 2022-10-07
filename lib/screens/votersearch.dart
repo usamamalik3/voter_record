@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/models/voter.dart';
 import 'package:voterrecord/screens/add_data.dart';
@@ -129,7 +127,10 @@ class _VoterSearchState extends State<VoterSearch> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0Xff008000),
-        onPressed: () => Get.to(() => const AddData()),
+        onPressed: (){
+          
+        },
+  //TODO      // onPressed: () => Get.to(() => const AddData()),
         tooltip: 'Add data',
         child: const Icon(Icons.add),
       ),

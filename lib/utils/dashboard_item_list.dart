@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:voterrecord/models/dashboardItem.dart';
-import 'package:voterrecord/screens/partyfrom.dart';
-
-import '../screens/add_data.dart';
 
 List<Items> myList = [
   Items(
@@ -13,10 +8,8 @@ List<Items> myList = [
         Icons.add_circle_outline,
         size: 50,
       ),
-      onPressed: () {
-       
-        Get.toNamed('/register');
-        
+      onPressed: (context) {
+        Navigator.pushNamed(context, '/register');
       }),
   Items(
     title: " تنظیم سازی",
@@ -24,7 +17,7 @@ List<Items> myList = [
       Icons.group_outlined,
       size: 50,
     ),
-    onPressed: () {},
+    onPressed: (context) {},
   ),
   Items(
     title: "ووٹر پرچی",
@@ -32,8 +25,8 @@ List<Items> myList = [
       Icons.list_alt_outlined,
       size: 50,
     ),
-    onPressed: () {
-      Get.toNamed('/votersearch');
+    onPressed: (context) {
+      
     },
   ),
   Items(
@@ -42,7 +35,7 @@ List<Items> myList = [
       Icons.document_scanner_outlined,
       size: 50,
     ),
-    onPressed: () {},
+    onPressed: (context) {},
   ),
   Items(
       title: "میڈیا",
@@ -50,33 +43,33 @@ List<Items> myList = [
         Icons.perm_media_outlined,
         size: 50,
       ),
-      onPressed: () {}),
+      onPressed: (context) {}),
   Items(
       title: "شعبه جات",
       icon: const Icon(
         Icons.contact_page_outlined,
         size: 50,
       ),
-      onPressed: () {}),
+      onPressed: (context) {}),
   Items(
       title: "ہمارے بارے میں",
       icon: const Icon(
         Icons.contact_page_outlined,
         size: 50,
       ),
-      onPressed: () {}),
+      onPressed: (context) {}),
   Items(
       title: "ڈاکیومنٹ",
       icon: const Icon(
         Icons.contact_page_outlined,
         size: 50,
       ),
-      onPressed: () {}),
+      onPressed: (context) {}),
   Items(
       title: "ہم سے رابطہ کریں",
       icon: const Icon(
         Icons.contact_page_outlined,
         size: 50,
       ),
-      onPressed: () {}),
+      onPressed: (context) {}),
 ];
