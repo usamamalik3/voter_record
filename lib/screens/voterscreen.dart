@@ -25,14 +25,13 @@ class VoterScreen extends StatelessWidget {
                     splashColor: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                    
+                    Navigator.pushNamed(context, '/voterrecord');
                     },
                     child: Container(
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color:
-                            Colors.grey.withOpacity(0.09),
+                        color:Theme.of(context).inputDecorationTheme.fillColor!,
                       ),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -58,14 +57,13 @@ class VoterScreen extends StatelessWidget {
                     splashColor: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                    
+                    Navigator.pushNamed(context, '/votersearch');
                     },
                     child: Container(
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color:
-                            Colors.grey.withOpacity(0.09),
+                        color:Theme.of(context).inputDecorationTheme.fillColor!,
                       ),
                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

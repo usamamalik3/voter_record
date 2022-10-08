@@ -53,8 +53,7 @@ class _DashBoardState extends State<DashBoard> {
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color:
-                              Colors.grey.withOpacity(0.09),
+                          color:Theme.of(context).inputDecorationTheme.fillColor!,
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

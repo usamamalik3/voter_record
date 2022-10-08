@@ -207,6 +207,7 @@ List<dynamic> divisons = [];
                   onChanged: (String? newValue) {
                     setState(() {
                       getdata(newValue);
+                      divsionvalue = 'ڈویژن';
                       dropdownvalue = newValue!;
                     });
                   },
