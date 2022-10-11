@@ -5,6 +5,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/models/voter.dart';
 import 'package:voterrecord/screens/add_data.dart';
+import 'package:voterrecord/screens/voterdetail.dart';
 import 'package:voterrecord/utils/search_filtters.dart';
 
 import '../utils/textfield_mask.dart';
@@ -110,7 +111,10 @@ class _VoterSearchState extends State<VoterSearch> {
                         shrinkWrap: true,
                         itemCount: voters.length,
                         itemBuilder: (context, index) =>
-                            _buildListItem(voters[index]),
+                            InkWell(
+                              onTap: (){ Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Voterdetail(voter: voters[index],)));},
+                              child: _buildListItem(voters[index])),
                       );
                     }
 

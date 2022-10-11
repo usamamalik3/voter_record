@@ -5,6 +5,7 @@ import 'package:voterrecord/configs/routes.dart';
 import 'package:voterrecord/screens/Dashboard.dart';
 import 'package:voterrecord/screens/add_data.dart';
 import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/temp.dart';
 import 'package:voterrecord/screens/votersearch.dart';
 
 
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home: DashBoard(),
+      home: VoterSearch(),
     );
   }
 }

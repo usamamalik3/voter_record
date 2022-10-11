@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:voterrecord/screens/Dashboard.dart';
 import 'package:voterrecord/screens/add_data.dart';
 import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/voterdetail.dart';
 import 'package:voterrecord/screens/voterscreen.dart';
 import 'package:voterrecord/screens/votersearch.dart';
 
@@ -12,6 +13,7 @@ class Routes {
   static const String voter = '/voter';
   static const String voterrecord = '/voterrecord';
   static const String votersearch = '/votersearch';
+  static const String voterdetail = '/voterdetail';
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -24,7 +26,9 @@ class Routes {
       case voterrecord:
         return MaterialPageRoute<AddVoterData>(builder: (context) => const AddVoterData());  
       case votersearch:
-        return MaterialPageRoute<VoterSearch>(builder: (context) => const VoterSearch());  
+        return MaterialPageRoute<VoterSearch>(builder: (context) => const VoterSearch());
+      // case voterdetail:
+        // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));  
         
 
       default:

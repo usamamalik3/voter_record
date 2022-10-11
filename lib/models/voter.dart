@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class Voter {
    String? name;
@@ -15,6 +16,7 @@ class Voter {
   String? polingstion;
   String? phonrno;
  String? stcode;
+ String? choicechip;
   Voter({
     this.name,
     this.fathername,
@@ -27,6 +29,7 @@ class Voter {
     this.polingstion,
     this.phonrno,
     this.stcode,
+    this.choicechip,
   });
 
   Voter copyWith({
@@ -41,6 +44,7 @@ class Voter {
     String? polingstion,
     String? phonrno,
     String? stcode,
+    String? choicechip,
   }) {
     return Voter(
       name: name ?? this.name,
@@ -54,6 +58,7 @@ class Voter {
       polingstion: polingstion ?? this.polingstion,
       phonrno: phonrno ?? this.phonrno,
       stcode: stcode ?? this.stcode,
+      choicechip: choicechip ?? this.choicechip
     );
   }
 
@@ -70,6 +75,7 @@ class Voter {
       'polingstion': polingstion,
       'phonrno': phonrno,
       'stcode': stcode,
+      'choicechip': choicechip,
     };
   }
 
@@ -86,6 +92,7 @@ class Voter {
       polingstion: map['polingstion'] != null ? map['polingstion'] as String : null,
       phonrno: map['phonrno'] != null ? map['phonrno'] as String : null,
       stcode: map['stcode'] != null ? map['stcode'] as String : null,
+      choicechip: map['choicechip'] != null ? map['choicechip'] as String : null,
     );
   }
   factory Voter.fromDocumentSnapshot(DocumentSnapshot doc) {
@@ -106,6 +113,8 @@ class Voter {
                 doc['phonrno'] != null ? doc['phonrno'] as String : null,
       stcode:
                 doc['stcode'] != null ? doc['stcode'] as String : null,
+      choicechip:
+                doc['choicechip'] != null ? doc['choicechip'] as String : null,
     );
   }
 
@@ -115,7 +124,7 @@ class Voter {
 
   @override
   String toString() {
-    return 'Voter(name: $name, fathername: $fathername, cnic: $cnic, serialno: $serialno, householdno: $householdno, gender: $gender, age: $age, address: $address, polingstion: $polingstion, phonrno: $phonrno, stcode: $stcode)';
+    return 'Voter(name: $name, fathername: $fathername, cnic: $cnic, serialno: $serialno, householdno: $householdno, gender: $gender, age: $age, address: $address, polingstion: $polingstion, phonrno: $phonrno, stcode: $stcode, choicechip: $choicechip)';
   }
 
   @override
@@ -133,7 +142,8 @@ class Voter {
       other.address == address &&
       other.polingstion == polingstion &&
       other.phonrno == phonrno &&
-      other.stcode == stcode;
+      other.stcode == stcode &&
+      other.choicechip== choicechip;
   }
 
   @override
@@ -148,6 +158,7 @@ class Voter {
       address.hashCode ^
       polingstion.hashCode ^
       phonrno.hashCode ^
+      choicechip.hashCode ^
       stcode.hashCode;
   }
 }

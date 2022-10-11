@@ -26,8 +26,8 @@ class _PartyFormState extends State<PartyForm> {
   bool isLoading = false;
  bool agree = false;
   final _formKey = GlobalKey<FormState>();
-String dropdownvalue = 'پنجاب';
-String divsionvalue = 'ڈویژن';
+String? dropdownvalue;
+String? divsionvalue;
 List<dynamic> divisons = [];
  getdata(distric) async{
    await FirebaseFirestore.instance
@@ -47,10 +47,15 @@ List<dynamic> divisons = [];
       'پنجاب',
       'سندھ',
       'بلوچستان',
-      'خیبرپختونخوا',
+      'خیبر پختونخوا',
       'گلگت بلتستان',
       'آزاد جموں و کشمیر',
     ];
+    @override
+  initState() {
+    super.initState();
+    getdata("پنجاب");
+  }
  
   @override
   Widget build(BuildContext context) {
@@ -64,11 +69,11 @@ List<dynamic> divisons = [];
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
             const ListTile(
               title: Center(
                   child: Text(
-                "تحریک لبیک یارسول اللہ پاکستان",
+                "تحریک لبیک پاکستان",
                 style: TextStyle(fontFamily: "NotoNastaliqUrdu", fontSize: 18),
               )),
             ),
@@ -175,7 +180,7 @@ List<dynamic> divisons = [];
                 )),
             const ListTile(
               title: Padding(
-                padding: EdgeInsets.only(right: 8, bottom: 4),
+                padding: EdgeInsets.only(right: 8,),
                 child: Align(
                     alignment: Alignment.topRight,
                     child: Text(
@@ -185,7 +190,7 @@ List<dynamic> divisons = [];
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 200),
+              padding: const EdgeInsets.only(right: 20),
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: Colors.greenAccent
@@ -208,7 +213,7 @@ List<dynamic> divisons = [];
                     setState(() {
                       getdata(newValue);
                       divsionvalue = 'ڈویژن';
-                      dropdownvalue = newValue!;
+                      dropdownvalue = newValue ?? "";
                     });
                   },
                 ),
@@ -216,7 +221,7 @@ List<dynamic> divisons = [];
             ),
              const ListTile(
               title: Padding(
-                padding: EdgeInsets.only(right: 8, bottom: 4),
+                padding: EdgeInsets.only(right: 8, ),
                 child: Align(
                     alignment: Alignment.topRight,
                     child: Text(
@@ -230,7 +235,7 @@ List<dynamic> divisons = [];
           //TODO is ko check krna is mai baqi sb thek hy lakin jab division select kr k dobara
           // province change krty hain tu item is null error ata hy baqi voice pe bta don ga
             Padding(
-              padding: const EdgeInsets.only(left: 200),
+              padding: const EdgeInsets.only(right: 20),
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: Colors.greenAccent
@@ -251,7 +256,7 @@ List<dynamic> divisons = [];
                   }).toList(),
                   onChanged: (newValue) {
                     setState(() {
-                      divsionvalue = newValue.toString();
+                      divsionvalue = newValue.toString() ;
                     });
                   },
                 ),

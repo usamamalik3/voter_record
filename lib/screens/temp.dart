@@ -16,9 +16,9 @@ class Temp extends StatefulWidget {
 
  void _setData() async{
    
-   firestoreInstance.collection("Divsion").doc('سندھ').set(
+   firestoreInstance.collection("District").doc('ساہیوال').set(
        {
-         "ڈویژن" : ["بھمبھور","حیدر آباد","سکھر", " کراچی", "لاڑکانہ", " میرپور خاص" ,"شہید بینظیر آباد"],
+         "ضلع" : [ "ساہیوال ضلع" , "ضلع اوکاڑہ",  "ضلع پاکپتن"],
         
          }
        ).then((_){

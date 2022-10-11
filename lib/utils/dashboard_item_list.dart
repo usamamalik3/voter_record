@@ -3,6 +3,15 @@ import 'package:voterrecord/models/dashboardItem.dart';
 
 List<Items> myList = [
   Items(
+      title: " ٹی ایل پی کے بارے میں",
+      icon: const Icon(
+        Icons.photo_album_outlined,
+        size: 50,
+      ),
+      onPressed: (context) {
+
+      }),
+      Items(
       title: "رجسٹریشن فارم",
       icon: const Icon(
         Icons.add_circle_outline,
@@ -21,33 +30,7 @@ List<Items> myList = [
        
     },
   ),
-  Items(
-    title: "ووٹر پرچی",
-    icon: const Icon(
-      Icons.list_alt_outlined,
-      size: 50,
-    ),
-    onPressed: (context) {
-      Navigator.pushNamed(context, '/voter');
-     
-      
-    },
-  ),
-  Items(
-    title: "شماریات",
-    icon: const Icon(
-      Icons.document_scanner_outlined,
-      size: 50,
-    ),
-    onPressed: (context) {},
-  ),
-  Items(
-      title: "میڈیا",
-      icon: const Icon(
-        Icons.perm_media_outlined,
-        size: 50,
-      ),
-      onPressed: (context) {}),
+ 
   Items(
       title: "شعبه جات",
       icon: const Icon(
@@ -56,16 +39,49 @@ List<Items> myList = [
       ),
       onPressed: (context) {}),
   Items(
-      title: "ہمارے بارے میں",
+    title: "شماریات",
+    icon: const Icon(
+      Icons.auto_graph_outlined,
+      size: 50,
+    ),
+    onPressed: (context) {},
+  ),
+   Items(
+    title: "ووٹر پرچی",
+    icon: const Icon(
+      Icons.list_alt_outlined,
+      size: 50,
+    ),
+    onPressed: (context) {
+ Navigator.pushNamed(context, '/voter');
+     
+      
+    },
+  ),
+   Items(
+    title: "الیکشن مینجمنٹ سسٹم",
+    icon: const Icon(
+      Icons.manage_search_outlined,
+      size: 50,
+    ),
+    onPressed: (context) {
+     
+     
+      
+    },
+  ),
+
+Items(
+      title: "ڈاکیومنٹ",
       icon: const Icon(
-        Icons.contact_page_outlined,
+        Icons.document_scanner,
         size: 50,
       ),
       onPressed: (context) {}),
-  Items(
-      title: "ڈاکیومنٹ",
+       Items(
+      title: "میڈیا",
       icon: const Icon(
-        Icons.contact_page_outlined,
+        Icons.perm_media_outlined,
         size: 50,
       ),
       onPressed: (context) {}),
