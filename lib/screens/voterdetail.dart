@@ -43,13 +43,13 @@ class Voterdetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        child: RepaintBoundary(
-          key: _printKey,
-          child: Card(
-            
-           
-            elevation: 10,
-            
+        child: Card(
+          
+         
+          elevation: 10,
+          
+          child: RepaintBoundary(
+            key: _printKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children:  [
@@ -101,7 +101,7 @@ class Voterdetail extends StatelessWidget {
               child: Container(
                 width: width*0.3,
                 height: 40,
-           
+                   
                 decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.all(Radius.circular(16.0))
@@ -115,7 +115,6 @@ class Voterdetail extends StatelessWidget {
               ],
             ),
           ),
-          
         ),
       ),
       floatingActionButton: FloatingActionButton(
