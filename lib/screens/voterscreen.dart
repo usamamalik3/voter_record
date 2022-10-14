@@ -68,7 +68,7 @@ class VoterScreen extends StatelessWidget {
                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
-                           Icon(Icons.how_to_vote_rounded, size: 50,),
+                           Icon(Icons.manage_search_outlined, size: 50,),
                            SizedBox(height: 14),
                             Text(
                               "ووٹر تلاش کریں",

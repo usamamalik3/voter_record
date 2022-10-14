@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
 
 
@@ -28,6 +29,7 @@ class Temp extends StatefulWidget {
 
 TextEditingController tempcontroller = TextEditingController();
 bool isLoading = false;
+var maskFormatter = MaskTextInputFormatter(mask: '+# (###) ###-##-##', filter: { "#": RegExp(r'[0-9]') });
 
 class _TempState extends State<Temp> {
  
@@ -39,6 +41,9 @@ class _TempState extends State<Temp> {
     body: Column(
       
       children: [
+        TextFormField(
+          inputFormatters: [maskFormatter]
+        ),
         CustomField(controler: tempcontroller, fldltxt: 'divison', hint: 'write down',),
          Padding(
               padding:

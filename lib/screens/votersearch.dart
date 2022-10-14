@@ -48,7 +48,7 @@ class _VoterSearchState extends State<VoterSearch> {
                   searchKey = value;
                 });
               },
-
+              
               keyboardType: TextInputType.text,
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.right,

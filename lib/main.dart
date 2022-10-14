@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           iconTheme: const IconThemeData(
             color: Color(0Xff008000),
           ),
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
           cardTheme: CardTheme(
               elevation: 2,
               shape: RoundedRectangleBorder(
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home: DashBoard(),
+      home: PartyForm(),
     );
   }
 }

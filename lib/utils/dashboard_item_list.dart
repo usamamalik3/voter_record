@@ -5,7 +5,7 @@ List<Items> myList = [
   Items(
       title: " ٹی ایل پی کے بارے میں",
       icon: const Icon(
-        Icons.photo_album_outlined,
+        Icons.info_outline,
         size: 50,
       ),
       onPressed: (context) {
@@ -34,7 +34,7 @@ List<Items> myList = [
   Items(
       title: "شعبه جات",
       icon: const Icon(
-        Icons.contact_page_outlined,
+        Icons.account_tree_outlined,
         size: 50,
       ),
       onPressed: (context) {}),
@@ -61,7 +61,7 @@ List<Items> myList = [
    Items(
     title: "الیکشن مینجمنٹ سسٹم",
     icon: const Icon(
-      Icons.manage_search_outlined,
+      Icons.manage_history_outlined,
       size: 50,
     ),
     onPressed: (context) {
@@ -74,7 +74,7 @@ List<Items> myList = [
 Items(
       title: "ڈاکیومنٹ",
       icon: const Icon(
-        Icons.document_scanner,
+        Icons.document_scanner_outlined,
         size: 50,
       ),
       onPressed: (context) {}),

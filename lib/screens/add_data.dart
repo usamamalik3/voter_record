@@ -152,49 +152,7 @@ class _AddVoterDataState extends State<AddVoterData> {
                   controler: pollingstController,
                   validattor: RequiredValidator(errorText: "Required"),
                 )),
-                 Row(  
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              child: ChoiceChip(
-                                 
-                                  label: const Text('حامی',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20)),
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 50),
-                                  selected: choice== 'حامی',
-                                  onSelected: (bool selected) {
-                                    setState(() {
-                                      choice= selected ? 'حامی' : null;
-                                    });
-                                  },
-                                  selectedColor: Theme.of(context).primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(16.0)))),
-                          Expanded(
-                              child: ChoiceChip(
-                                
-                                  label: const Text('مخالف',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20)),
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 50),
-                                  selected: choice== 'مخالف',
-                                  onSelected: (bool selected) {
-                                    setState(() {
-                                      choice= selected ? 'مخالف' : null;
-                                    });
-                                  },
-                                  selectedColor: Theme.of(context).primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(16.0))))
-                        ]),
+                
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 24).copyWith(top: 30),
@@ -217,7 +175,7 @@ class _AddVoterDataState extends State<AddVoterData> {
                                   polingstion: pollingstController.text,
                                   stcode: stcodeController.text,
                                   phonrno: phonenoController.text,
-                                  choicechip: choice);
+                                  );
 
                               setState(() {
                                 isLoading = true;

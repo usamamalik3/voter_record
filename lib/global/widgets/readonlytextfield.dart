@@ -3,10 +3,12 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class ReadTextField extends StatelessWidget {
-  const ReadTextField({super.key, required this.value, required this.title});
+  const ReadTextField({super.key, required this.value, required this.title, this.controler, this.ontap});
 
   final String value;
   final String title;
+  final TextEditingController? controler;
+  final Function()? ontap;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class ReadTextField extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 4),
       child: ListTile(
         title: Padding(
-          padding: const EdgeInsets.only(right: 8, bottom: 4),
+          padding: const EdgeInsets.only(right: 8, bottom: 2),
           child: Align(
               alignment: Alignment.topRight,
               child: Text(
@@ -24,7 +26,8 @@ class ReadTextField extends StatelessWidget {
         ),
         minLeadingWidth: 8.0,
         subtitle: TextFormField(
-          
+          controller: controler,
+          onTap: ontap,
           readOnly: true,
           
           textAlign: TextAlign.right,
