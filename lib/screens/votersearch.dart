@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/models/voter.dart';
-import 'package:voterrecord/screens/add_data.dart';
+
 import 'package:voterrecord/screens/voterdetail.dart';
 import 'package:voterrecord/utils/search_filtters.dart';
 
@@ -129,15 +129,7 @@ class _VoterSearchState extends State<VoterSearch> {
           ]),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0Xff008000),
-        onPressed: (){
-          
-        },
-  //TODO      // onPressed: () => Get.to(() => const AddData()),
-        tooltip: 'Add data',
-        child: const Icon(Icons.add),
-      ),
+     
     );
   }
 

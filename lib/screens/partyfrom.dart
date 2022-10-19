@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -7,6 +7,7 @@ import 'package:voterrecord/global/widgets/readonlytextfield.dart';
 
 import 'package:voterrecord/global/widgets/textfield.dart';
 import 'package:voterrecord/models/database_service.dart';
+import 'package:voterrecord/models/partyformModel.dart';
 import 'package:voterrecord/models/voter.dart';
 import 'package:intl/intl.dart';
 
@@ -18,26 +19,7 @@ class PartyForm extends StatefulWidget {
   @override
   State<PartyForm> createState() => _PartyFormState();
 }
-
-class _PartyFormState extends State<PartyForm> {
-  TextEditingController farmnoController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController fnameController = TextEditingController();
-  TextEditingController cnicController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController snoController = TextEditingController();
-  TextEditingController hnoController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
-  TextEditingController pollingstController = TextEditingController();
-  TextEditingController dateInput = TextEditingController();
-  TextEditingController nacontroller = TextEditingController();
-  TextEditingController pacontroller = TextEditingController();
-  final String naPrefix = "NA-";
-  final String paPrefix = "PP-";
-  String? proffession;
-
-  var maskFormatter = MaskTextInputFormatter(
+var maskFormatter = MaskTextInputFormatter(
     mask: '#####-#######-#',
     filter: {"#": RegExp(r'[0-9]')},
   );
@@ -45,6 +27,73 @@ class _PartyFormState extends State<PartyForm> {
       mask: '####-#######', filter: {"#": RegExp(r'[0-9]')});
   bool isLoading = false;
   bool agree = false;
+class _PartyFormState extends State<PartyForm> {
+  TextEditingController farmnoController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController fnameController = TextEditingController();
+  TextEditingController cnicController = TextEditingController();
+
+  TextEditingController ageController = TextEditingController();
+  TextEditingController eduController = TextEditingController();
+  TextEditingController instituteController = TextEditingController();
+  TextEditingController mobController = TextEditingController();
+  TextEditingController whatsappController = TextEditingController();
+  TextEditingController zoneController = TextEditingController();
+  TextEditingController tehsilController = TextEditingController();
+  TextEditingController districtController = TextEditingController();
+
+  TextEditingController genderController = TextEditingController();
+
+  TextEditingController dateInput = TextEditingController();
+  TextEditingController nacontroller = TextEditingController();
+  TextEditingController pacontroller = TextEditingController();
+  TextEditingController uccontroller = TextEditingController();
+  TextEditingController wardcontroller = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+
+  final String naPrefix = "NA-";
+  String? paPrefix;
+  String? proffession;
+  void prefix(dropdownvalue) {
+    switch (dropdownvalue) {
+      case "پنجاب":
+        {
+          paPrefix = "PP-";
+
+     
+        }
+        break;
+
+      case "سندھ":
+        {
+          paPrefix = "PS-";
+
+          //statements;
+        }
+        break;
+      case "خیبر پختونخوا":
+        {
+          paPrefix = "PK-";
+
+        }
+        break;
+      case "بلوچستان":
+        {
+          paPrefix = "PB-";
+
+  
+        }
+        break;
+
+      default:
+        {
+          //statements;
+        }
+        break;
+    }
+  }
+
+  
   final _formKey = GlobalKey<FormState>();
   String? dropdownvalue;
   String? blddropdownvalue;
@@ -67,6 +116,7 @@ class _PartyFormState extends State<PartyForm> {
   initState() {
     super.initState();
     getdata("پنجاب");
+    prefix(dropdownvalue);
   }
 
   @override
@@ -88,39 +138,10 @@ class _PartyFormState extends State<PartyForm> {
                 style: TextStyle(fontFamily: "NotoNastaliqUrdu", fontSize: 18),
               )),
             ),
-            SizedBox(
-                width: width * 0.5,
-                child: CustomField(
-                  fldltxt: 'فارم نمبر',
-                  hint: 'یہاں لکھیں۔',
-                  controler: farmnoController,
-                  validattor: RequiredValidator(errorText: "Required"),
-                )),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                SizedBox(
-                    width: width * 0.5,
-                    child: CustomField(
-                      fldltxt: 'ولدیت/زوجیت',
-                      hint: 'یہاں لکھیں۔',
-                      controler: fnameController,
-                      validattor: RequiredValidator(errorText: "Required"),
-                    )),
-                SizedBox(
-                    width: width * 0.5,
-                    child: CustomField(
-                      fldltxt: 'مکمل نام',
-                      hint: 'یہاں لکھیں۔',
-                      controler: nameController,
-                      validattor: RequiredValidator(errorText: "Required"),
-                    ))
-              ],
-            ),
             Row(
               children: [
                  SizedBox(
-                  width: width * 0.4,
+                  width: width * 0.5,
                   child: ListTile(
                     title: const Padding(
                       padding: EdgeInsets.only(right: 8.0),
@@ -161,13 +182,12 @@ class _PartyFormState extends State<PartyForm> {
                   ),
                 ),
                 SizedBox(
-                    width: width * 0.6,
+                    width: width * 0.5,
                     child: CustomField(
-                      inputFormatter: [maskFormatter],
                       keyboardType: TextInputType.number,
-                      fldltxt: 'شناختی کارڈ',
-                      hint: ' شناختی کارڈ یہاں لکھیں۔',
-                      controler: cnicController,
+                      fldltxt: 'فارم نمبر',
+                      hint: 'یہاں لکھیں۔',
+                      controler: farmnoController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
               ],
@@ -178,10 +198,41 @@ class _PartyFormState extends State<PartyForm> {
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
+                      fldltxt: 'ولدیت/زوجیت',
+                      hint: 'یہاں لکھیں۔',
+                      controler: fnameController,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    )),
+                SizedBox(
+                    width: width * 0.5,
+                    child: CustomField(
+                      fldltxt: 'مکمل نام',
+                      hint: 'یہاں لکھیں۔',
+                      controler: nameController,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    ))
+              ],
+            ),
+            SizedBox(
+                width: width * 1,
+                child: CustomField(
+                  inputFormatter: [maskFormatter],
+                  keyboardType: TextInputType.number,
+                  fldltxt: 'شناختی کارڈ',
+                  hint: ' شناختی کارڈ یہاں لکھیں۔',
+                  controler: cnicController,
+                  validattor: RequiredValidator(errorText: "Required"),
+                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                    width: width * 0.5,
+                    child: CustomField(
                       keyboardType: TextInputType.number,
                       fldltxt: 'عمر',
                       hint: 'یہاں لکھیں۔',
-                      controler: snoController,
+                      controler: ageController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
                 SizedBox(
@@ -217,10 +268,10 @@ class _PartyFormState extends State<PartyForm> {
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       fldltxt: 'تعلیم',
                       hint: 'یہاں لکھیں۔',
-                      controler: ageController,
+                      controler: eduController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
                 SizedBox(
@@ -271,17 +322,19 @@ class _PartyFormState extends State<PartyForm> {
                 child: CustomField(
                   fldltxt: 'سکول/جامعہ',
                   hint: 'یہاں لکھیں۔',
-                  controler: addressController,
+                  controler: instituteController,
                   validattor: RequiredValidator(errorText: "Required"),
                 )),
             Padding(
-                padding: EdgeInsets.only(left: 40, right: 5),
+                padding: const EdgeInsets.only(left: 40, right: 5),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const ListTile(
                         title: Padding(
-                          padding: EdgeInsets.only(right: 8,),
+                          padding: EdgeInsets.only(
+                            right: 8,
+                          ),
                           child: Align(
                               alignment: Alignment.topRight,
                               child: Text(
@@ -292,7 +345,6 @@ class _PartyFormState extends State<PartyForm> {
                         ),
                       ),
                       Row(
-                       
                         children: [
                           Expanded(
                             child: ConstrainedBox(
@@ -307,7 +359,6 @@ class _PartyFormState extends State<PartyForm> {
                                 onChanged: (value) {
                                   setState(() {
                                     proffession = value.toString();
-                                    print(proffession);
                                   });
                                 },
                               ),
@@ -326,7 +377,6 @@ class _PartyFormState extends State<PartyForm> {
                                 onChanged: (value) {
                                   setState(() {
                                     proffession = value.toString();
-                             
                                   });
                                 },
                               ),
@@ -379,15 +429,16 @@ class _PartyFormState extends State<PartyForm> {
                     ])),
             Row(
               children: [
-                 SizedBox(
-                width: width * 0.5,
-                child: CustomField(
-                  keyboardType: TextInputType.number,
-                  fldltxt: 'واٹس ایپ نمبر',
-                  hint: 'یہاں لکھیں۔',
-                  controler: pollingstController,
-                  validattor: RequiredValidator(errorText: "Required"),
-                )),
+                SizedBox(
+                    width: width * 0.5,
+                    child: CustomField(
+                      inputFormatter: [phonemaskFormatter],
+                      keyboardType: TextInputType.number,
+                      fldltxt: 'واٹس ایپ نمبر',
+                      hint: 'یہاں لکھیں۔',
+                      controler: whatsappController,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    )),
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
@@ -395,57 +446,22 @@ class _PartyFormState extends State<PartyForm> {
                       keyboardType: TextInputType.phone,
                       fldltxt: 'موبائل نمبر',
                       hint: 'یہاں لکھیں۔',
-                      controler: pollingstController,
+                      controler: mobController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
               ],
             ),
-           
             Row(
               children: [
                 SizedBox(
-                  width: width * 0.5,
-                  child: ListTile(
-                    title: const Padding(
-                      padding: EdgeInsets.only(
-                        right: 8,
-                      ),
-                      child: Align(
-                          alignment: Alignment.topRight,
-                          child: Text(
-                            "ڈویژن",
-                            style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
-                          )),
-                    ),
-                    subtitle: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Colors.greenAccent.withOpacity(
-                            .3), //background color of dropdown button
-
-                        borderRadius: BorderRadius.circular(
-                            12), //border raiuds of dropdown button
-                      ),
-                      child: DropdownButton(
-                        underline: const SizedBox.shrink(),
-                        iconEnabledColor: Theme.of(context).primaryColor,
-                        isExpanded: true,
-                        alignment: AlignmentDirectional.bottomEnd,
-                        value: divsionvalue,
-                        items: divisons.map((e) {
-                          return DropdownMenuItem(
-                            value: e,
-                            child: Center(child: Text(e.toString())),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            divsionvalue = newValue.toString();
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                    width: width * 0.5,
+                    child: CustomField(
+                      keyboardType: TextInputType.text,
+                      fldltxt: 'زون',
+                      hint: 'یہاں لکھیں۔',
+                      controler: zoneController,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    )),
                 SizedBox(
                   width: width * 0.5,
                   child: ListTile(
@@ -485,6 +501,7 @@ class _PartyFormState extends State<PartyForm> {
                             getdata(newValue);
                             divsionvalue = 'ڈویژن';
                             dropdownvalue = newValue ?? "";
+                            prefix(dropdownvalue);
                           });
                         },
                       ),
@@ -493,16 +510,59 @@ class _PartyFormState extends State<PartyForm> {
                 ),
               ],
             ),
+            SizedBox(
+              width: width * 0.5,
+              child: ListTile(
+                title: const Padding(
+                  padding: EdgeInsets.only(
+                    right: 8,
+                  ),
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        "ڈویژن",
+                        style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                      )),
+                ),
+                subtitle: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.greenAccent
+                        .withOpacity(.3), //background color of dropdown button
+
+                    borderRadius: BorderRadius.circular(
+                        12), //border raiuds of dropdown button
+                  ),
+                  child: DropdownButton(
+                    underline: const SizedBox.shrink(),
+                    iconEnabledColor: Theme.of(context).primaryColor,
+                    isExpanded: true,
+                    alignment: AlignmentDirectional.bottomEnd,
+                    value: divsionvalue,
+                    items: divisons.map((e) {
+                      return DropdownMenuItem(
+                        value: e,
+                        child: Center(child: Text(e.toString())),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        divsionvalue = newValue.toString();
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       fldltxt: 'تحصیل',
                       hint: 'یہاں لکھیں۔',
-                      controler: ageController,
+                      controler: tehsilController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
                 SizedBox(
@@ -510,7 +570,7 @@ class _PartyFormState extends State<PartyForm> {
                     child: CustomField(
                       fldltxt: ' ضلع',
                       hint: 'یہاں لکھیں۔',
-                      controler: genderController,
+                      controler: districtController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
               ],
@@ -521,47 +581,40 @@ class _PartyFormState extends State<PartyForm> {
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       fldltxt: 'صوبائی حلقہ',
                       hint: 'یہاں لکھیں۔',
-                        onchange: (value){
+                      onchange: (value) {
                         if (value == paPrefix) {
-                    pacontroller.text = "";
-                    return;
-                  }
-               value.startsWith(paPrefix)
-                     ?  pacontroller.text = value
-                     : pacontroller.text = paPrefix + value;
-                  pacontroller.selection = TextSelection.fromPosition(
-                      TextPosition(
-                          offset: pacontroller.text.length
-                             ));
+                          pacontroller.text = "";
+                          return;
+                        }
+                        value.startsWith(paPrefix!)
+                            ? pacontroller.text = value
+                            : pacontroller.text = (paPrefix! + value);
+                        pacontroller.selection = TextSelection.fromPosition(
+                            TextPosition(offset: pacontroller.text.length));
                       },
-
                       controler: pacontroller,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
-                    
                       keyboardType: TextInputType.number,
                       fldltxt: 'قومی حلقہ',
                       hint: 'یہاں لکھیں۔',
-                      onchange: (value){
+                      onchange: (value) {
                         if (value == naPrefix) {
-                    nacontroller.text = "";
-                    return;
-                  }
-                 value.startsWith(naPrefix)
-                     ?  nacontroller.text = value
-                     : nacontroller.text = naPrefix + value;
-                  nacontroller.selection = TextSelection.fromPosition(
-                      TextPosition(
-                          offset: nacontroller.text.length
-                             ));
+                          nacontroller.text = "";
+                          return;
+                        }
+                        value.startsWith(naPrefix)
+                            ? nacontroller.text = value
+                            : nacontroller.text = naPrefix + value;
+                        nacontroller.selection = TextSelection.fromPosition(
+                            TextPosition(offset: nacontroller.text.length));
                       },
-
                       controler: nacontroller,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
@@ -573,23 +626,24 @@ class _PartyFormState extends State<PartyForm> {
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       fldltxt: 'وارڈ',
                       hint: 'یہاں لکھیں۔',
-                      controler: ageController,
+                      controler: wardcontroller,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
+                      keyboardType: TextInputType.text,
                       fldltxt: ' یوسی/وی سی',
                       hint: 'یہاں لکھیں۔',
-                      controler: genderController,
+                      controler: uccontroller,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
               ],
             ),
-             SizedBox(
+            SizedBox(
                 width: width * 1.0,
                 child: CustomField(
                   fldltxt: 'پتہ',
@@ -622,7 +676,49 @@ class _PartyFormState extends State<PartyForm> {
               child: !isLoading
                   ? Center(
                       child: ElevatedButton(
-                          onPressed: agree ? () {} : null,
+                          onPressed: agree
+                              ? () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    DatabaseService databaseService =
+                                        DatabaseService();
+                                    PartyMemberform partyMemberform =
+                                        PartyMemberform(
+                                      farmno: farmnoController.text,
+                                      name: nameController.text,
+                                      fathername: fnameController.text,
+                                      cnic: cnicController.text,
+                                      dob: dateInput.text,
+                                      age: int.parse(ageController.text),
+                                      edu: eduController.text,
+                                      institute: instituteController.text,
+                                      bloodgroup: blddropdownvalue,
+                                      profession: proffession,
+                                      mobile: mobController.text,
+                                      whatsapp: whatsappController.text,
+                                      province: dropdownvalue,
+                                      zone: zoneController.text,
+                                      divison: divsionvalue,
+                                      district: districtController.text,
+                                      tehsil: tehsilController.text,
+                                      na: nacontroller.text,
+                                      pp: pacontroller.text,
+                                      uc: uccontroller.text,
+                                      gender: genderr,
+                                      ward: wardcontroller.text,
+                                      address: addressController.text,
+                                    );
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    await databaseService
+                                        .addmember(partyMemberform);
+                                    setState(() {
+                                      isLoading = false;
+                                      _formKey.currentState!.reset();
+                                    });
+                                  }
+                                }
+                              : null,
                           child: const Text(
                             "Submit",
                             style: TextStyle(fontSize: 20),

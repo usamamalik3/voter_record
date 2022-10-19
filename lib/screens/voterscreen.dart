@@ -57,7 +57,7 @@ class VoterScreen extends StatelessWidget {
                     splashColor: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                    Navigator.pushNamed(context, '/votersearch');
+                    Navigator.pushNamed(context, '/executivecheck');
                     },
                     child: Container(
                       clipBehavior: Clip.antiAlias,

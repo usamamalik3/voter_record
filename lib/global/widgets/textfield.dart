@@ -9,15 +9,17 @@ class CustomField extends StatelessWidget {
     required this.controler,
     this.validattor,
     this.keyboardType, this.inputFormatter,
-    this.onchange,
+    this.onchange,this.obscureText,this.suffixicon
   }) : super(key: key);
 
   final String hint;
   final String fldltxt;
+  final bool? obscureText;
   final TextEditingController controler;
   final String? Function(String?)? validattor;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>?  inputFormatter;
+  final Widget? suffixicon;
   Function(String)? onchange;
 
   @override
@@ -36,6 +38,8 @@ class CustomField extends StatelessWidget {
         ),
         minLeadingWidth: 8.0,
         subtitle: TextFormField(
+         
+          obscureText: obscureText==false,
           onChanged: onchange,
           inputFormatters: inputFormatter,
           keyboardType: keyboardType,
@@ -45,6 +49,10 @@ class CustomField extends StatelessWidget {
           cursorColor: Theme.of(context).primaryColor,
           textDirection: TextDirection.rtl,
           decoration: InputDecoration(
+            
+            prefixIcon: suffixicon,
+            
+        
             contentPadding: const EdgeInsets.symmetric(horizontal: 10),
             hintText: hint,
           ),

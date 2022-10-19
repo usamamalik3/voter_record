@@ -4,6 +4,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
 import 'package:voterrecord/models/database_service.dart';
 import 'package:voterrecord/models/voter.dart';
+import 'package:voterrecord/utils/dropdown_list.dart';
 
 class AddVoterData extends StatefulWidget {
   const AddVoterData({Key? key}) : super(key: key);
@@ -25,7 +26,14 @@ class _AddVoterDataState extends State<AddVoterData> {
   TextEditingController phonenoController = TextEditingController();
   TextEditingController stcodeController = TextEditingController();
   bool isLoading = false;
-  String? choice = "حامی";
+  String? genderr;
+
+  var maskFormatter = MaskTextInputFormatter(
+    mask: '#####-#######-#',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
+  var phonemaskFormatter = MaskTextInputFormatter(
+      mask: '####-#######', filter: {"#": RegExp(r'[0-9]')});
   
 
   final _formKey = GlobalKey<FormState>();
@@ -72,28 +80,43 @@ class _AddVoterDataState extends State<AddVoterData> {
                     ))
               ],
             ),
-            SizedBox(
-                width: width * 1.0,
+            Row(
+              children: [
+                SizedBox(
+                    width: width * 0.5,
+                    child: CustomField(
+                      inputFormatter: [maskFormatter],
+                      keyboardType: TextInputType.number,
+                      fldltxt: 'شناختی کارڈ',
+                      hint: 'یہاں لکھیں۔',
+                      controler: cnicController,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    )),
+                     SizedBox(
+                width: width * 0.5,
                 child: CustomField(
-                  keyboardType: TextInputType.number,
-                  fldltxt: 'شناختی کارڈ',
-                  hint: 'یہاں لکھیں۔',
-                  controler: cnicController,
-                  validattor: RequiredValidator(errorText: "Required"),
-                )),
-                 SizedBox(
-                width: width * 1.0,
-                child: CustomField(
-                  
+                  inputFormatter: [phonemaskFormatter],
                   keyboardType: TextInputType.number,
                   fldltxt: 'فون نمبر',
                   hint: 'یہاں لکھیں۔',
                   controler: phonenoController,
                   validattor: RequiredValidator(errorText: "Required"),
                 )),
+              ],
+            ),
+                
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                  SizedBox(
+                    width: width * 0.5,
+                    child: CustomField(
+                      keyboardType: TextInputType.number,
+                      fldltxt: 'سلسلہ نمبر',
+                      hint: 'یہاں لکھیں۔',
+                      controler: snoController,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    )),
                 SizedBox(
                     width: width * 0.5,
                     child: CustomField(
@@ -103,15 +126,7 @@ class _AddVoterDataState extends State<AddVoterData> {
                       controler: hnoController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
-                SizedBox(
-                    width: width * 0.5,
-                    child: CustomField(
-                      keyboardType: TextInputType.number,
-                      fldltxt: 'سلسلہ نمبر',
-                      hint: 'یہاں لکھیں۔',
-                      controler: snoController,
-                      validattor: RequiredValidator(errorText: "Required"),
-                    ))
+              
               ],
             ),
             Row(
@@ -127,13 +142,46 @@ class _AddVoterDataState extends State<AddVoterData> {
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
                 SizedBox(
-                    width: width * 0.5,
-                    child: CustomField(
-                      fldltxt: 'جنس',
-                      hint: 'یہاں لکھیں۔',
-                      controler: genderController,
-                      validattor: RequiredValidator(errorText: "Required"),
-                    ))
+                  width: width * 0.5,
+                  child: ListTile(
+                    title: const Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "جنس",
+                          style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                        ),
+                      ),
+                    ),
+                    subtitle: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.greenAccent.withOpacity(
+                            .3), //background color of dropdown button
+                        borderRadius: BorderRadius.circular(
+                            12), //border raiuds of dropdown button
+                      ),
+                      child: DropdownButton(
+                        underline: const SizedBox.shrink(),
+                        iconEnabledColor: Theme.of(context).primaryColor,
+                        isExpanded: true,
+                        alignment: AlignmentDirectional.bottomEnd,
+                        value: genderr,
+                        items: gender.map((String gender) {
+                          return DropdownMenuItem(
+                            value: gender,
+                            child: Center(child: Text(gender)),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            genderr = newValue ?? "";
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             SizedBox(
@@ -169,7 +217,7 @@ class _AddVoterDataState extends State<AddVoterData> {
                                   cnic: cnicController.text,
                                   serialno: int.parse(snoController.text),
                                   householdno: int.parse(hnoController.text),
-                                  gender: genderController.text,
+                                  gender: genderr,
                                   age: int.parse(ageController.text),
                                   address: addressController.text,
                                   polingstion: pollingstController.text,

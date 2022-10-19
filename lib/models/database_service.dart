@@ -1,8 +1,10 @@
 
+import 'package:voterrecord/models/partyformModel.dart';
 import 'package:voterrecord/models/voter.dart';
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class DatabaseService{
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -34,6 +36,12 @@ return snapshot.docs
      
        
   }
+   addmember(PartyMemberform Data) async {
+    await _db.collection("PartyMember").add(Data.toMap());
+  }
+
+
+
       
    
   }
