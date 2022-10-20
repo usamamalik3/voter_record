@@ -72,7 +72,7 @@ List<Items> myList = [
   ),
 
 Items(
-      title: "ڈاکیومنٹ",
+      title: "ڈاکیومنٹس",
       icon: const Icon(
         Icons.document_scanner_outlined,
         size: 50,

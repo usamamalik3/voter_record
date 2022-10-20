@@ -27,7 +27,6 @@ var maskFormatter = MaskTextInputFormatter(
       mask: '####-#######', filter: {"#": RegExp(r'[0-9]')});
   bool isLoading = false;
   bool agree = false;
-class _PartyFormState extends State<PartyForm> {
   TextEditingController farmnoController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController fnameController = TextEditingController();
@@ -92,18 +91,25 @@ class _PartyFormState extends State<PartyForm> {
         break;
     }
   }
-
-  
-  final _formKey = GlobalKey<FormState>();
-  String? dropdownvalue;
+   String? provincevalue;
+  String? zonevalue;
   String? blddropdownvalue;
   String? genderr;
   String? divsionvalue;
+   String? districtvalue;
   List<dynamic> divisons = [];
-  getdata(distric) async {
+  List<dynamic> district = [];
+  List<dynamic> zone = [];
+class _PartyFormState extends State<PartyForm> {
+  
+
+  
+  final _formKey = GlobalKey<FormState>();
+ 
+  getdivsions(province) async {
     await FirebaseFirestore.instance
         .collection("Divsion")
-        .doc(distric)
+        .doc(province)
         .get()
         .then((value) {
       setState(() {
@@ -111,12 +117,42 @@ class _PartyFormState extends State<PartyForm> {
       });
     });
   }
+  getzone(province) async {
+    await FirebaseFirestore.instance
+        .collection("Zone")
+        .doc(province)
+        .get()
+        
+        .then((value) {
+          setState(() {
+             zone = value.data()!["زون"];
+          });
+       
+    
+    });
+  }
+  getdistrict(divsion) async {
+    await FirebaseFirestore.instance
+        .collection("District")
+        .doc(divsion)
+        .get()
+        .then((value) {
+          setState(() {
+             district = value.data()!["ضلع"];
+          });
+       
+    
+    });
+  }
 
   @override
   initState() {
     super.initState();
-    getdata("پنجاب");
-    prefix(dropdownvalue);
+    getdivsions("پنجاب");
+    getzone("پنجاب");
+    prefix(provincevalue);
+    getdistrict(divsionvalue);
+
   }
 
   @override
@@ -453,15 +489,59 @@ class _PartyFormState extends State<PartyForm> {
             ),
             Row(
               children: [
-                SizedBox(
-                    width: width * 0.5,
-                    child: CustomField(
-                      keyboardType: TextInputType.text,
-                      fldltxt: 'زون',
-                      hint: 'یہاں لکھیں۔',
-                      controler: zoneController,
-                      validattor: RequiredValidator(errorText: "Required"),
-                    )),
+                   SizedBox(
+              width: width * 0.5,
+              child: ListTile(
+                title: const Padding(
+                  padding: EdgeInsets.only(
+                    right: 8,
+                  ),
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        "زون",
+                        style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                      )),
+                ),
+                subtitle: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.greenAccent
+                        .withOpacity(.3), //background color of dropdown button
+
+                    borderRadius: BorderRadius.circular(
+                        12), //border raiuds of dropdown button
+                  ),
+                  child: DropdownButton(
+                    underline: const SizedBox.shrink(),
+                    iconEnabledColor: Theme.of(context).primaryColor,
+                    isExpanded: true,
+                    alignment: AlignmentDirectional.bottomEnd,
+                    value: zonevalue,
+                    items: zone.map((zon) {
+                      return DropdownMenuItem(
+                        value: zon,
+                        child: Center(child: Text(zon.toString())),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+
+                        zonevalue= newValue.toString();
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ),
+                // SizedBox(
+                //     width: width * 0.5,
+                //     child: CustomField(
+                //       keyboardType: TextInputType.text,
+                //       fldltxt: 'زون',
+                //       hint: 'یہاں لکھیں۔',
+                //       controler: zoneController,
+                //       validattor: RequiredValidator(errorText: "Required"),
+                //     )),
                 SizedBox(
                   width: width * 0.5,
                   child: ListTile(
@@ -489,7 +569,7 @@ class _PartyFormState extends State<PartyForm> {
                         iconEnabledColor: Theme.of(context).primaryColor,
                         isExpanded: true,
                         alignment: AlignmentDirectional.bottomEnd,
-                        value: dropdownvalue,
+                        value: provincevalue,
                         items: items.map((String items) {
                           return DropdownMenuItem(
                             value: items,
@@ -498,10 +578,12 @@ class _PartyFormState extends State<PartyForm> {
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
-                            getdata(newValue);
-                            divsionvalue = 'ڈویژن';
-                            dropdownvalue = newValue ?? "";
-                            prefix(dropdownvalue);
+                            getdivsions(newValue);
+                            getzone(newValue);
+                            divsionvalue = null;
+                            zonevalue  = null;
+                            provincevalue = newValue ?? "";
+                            prefix(provincevalue);
                           });
                         },
                       ),
@@ -547,6 +629,9 @@ class _PartyFormState extends State<PartyForm> {
                     onChanged: (newValue) {
                       setState(() {
                         divsionvalue = newValue.toString();
+                        getdistrict(divsionvalue);
+                        districtvalue = null;
+                      
                       });
                     },
                   ),
@@ -565,14 +650,49 @@ class _PartyFormState extends State<PartyForm> {
                       controler: tehsilController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
-                SizedBox(
-                    width: width * 0.5,
-                    child: CustomField(
-                      fldltxt: ' ضلع',
-                      hint: 'یہاں لکھیں۔',
-                      controler: districtController,
-                      validattor: RequiredValidator(errorText: "Required"),
-                    )),
+               SizedBox(
+              width: width * 0.5,
+              child: ListTile(
+                title: const Padding(
+                  padding: EdgeInsets.only(
+                    right: 8,
+                  ),
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        "ضلع",
+                        style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                      )),
+                ),
+                subtitle: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.greenAccent
+                        .withOpacity(.3), //background color of dropdown button
+
+                    borderRadius: BorderRadius.circular(
+                        12), //border raiuds of dropdown button
+                  ),
+                  child: DropdownButton(
+                    underline: const SizedBox.shrink(),
+                    iconEnabledColor: Theme.of(context).primaryColor,
+                    isExpanded: true,
+                    alignment: AlignmentDirectional.bottomEnd,
+                    value: districtvalue,
+                    items: district.map((dis) {
+                      return DropdownMenuItem(
+                        value: dis,
+                        child: Center(child: Text(dis.toString())),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        districtvalue = newValue.toString();
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ),
               ],
             ),
             Row(
@@ -596,7 +716,7 @@ class _PartyFormState extends State<PartyForm> {
                             TextPosition(offset: pacontroller.text.length));
                       },
                       controler: pacontroller,
-                      validattor: RequiredValidator(errorText: "Required"),
+                   
                     )),
                 SizedBox(
                     width: width * 0.5,
@@ -616,7 +736,7 @@ class _PartyFormState extends State<PartyForm> {
                             TextPosition(offset: nacontroller.text.length));
                       },
                       controler: nacontroller,
-                      validattor: RequiredValidator(errorText: "Required"),
+                     
                     )),
               ],
             ),
@@ -630,7 +750,7 @@ class _PartyFormState extends State<PartyForm> {
                       fldltxt: 'وارڈ',
                       hint: 'یہاں لکھیں۔',
                       controler: wardcontroller,
-                      validattor: RequiredValidator(errorText: "Required"),
+                    
                     )),
                 SizedBox(
                     width: width * 0.5,
@@ -639,7 +759,7 @@ class _PartyFormState extends State<PartyForm> {
                       fldltxt: ' یوسی/وی سی',
                       hint: 'یہاں لکھیں۔',
                       controler: uccontroller,
-                      validattor: RequiredValidator(errorText: "Required"),
+                      
                     )),
               ],
             ),
@@ -665,7 +785,7 @@ class _PartyFormState extends State<PartyForm> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Text(
-                'میں نے تحریک لبیک یا رسول اللہ صلی اللہ علیہ وآلہ وسلم کے اغراض و مقاصد کا مطالعہ کر لیا ہے اور مجھے ان سے مکمل اتفاق ہے۔ میں عہد کرتا/کرتی ہوں کہ تحریک لبیک یا رسول اللہ صلی اللہ علیہ وآلہ وسلم کے اغراض و مقاصد اور منشور(اسلام، پاکستان اور عوام)کی کامیابی کے لئے دل و جان سے کوشش کروں گا/گی اور ان اغراض و مقاصد کے خلاف سرگرمیوں سے مکمل اجتناب کروں گا/گی۔',
+                'میں نے تحریک لبیک یا رسول اللہ صلی اللہ علیہ وآلہ وسلم کے اغراض و مقاصد کا مطالعہ کر لیا ہے اور مجھے ان سے مکمل اتفاق ہے۔ میں عہد کرتا/کرتی ہوں کہ تحریک لبیک پاکستان کے اغراض و مقاصد اور منشور(اسلام، پاکستان اور عوام)کی کامیابی کے لئے دل و جان سے کوشش کروں گا/گی اور ان اغراض و مقاصد کے خلاف سرگرمیوں سے مکمل اجتناب کروں گا/گی۔',
                 maxLines: 7,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -695,10 +815,10 @@ class _PartyFormState extends State<PartyForm> {
                                       profession: proffession,
                                       mobile: mobController.text,
                                       whatsapp: whatsappController.text,
-                                      province: dropdownvalue,
-                                      zone: zoneController.text,
+                                      province: provincevalue,
+                                      zone: zonevalue,
                                       divison: divsionvalue,
-                                      district: districtController.text,
+                                      district: districtvalue,
                                       tehsil: tehsilController.text,
                                       na: nacontroller.text,
                                       pp: pacontroller.text,

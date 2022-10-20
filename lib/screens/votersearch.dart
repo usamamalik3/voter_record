@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/models/voter.dart';
+import 'package:voterrecord/screens/partyfrom.dart';
 
 import 'package:voterrecord/screens/voterdetail.dart';
 import 'package:voterrecord/utils/search_filtters.dart';
@@ -23,10 +24,7 @@ class _VoterSearchState extends State<VoterSearch> {
   String searchKey = '';
   Filters selectedFliter = Filters.byCNIC;
 
-  final maskFormatter = MaskTextInputFormatter(
-      mask: '#####-#######-#',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
+  
 
   final _formKey = GlobalKey<FormState>();
   @override
@@ -53,38 +51,16 @@ class _VoterSearchState extends State<VoterSearch> {
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.right,
               controller: cnicController,
-              inputFormatters: [getTextFieldMask(Filters.byCNIC)],
+              inputFormatters: [maskFormatter],
               validator: RequiredValidator(errorText: "Required"),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: SizedBox(
-                    width: 100,
-                    child: DropdownButton(
-                      isExpanded: true,
-                      items: Filters.values.map(
-                        (val) {
-                          return DropdownMenuItem(
-                            value: val,
-                            child: Text(getFliterName(val)),
-                          );
-                        },
-                      ).toList(),
-                      value: selectedFliter,
-                      onChanged: (Filters? value) {
-                        setState(() {
-                          selectedFliter = value!;
-                        });
-                      },
-                    ),
-                  ),
-                ),
+               
                 floatingLabelBehavior: FloatingLabelBehavior.never,
-                border: const OutlineInputBorder(
+                border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8))),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-                hintText: "${getFliterName(selectedFliter)} درج کریں ",
+                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                hintText: "قومی شناختی کارڈ درج کریں ",
               ),
             ),
             const SizedBox(
@@ -95,9 +71,8 @@ class _VoterSearchState extends State<VoterSearch> {
                   stream: searchKey != ''
                       ? FirebaseFirestore.instance
                           .collection('Voters')
-                          .where(getFliterVariable(selectedFliter),
-                              isGreaterThanOrEqualTo: searchKey)
-                          .where(getFliterVariable(selectedFliter),
+                          .where('cnic', isGreaterThanOrEqualTo: searchKey)
+                          .where('cnic',
                               isLessThan: '${searchKey}z')
                           .snapshots()
                       : null,

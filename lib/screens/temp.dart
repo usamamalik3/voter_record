@@ -17,12 +17,13 @@ class Temp extends StatefulWidget {
 
  void _setData() async{
    
-   firestoreInstance.collection("District").doc('بنوں').set(
+   firestoreInstance.collection("District").doc('گلگت').set(
        {
-         "ضلع" : ["ضلع بنوں","ضلع لکی مروت" ],
+         "ضلع" : ["ضلع غذر" ,"ضلع گلگت", "ضلع ہنزہ", "ضلع یاسین", "ضلع نگر"],
         
          }
        ).then((_){
+        
    
    });
  }
