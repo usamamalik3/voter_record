@@ -2,7 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/configs/routes.dart';
 
-import 'package:voterrecord/screens/Dashboard.dart';
+import 'package:voterrecord/screens/dashboard.dart';
+import 'package:voterrecord/screens/department_screen.dart';
 import 'package:voterrecord/screens/executive_check.dart';
 import 'package:voterrecord/screens/partyfrom.dart';
 import 'package:voterrecord/screens/temp.dart';

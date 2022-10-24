@@ -11,7 +11,7 @@ import 'package:printing/printing.dart';
 class Voterdetail extends StatefulWidget {
   final Voter voter;
 
-   Voterdetail({super.key, required this.voter});
+   const Voterdetail({super.key, required this.voter});
 
   @override
   State<Voterdetail> createState() => _VoterdetailState();
@@ -58,99 +58,116 @@ class _VoterdetailState extends State<Voterdetail> {
           
           child: RepaintBoundary(
             key: _printKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children:  [
-                ListTile(
-              title: const Padding(
-                padding: EdgeInsets.only(right: 8,),
-                child: Align(
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      "شناختی کارڈ",
-                      style: TextStyle(fontFamily: "NotoNastaliqUrdu",fontSize: 16),
-                    )),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(left:8),
-                child: Text(widget.voter.cnic.toString(),
-                style: const TextStyle(fontSize: 20),),
-              ),
-              ),
-             ReadTextField(title: 'نام', value: widget.voter.name.toString(),),
-            ReadTextField(title: 'والد/شوہر کا نام', value: widget.voter.fathername.toString(),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children:  [
+                  ListTile(
+                title: const Padding(
+                  padding: EdgeInsets.only(right: 8,),
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        "شناختی کارڈ",
+                        style: TextStyle(fontFamily: "NotoNastaliqUrdu",fontSize: 16),
+                      )),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(left:8),
+                  child: Text(widget.voter.cnic.toString(),
+                  style: const TextStyle(fontSize: 20),),
+                ),
+                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
                 SizedBox(
-              width: width*0.45,
-              child: ReadTextField(title: 'جنس', value: widget.voter.gender.toString(),)),
-              SizedBox(
-              width: width*0.45,
-              child: ReadTextField(title: 'عمر', value: widget.voter.age.toString(),)),
-              ],          
-            ),
-            ReadTextField(value: widget.voter.stcode.toString(), title: "شماریاتی بلاک کوڈ"),
-             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+                width: width*0.3,
+                child: ReadTextField(title: 'والد/شوہر کا نام', value: widget.voter.fathername.toString(),)),
                 SizedBox(
-              width: width*0.45,
-              child: ReadTextField(title: 'سلسہ نمبر', value: widget.voter.serialno.toString(),)),
-              SizedBox(
-              width: width*0.45,
-              child: ReadTextField(title: 'گھرانہ نمبر', value: widget.voter.householdno.toString(),)),
-              ],          
-            ),
-            ReadTextField(value: widget.voter.address.toString(), title: "پتہ"),
-            ReadTextField(value: widget.voter.polingstion.toString(), title: "پولنگ اسٹیشن"),
-             Row(  
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              child: ChoiceChip(
-                                 
-                                  label: const Text('حامی',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20)),
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 50),
-                                  selected: choice== 'حامی',
-                                  onSelected: (bool selected) {
-                                    setState(() {
-                                      choice= selected ? 'حامی' : null;
-                                    });
-                                  },
-                                  selectedColor: Theme.of(context).primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(16.0)))),
-                          Expanded(
-                              child: ChoiceChip(
-                                
-                                  label: const Text('مخالف',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20)),
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 50),
-                                  selected: choice== 'مخالف',
-                                  onSelected: (bool selected) {
-                                    setState(() {
-                                      choice= selected ? 'مخالف' : null;
-                                    });
-                                  },
-                                  selectedColor: Theme.of(context).primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(16.0))))
-                        ]),
-                        
-            
-            
-              ],
+                    width: width*0.3,
+                    child: ReadTextField(title: 'نام', value: widget.voter.name.toString(),)),
+                 SizedBox(
+                width: width*0.3,
+                child: ReadTextField(title: 'جنس', value: widget.voter.gender.toString(),)),
+                ],
+              ),
+           
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                SizedBox(
+                width: width*0.45,
+                child: ReadTextField(title: 'جنس', value: widget.voter.gender.toString(),)),
+                SizedBox(
+                width: width*0.45,
+                child: ReadTextField(title: 'عمر', value: widget.voter.age.toString(),)),
+                ],          
+              ),
+              ReadTextField(value: widget.voter.stcode.toString(), title: "شماریاتی بلاک کوڈ"),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                    SizedBox(
+                width: width*0.45,
+                child: ReadTextField(title: 'گھرانہ نمبر', value: widget.voter.householdno.toString(),)),
+                  SizedBox(
+                width: width*0.45,
+                child: ReadTextField(title: 'سلسہ نمبر', value: widget.voter.serialno.toString(),)),
+              
+                ],          
+              ),
+              ReadTextField(value: widget.voter.address.toString(), title: "پتہ"),
+              ReadTextField(value: widget.voter.polingstion.toString(), title: "پولنگ اسٹیشن"),
+               Row(  
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                child: ChoiceChip(
+                                   
+                                    label: const Text('حامی',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20)),
+                                    labelPadding:
+                                        const EdgeInsets.symmetric(horizontal: 50),
+                                    selected: choice== 'حامی',
+                                    onSelected: (bool selected) {
+                                      setState(() {
+                                        choice= selected ? 'حامی' : null;
+                                      });
+                                    },
+                                    selectedColor: Theme.of(context).primaryColor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(16.0)))),
+                            Expanded(
+                                child: ChoiceChip(
+                                  
+                                    label: const Text('مخالف',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20)),
+                                    labelPadding:
+                                        const EdgeInsets.symmetric(horizontal: 50),
+                                    selected: choice== 'مخالف',
+                                    onSelected: (bool selected) {
+                                      setState(() {
+                                        choice= selected ? 'مخالف' : null;
+                                      });
+                                    },
+                                    selectedColor: Theme.of(context).primaryColor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(16.0))))
+                          ]),
+                          
+              
+              
+                ],
+              ),
             ),
           ),
         ),

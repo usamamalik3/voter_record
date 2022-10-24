@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -18,6 +19,11 @@ class _ExecutiveScreenState extends State<ExecutiveScreen> {
   TextEditingController cnicController = TextEditingController();
   TextEditingController pswrdController = TextEditingController();
   bool _isObscure = true;
+  // ignore: non_constant_identifier_names
+  executive_check() async {
+ 
+                          
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +59,33 @@ class _ExecutiveScreenState extends State<ExecutiveScreen> {
                   fldltxt: 'پاسورڈ',
                   hint: 'یہاں لکھیں۔',
                   controler: pswrdController,
-                  validattor: RequiredValidator(errorText: "Required"),
+                 validattor: MultiValidator([
+        RequiredValidator(errorText: "Required"),
+        MinLengthValidator(8, errorText: "Password should b 8 character"),
+        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+            errorText: "Password must have atleast one special character"),
+      ]),
                 ),
+                 Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 24).copyWith(top: 30),
+              child: !isLoading
+                  ? Center(
+                      child: ElevatedButton(
+                          onPressed: 
+                               ()  {
+
+                               Navigator.pushNamed(context, "/votersearch");
+                               },
+                          child: const Text(
+                            "Submit",
+                            style: TextStyle(fontSize: 20),
+                          )),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+            )
         
               ],
             ),

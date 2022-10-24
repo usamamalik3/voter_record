@@ -23,10 +23,11 @@ List<Items> myList = [
   Items(
     title: " تنظیم سازی",
     icon: const Icon(
-      Icons.group_outlined,
+      Icons.group_add_outlined,
       size: 50,
     ),
     onPressed: (context) {
+      Navigator.pushNamed(context, '/tanzeemsazi');
        
     },
   ),
@@ -37,7 +38,9 @@ List<Items> myList = [
         Icons.account_tree_outlined,
         size: 50,
       ),
-      onPressed: (context) {}),
+      onPressed: (context) {
+        Navigator.pushNamed(context, '/departmentscreen');
+      }),
   Items(
     title: "شماریات",
     icon: const Icon(
@@ -65,7 +68,7 @@ List<Items> myList = [
       size: 50,
     ),
     onPressed: (context) {
-     
+     Navigator.pushNamed(context, '/electionscreen');
      
       
     },
@@ -91,5 +94,7 @@ Items(
         Icons.contact_page_outlined,
         size: 50,
       ),
-      onPressed: (context) {}),
+      onPressed: (context) {
+        Navigator.pushNamed(context, '/contactus');
+      }),
 ];
