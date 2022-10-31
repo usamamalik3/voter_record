@@ -136,5 +136,7 @@ List <Items> tanzeemSaziList = [
         Icons.video_call_outlined,
         size: 30,
       ),
-      onPressed: (context) {}),
+      onPressed: (context) {
+        Navigator.pushNamed(context, '/meeting');
+      }),
 ];

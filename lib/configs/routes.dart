@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:voterrecord/screens/aboutscreen.dart';
 import 'package:voterrecord/screens/add_office.dart';
 import 'package:voterrecord/screens/complaint.dart';
 import 'package:voterrecord/screens/dashboard.dart';
+import 'package:voterrecord/screens/meetingscreen.dart';
 import 'package:voterrecord/screens/tanzeem_sazi.dart';
 import 'package:voterrecord/screens/add_data.dart';
 import 'package:voterrecord/screens/contactus.dart';
@@ -17,6 +19,7 @@ import 'package:voterrecord/screens/votersearch.dart';
 
 class Routes {
   static const String dashboard = '/dashboard';
+  static const String about = '/about';
   static const String partyfrom = '/partyform';
   static const String voter = '/voter';
   static const String voterrecord = '/voterrecord';
@@ -30,12 +33,15 @@ class Routes {
   static const String addoffice = '/addoffice';
   static const String tanzeemsazi = '/tanzeemsazi';
   static const String complaint = '/complaint';
+  static const String meeting = '/meeting';
 
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case dashboard:
         return MaterialPageRoute<DashBoard>(builder: (context) => const DashBoard());
+      case about:
+        return MaterialPageRoute<About>(builder: (context) => const About());
       case partyfrom:
         return MaterialPageRoute<PartyForm>(builder: (context) => const PartyForm());
       case voter:
@@ -61,6 +67,9 @@ class Routes {
         return MaterialPageRoute<OfficeDetails>(builder: (context) => const OfficeDetails());
       case complaint:
          return MaterialPageRoute<Complaint>(builder: ((context) =>  const Complaint()));
+      
+      case meeting:
+         return MaterialPageRoute<MeetinScreen>(builder: ((context) =>  const MeetinScreen()));
       
       // case voterdetail:
         // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));  

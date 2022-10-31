@@ -28,6 +28,7 @@ var phonemaskFormatter = MaskTextInputFormatter(
     mask: '####-#######', filter: {"#": RegExp(r'[0-9]')});
 bool isLoading = false;
 bool agree = false;
+
 TextEditingController farmnoController = TextEditingController();
 TextEditingController nameController = TextEditingController();
 TextEditingController fnameController = TextEditingController();
@@ -812,45 +813,43 @@ class _PartyFormState extends State<PartyForm> {
                       child: ElevatedButton(
                           onPressed: agree
                               ? () async {
-
                                   if (_formKey.currentState!.validate()) {
-                                    try{
-                                    DatabaseService databaseService =
-                                        DatabaseService();
-                                    PartyMemberform partyMemberform =
-                                        PartyMemberform(
-                                      farmno: farmnoController.text,
-                                      name: nameController.text,
-                                      fathername: fnameController.text,
-                                      cnic: cnicController.text,
-                                      dob: dateInput.text,
-                                      age: int.parse(ageController.text),
-                                      edu: eduController.text,
-                                      institute: instituteController.text,
-                                      bloodgroup: blddropdownvalue,
-                                      profession: proffession,
-                                      mobile: mobController.text,
-                                      whatsapp: whatsappController.text,
-                                      province: provincevalue,
-                                      zone: zonevalue,
-                                      divison: divsionvalue,
-                                      district: districtvalue,
-                                      tehsil: tehsilController.text,
-                                      na: nacontroller.text,
-                                      pp: pacontroller.text,
-                                      uc: uccontroller.text,
-                                      gender: genderr,
-                                      ward: wardcontroller.text,
-                                      address: addressController.text,
-                                      
-                                    );
-                                    setState(() {
-                                      isLoading = true;
-                                    });
-                                    
-                                    await databaseService
-                                        .addmember(partyMemberform);
-                                         Fluttertoast.showToast(
+                                    try {
+                                      DatabaseService databaseService =
+                                          DatabaseService();
+                                      PartyMemberform partyMemberform =
+                                          PartyMemberform(
+                                        farmno: farmnoController.text,
+                                        name: nameController.text,
+                                        fathername: fnameController.text,
+                                        cnic: cnicController.text,
+                                        dob: dateInput.text,
+                                        age: int.parse(ageController.text),
+                                        edu: eduController.text,
+                                        institute: instituteController.text,
+                                        bloodgroup: blddropdownvalue,
+                                        profession: proffession,
+                                        mobile: mobController.text,
+                                        whatsapp: whatsappController.text,
+                                        province: provincevalue,
+                                        zone: zonevalue,
+                                        divison: divsionvalue,
+                                        district: districtvalue,
+                                        tehsil: tehsilController.text,
+                                        na: nacontroller.text,
+                                        pp: pacontroller.text,
+                                        uc: uccontroller.text,
+                                        gender: genderr,
+                                        ward: wardcontroller.text,
+                                        address: addressController.text,
+                                      );
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+
+                                      await databaseService
+                                          .addmember(partyMemberform);
+                                      Fluttertoast.showToast(
                                           msg: "voter added successfully",
                                           toastLength: Toast.LENGTH_LONG,
                                           gravity: ToastGravity.BOTTOM,
@@ -858,9 +857,8 @@ class _PartyFormState extends State<PartyForm> {
                                           backgroundColor: Colors.white,
                                           textColor: Colors.black,
                                           fontSize: 16.0);
-                                    }
-                                    catch(e){
-                                       Fluttertoast.showToast(
+                                    } catch (e) {
+                                      Fluttertoast.showToast(
                                           msg: "somthing wrong",
                                           toastLength: Toast.LENGTH_LONG,
                                           gravity: ToastGravity.BOTTOM,
@@ -868,14 +866,11 @@ class _PartyFormState extends State<PartyForm> {
                                           backgroundColor: Colors.white,
                                           textColor: Colors.black,
                                           fontSize: 16.0);
-
                                     }
                                     setState(() {
                                       isLoading = false;
                                       clear();
-                                     
                                     });
-                                    
                                   }
                                 }
                               : null,

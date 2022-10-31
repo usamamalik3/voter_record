@@ -41,6 +41,7 @@ class CustomField extends StatelessWidget {
         minLeadingWidth: 8.0,
         subtitle: TextFormField(
          
+         
           obscureText: obscureText==false,
           onChanged: onchange,
           inputFormatters: inputFormatter,
@@ -57,7 +58,7 @@ class CustomField extends StatelessWidget {
             prefixIcon: suffixicon,
             
         
-            contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 8),
             hintText: hint,
           ),
         ),

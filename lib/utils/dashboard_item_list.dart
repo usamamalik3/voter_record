@@ -9,6 +9,7 @@ List<Items> myList = [
         size: 50,
       ),
       onPressed: (context) {
+        Navigator.pushNamed(context, '/about');
 
       }),
       Items(
