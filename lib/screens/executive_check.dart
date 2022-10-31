@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-import 'package:flutter/src/widgets/container.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
 import 'package:voterrecord/screens/partyfrom.dart';

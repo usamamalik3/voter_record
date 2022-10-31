@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
@@ -27,6 +28,21 @@ class _AddVoterDataState extends State<AddVoterData> {
   TextEditingController stcodeController = TextEditingController();
   bool isLoading = false;
   String? genderr;
+
+  void clear(){
+    
+    nameController.clear();
+   fnameController.clear(); 
+   cnicController.clear();
+   addressController.clear(); 
+   snoController.clear(); 
+   hnoController.clear();
+   genderController.clear();
+   ageController.clear(); 
+   pollingstController.clear();
+   phonenoController.clear(); 
+   stcodeController.clear(); 
+  }
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '#####-#######-#',
@@ -232,6 +248,15 @@ class _AddVoterDataState extends State<AddVoterData> {
                               setState(() {
                                 isLoading = false;
                               });
+                              clear();
+                               Fluttertoast.showToast(
+                                          msg: "voter added successfully",
+                                          toastLength: Toast.LENGTH_LONG,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.white,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0);
                             }
                           }),
                           child: const Text(

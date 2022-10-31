@@ -20,7 +20,7 @@ class ReadTextField extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Text(
                 title,
-                style: const TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                style: const TextStyle(fontFamily: "NotoNastaliqUrdu", fontSize: 11),
               )),
         ),
         minLeadingWidth: 8.0,
@@ -35,7 +35,7 @@ class ReadTextField extends StatelessWidget {
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(horizontal: 10),
             hintText: value,
-            hintStyle:const  TextStyle(fontFamily: "NotoNastaliqUrdu"),
+            hintStyle:const  TextStyle(fontFamily: "NotoNastaliqUrdu",),
           ),
         ),
       ),

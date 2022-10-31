@@ -2,14 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/models/voter.dart';
 import 'package:voterrecord/screens/partyfrom.dart';
 
 import 'package:voterrecord/screens/voterdetail.dart';
 import 'package:voterrecord/utils/search_filtters.dart';
 
-import '../utils/textfield_mask.dart';
 
 class VoterSearch extends StatefulWidget {
   const VoterSearch({Key? key}) : super(key: key);
@@ -33,7 +31,7 @@ class _VoterSearchState extends State<VoterSearch> {
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         backgroundColor: const Color(0Xff008000),
-        title: const Center(child: Text("ووٹر تلاش کری")),
+        title: const Center(child: Text("ووٹر تلاش کریں")),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12).copyWith(top: 20),
@@ -47,7 +45,7 @@ class _VoterSearchState extends State<VoterSearch> {
                 });
               },
               
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.right,
               controller: cnicController,

@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:voterrecord/configs/routes.dart';
 
 import 'package:voterrecord/screens/dashboard.dart';
-import 'package:voterrecord/screens/department_screen.dart';
-import 'package:voterrecord/screens/executive_check.dart';
-import 'package:voterrecord/screens/partyfrom.dart';
-import 'package:voterrecord/screens/temp.dart';
-import 'package:voterrecord/screens/votersearch.dart';
 
 
 
@@ -55,7 +50,7 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home:const DashBoard(),
+      home: const DashBoard(),
     );
   }
 }

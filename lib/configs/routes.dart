@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:voterrecord/screens/add_office.dart';
+import 'package:voterrecord/screens/complaint.dart';
 import 'package:voterrecord/screens/dashboard.dart';
 import 'package:voterrecord/screens/tanzeem_sazi.dart';
 import 'package:voterrecord/screens/add_data.dart';
@@ -25,7 +27,9 @@ class Routes {
   static const String electionscreen = '/electionscreen';
   static const String contactus = '/contactus';
   static const String officedetail = '/officedetail';
+  static const String addoffice = '/addoffice';
   static const String tanzeemsazi = '/tanzeemsazi';
+  static const String complaint = '/complaint';
 
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -42,6 +46,7 @@ class Routes {
         return MaterialPageRoute<ExecutiveScreen>(builder: (context) => const ExecutiveScreen());  
       case votersearch:
         return MaterialPageRoute<VoterSearch>(builder: (context) => const VoterSearch());
+        
       case departmentscreen:
         return MaterialPageRoute<Department>(builder: (context) => const Department());
       case electionscreen:
@@ -50,8 +55,13 @@ class Routes {
         return MaterialPageRoute<ContactUs>(builder: (context) => const ContactUs());
       case tanzeemsazi:
         return MaterialPageRoute<TanzeemSazi>(builder: (context) => const TanzeemSazi());
+      case addoffice:
+        return MaterialPageRoute<AddOffice>(builder: (context) => const AddOffice());
       case officedetail:
         return MaterialPageRoute<OfficeDetails>(builder: (context) => const OfficeDetails());
+      case complaint:
+         return MaterialPageRoute<Complaint>(builder: ((context) =>  const Complaint()));
+      
       // case voterdetail:
         // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));  
         

@@ -1,6 +1,5 @@
 import"package:flutter/material.dart";
 import 'package:voterrecord/utils/container_menu.dart';
-import 'package:voterrecord/utils/dashboard_item_list.dart';
 import 'package:voterrecord/utils/list_utils.dart';
 
 class Department extends StatelessWidget {

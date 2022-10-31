@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:voterrecord/global/widgets/readonlytextfield.dart';
@@ -8,7 +9,6 @@ import 'package:voterrecord/global/widgets/readonlytextfield.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
 import 'package:voterrecord/models/database_service.dart';
 import 'package:voterrecord/models/partyformModel.dart';
-import 'package:voterrecord/models/voter.dart';
 import 'package:intl/intl.dart';
 
 import '../utils/dropdown_list.dart';
@@ -19,93 +19,117 @@ class PartyForm extends StatefulWidget {
   @override
   State<PartyForm> createState() => _PartyFormState();
 }
+
 var maskFormatter = MaskTextInputFormatter(
-    mask: '#####-#######-#',
-    filter: {"#": RegExp(r'[0-9]')},
-  );
-  var phonemaskFormatter = MaskTextInputFormatter(
-      mask: '####-#######', filter: {"#": RegExp(r'[0-9]')});
-  bool isLoading = false;
-  bool agree = false;
-  TextEditingController farmnoController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController fnameController = TextEditingController();
-  TextEditingController cnicController = TextEditingController();
+  mask: '#####-#######-#',
+  filter: {"#": RegExp(r'[0-9]')},
+);
+var phonemaskFormatter = MaskTextInputFormatter(
+    mask: '####-#######', filter: {"#": RegExp(r'[0-9]')});
+bool isLoading = false;
+bool agree = false;
+TextEditingController farmnoController = TextEditingController();
+TextEditingController nameController = TextEditingController();
+TextEditingController fnameController = TextEditingController();
+TextEditingController cnicController = TextEditingController();
 
-  TextEditingController ageController = TextEditingController();
-  TextEditingController eduController = TextEditingController();
-  TextEditingController instituteController = TextEditingController();
-  TextEditingController mobController = TextEditingController();
-  TextEditingController whatsappController = TextEditingController();
-  TextEditingController zoneController = TextEditingController();
-  TextEditingController tehsilController = TextEditingController();
-  TextEditingController districtController = TextEditingController();
+TextEditingController ageController = TextEditingController();
+TextEditingController eduController = TextEditingController();
+TextEditingController instituteController = TextEditingController();
+TextEditingController mobController = TextEditingController();
+TextEditingController whatsappController = TextEditingController();
+TextEditingController zoneController = TextEditingController();
+TextEditingController tehsilController = TextEditingController();
+TextEditingController districtController = TextEditingController();
 
-  TextEditingController genderController = TextEditingController();
+TextEditingController genderController = TextEditingController();
 
-  TextEditingController dateInput = TextEditingController();
-  TextEditingController nacontroller = TextEditingController();
-  TextEditingController pacontroller = TextEditingController();
-  TextEditingController uccontroller = TextEditingController();
-  TextEditingController wardcontroller = TextEditingController();
-  TextEditingController addressController = TextEditingController();
+TextEditingController dateInput = TextEditingController();
+TextEditingController nacontroller = TextEditingController();
+TextEditingController pacontroller = TextEditingController();
+TextEditingController uccontroller = TextEditingController();
+TextEditingController wardcontroller = TextEditingController();
+TextEditingController addressController = TextEditingController();
 
-  final String naPrefix = "NA-";
-  String? paPrefix;
-  String? proffession;
-  void prefix(dropdownvalue) {
-    switch (dropdownvalue) {
-      case "پنجاب":
-        {
-          paPrefix = "PP-";
+const String naPrefix = "NA-";
+String? paPrefix;
+String? proffession;
+void prefix(dropdownvalue) {
+  switch (dropdownvalue) {
+    case "پنجاب":
+      {
+        paPrefix = "PP-";
+      }
+      break;
 
-     
-        }
-        break;
+    case "سندھ":
+      {
+        paPrefix = "PS-";
 
-      case "سندھ":
-        {
-          paPrefix = "PS-";
+        //statements;
+      }
+      break;
+    case "خیبر پختونخوا":
+      {
+        paPrefix = "PK-";
+      }
+      break;
+    case "بلوچستان":
+      {
+        paPrefix = "PB-";
+      }
+      break;
 
-          //statements;
-        }
-        break;
-      case "خیبر پختونخوا":
-        {
-          paPrefix = "PK-";
-
-        }
-        break;
-      case "بلوچستان":
-        {
-          paPrefix = "PB-";
-
-  
-        }
-        break;
-
-      default:
-        {
-          //statements;
-        }
-        break;
-    }
+    default:
+      {
+        //statements;
+      }
+      break;
   }
-   String? provincevalue;
-  String? zonevalue;
-  String? blddropdownvalue;
-  String? genderr;
-  String? divsionvalue;
-   String? districtvalue;
-  List<dynamic> divisons = [];
-  List<dynamic> district = [];
-  List<dynamic> zone = [];
-class _PartyFormState extends State<PartyForm> {
-  
+}
 
-  
+String? provincevalue;
+String? zonevalue;
+String? blddropdownvalue;
+String? genderr;
+String? divsionvalue;
+String? districtvalue;
+List<dynamic> divisons = [];
+List<dynamic> district = [];
+List<dynamic> zone = [];
+void clear() {
+  TextEditingController().clear();
+  provincevalue = null;
+  divsionvalue = null;
+  zonevalue = null;
+  blddropdownvalue = null;
+  genderr = null;
+  districtvalue = null;
+  bool agree = false;
+  farmnoController.clear();
+  nameController.clear();
+  fnameController.clear();
+  cnicController.clear();
+  ageController.clear();
+  eduController.clear();
+  instituteController.clear();
+  mobController.clear();
+  whatsappController.clear();
+  zoneController.clear();
+  tehsilController.clear();
+  districtController.clear();
+  genderController.clear();
+  dateInput.clear();
+  nacontroller.clear();
+  pacontroller.clear();
+  uccontroller.clear();
+  wardcontroller.clear();
+  addressController.clear();
+}
+
+class _PartyFormState extends State<PartyForm> {
   final _formKey = GlobalKey<FormState>();
- 
+
   getdivsions(province) async {
     await FirebaseFirestore.instance
         .collection("Divsion")
@@ -117,31 +141,28 @@ class _PartyFormState extends State<PartyForm> {
       });
     });
   }
+
   getzone(province) async {
     await FirebaseFirestore.instance
         .collection("Zone")
         .doc(province)
         .get()
-        
         .then((value) {
-          setState(() {
-             zone = value.data()!["زون"];
-          });
-       
-    
+      setState(() {
+        zone = value.data()!["زون"];
+      });
     });
   }
+
   getdistrict(divsion) async {
     await FirebaseFirestore.instance
         .collection("District")
         .doc(divsion)
         .get()
         .then((value) {
-          setState(() {
-             district = value.data()!["ضلع"];
-          });
-       
-    
+      setState(() {
+        district = value.data()!["ضلع"];
+      });
     });
   }
 
@@ -152,7 +173,6 @@ class _PartyFormState extends State<PartyForm> {
     getzone("پنجاب");
     prefix(provincevalue);
     getdistrict(divsionvalue);
-
   }
 
   @override
@@ -176,7 +196,7 @@ class _PartyFormState extends State<PartyForm> {
             ),
             Row(
               children: [
-                 SizedBox(
+                SizedBox(
                   width: width * 0.5,
                   child: ListTile(
                     title: const Padding(
@@ -489,50 +509,49 @@ class _PartyFormState extends State<PartyForm> {
             ),
             Row(
               children: [
-                   SizedBox(
-              width: width * 0.5,
-              child: ListTile(
-                title: const Padding(
-                  padding: EdgeInsets.only(
-                    right: 8,
-                  ),
-                  child: Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        "زون",
-                        style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
-                      )),
-                ),
-                subtitle: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.greenAccent
-                        .withOpacity(.3), //background color of dropdown button
+                SizedBox(
+                  width: width * 0.5,
+                  child: ListTile(
+                    title: const Padding(
+                      padding: EdgeInsets.only(
+                        right: 8,
+                      ),
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                            "زون",
+                            style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                          )),
+                    ),
+                    subtitle: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.greenAccent.withOpacity(
+                            .3), //background color of dropdown button
 
-                    borderRadius: BorderRadius.circular(
-                        12), //border raiuds of dropdown button
-                  ),
-                  child: DropdownButton(
-                    underline: const SizedBox.shrink(),
-                    iconEnabledColor: Theme.of(context).primaryColor,
-                    isExpanded: true,
-                    alignment: AlignmentDirectional.bottomEnd,
-                    value: zonevalue,
-                    items: zone.map((zon) {
-                      return DropdownMenuItem(
-                        value: zon,
-                        child: Center(child: Text(zon.toString())),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-
-                        zonevalue= newValue.toString();
-                      });
-                    },
+                        borderRadius: BorderRadius.circular(
+                            12), //border raiuds of dropdown button
+                      ),
+                      child: DropdownButton(
+                        underline: const SizedBox.shrink(),
+                        iconEnabledColor: Theme.of(context).primaryColor,
+                        isExpanded: true,
+                        alignment: AlignmentDirectional.bottomEnd,
+                        value: zonevalue,
+                        items: zone.map((zon) {
+                          return DropdownMenuItem(
+                            value: zon,
+                            child: Center(child: Text(zon.toString())),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            zonevalue = newValue.toString();
+                          });
+                        },
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
                 // SizedBox(
                 //     width: width * 0.5,
                 //     child: CustomField(
@@ -581,7 +600,7 @@ class _PartyFormState extends State<PartyForm> {
                             getdivsions(newValue);
                             getzone(newValue);
                             divsionvalue = null;
-                            zonevalue  = null;
+                            zonevalue = null;
                             provincevalue = newValue ?? "";
                             prefix(provincevalue);
                           });
@@ -631,7 +650,6 @@ class _PartyFormState extends State<PartyForm> {
                         divsionvalue = newValue.toString();
                         getdistrict(divsionvalue);
                         districtvalue = null;
-                      
                       });
                     },
                   ),
@@ -650,49 +668,49 @@ class _PartyFormState extends State<PartyForm> {
                       controler: tehsilController,
                       validattor: RequiredValidator(errorText: "Required"),
                     )),
-               SizedBox(
-              width: width * 0.5,
-              child: ListTile(
-                title: const Padding(
-                  padding: EdgeInsets.only(
-                    right: 8,
-                  ),
-                  child: Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        "ضلع",
-                        style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
-                      )),
-                ),
-                subtitle: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.greenAccent
-                        .withOpacity(.3), //background color of dropdown button
+                SizedBox(
+                  width: width * 0.5,
+                  child: ListTile(
+                    title: const Padding(
+                      padding: EdgeInsets.only(
+                        right: 8,
+                      ),
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                            "ضلع",
+                            style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                          )),
+                    ),
+                    subtitle: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.greenAccent.withOpacity(
+                            .3), //background color of dropdown button
 
-                    borderRadius: BorderRadius.circular(
-                        12), //border raiuds of dropdown button
-                  ),
-                  child: DropdownButton(
-                    underline: const SizedBox.shrink(),
-                    iconEnabledColor: Theme.of(context).primaryColor,
-                    isExpanded: true,
-                    alignment: AlignmentDirectional.bottomEnd,
-                    value: districtvalue,
-                    items: district.map((dis) {
-                      return DropdownMenuItem(
-                        value: dis,
-                        child: Center(child: Text(dis.toString())),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        districtvalue = newValue.toString();
-                      });
-                    },
+                        borderRadius: BorderRadius.circular(
+                            12), //border raiuds of dropdown button
+                      ),
+                      child: DropdownButton(
+                        underline: const SizedBox.shrink(),
+                        iconEnabledColor: Theme.of(context).primaryColor,
+                        isExpanded: true,
+                        alignment: AlignmentDirectional.bottomEnd,
+                        value: districtvalue,
+                        items: district.map((dis) {
+                          return DropdownMenuItem(
+                            value: dis,
+                            child: Center(child: Text(dis.toString())),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            districtvalue = newValue.toString();
+                          });
+                        },
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
               ],
             ),
             Row(
@@ -716,7 +734,6 @@ class _PartyFormState extends State<PartyForm> {
                             TextPosition(offset: pacontroller.text.length));
                       },
                       controler: pacontroller,
-                   
                     )),
                 SizedBox(
                     width: width * 0.5,
@@ -736,7 +753,6 @@ class _PartyFormState extends State<PartyForm> {
                             TextPosition(offset: nacontroller.text.length));
                       },
                       controler: nacontroller,
-                     
                     )),
               ],
             ),
@@ -750,7 +766,6 @@ class _PartyFormState extends State<PartyForm> {
                       fldltxt: 'وارڈ',
                       hint: 'یہاں لکھیں۔',
                       controler: wardcontroller,
-                    
                     )),
                 SizedBox(
                     width: width * 0.5,
@@ -759,7 +774,6 @@ class _PartyFormState extends State<PartyForm> {
                       fldltxt: ' یوسی/وی سی',
                       hint: 'یہاں لکھیں۔',
                       controler: uccontroller,
-                      
                     )),
               ],
             ),
@@ -798,7 +812,9 @@ class _PartyFormState extends State<PartyForm> {
                       child: ElevatedButton(
                           onPressed: agree
                               ? () async {
+
                                   if (_formKey.currentState!.validate()) {
+                                    try{
                                     DatabaseService databaseService =
                                         DatabaseService();
                                     PartyMemberform partyMemberform =
@@ -826,16 +842,40 @@ class _PartyFormState extends State<PartyForm> {
                                       gender: genderr,
                                       ward: wardcontroller.text,
                                       address: addressController.text,
+                                      
                                     );
                                     setState(() {
                                       isLoading = true;
                                     });
+                                    
                                     await databaseService
                                         .addmember(partyMemberform);
+                                         Fluttertoast.showToast(
+                                          msg: "voter added successfully",
+                                          toastLength: Toast.LENGTH_LONG,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.white,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0);
+                                    }
+                                    catch(e){
+                                       Fluttertoast.showToast(
+                                          msg: "somthing wrong",
+                                          toastLength: Toast.LENGTH_LONG,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.white,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0);
+
+                                    }
                                     setState(() {
                                       isLoading = false;
-                                      _formKey.currentState!.reset();
+                                      clear();
+                                     
                                     });
+                                    
                                   }
                                 }
                               : null,

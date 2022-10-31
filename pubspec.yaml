@@ -32,12 +32,18 @@ dependencies:
   firebase_auth: ^3.8.0
   firebase_core: ^1.22.0
   mask_text_input_formatter: ^2.4.0
+  fluttertoast: ^8.0.9
+  image_picker: ^0.8.5+3
+  firebase_storage: ^10.3.2
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
   form_field_validator: ^1.1.0
   pdf: ^3.8.3
   printing: any
+  animated_segmented_tab_control: ^1.0.1
+  path_provider: ^2.0.11
+  flutter_email_sender: any
  
   
 dev_dependencies:

@@ -82,9 +82,7 @@ class _VoterdetailState extends State<Voterdetail> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                SizedBox(
-                width: width*0.3,
-                child: ReadTextField(title: 'والد/شوہر کا نام', value: widget.voter.fathername.toString(),)),
+               
                 SizedBox(
                     width: width*0.3,
                     child: ReadTextField(title: 'نام', value: widget.voter.name.toString(),)),
@@ -95,25 +93,31 @@ class _VoterdetailState extends State<Voterdetail> {
               ),
            
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                 SizedBox(
-                width: width*0.45,
+                width: width*0.25,
                 child: ReadTextField(title: 'جنس', value: widget.voter.gender.toString(),)),
                 SizedBox(
-                width: width*0.45,
+                width: width*0.25,
                 child: ReadTextField(title: 'عمر', value: widget.voter.age.toString(),)),
+                 SizedBox(
+                width: width*0.4,
+                child: ReadTextField(title: 'والد/شوہر کا نام', value: widget.voter.fathername.toString(),)),
                 ],          
               ),
-              ReadTextField(value: widget.voter.stcode.toString(), title: "شماریاتی بلاک کوڈ"),
+            
                Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                     SizedBox(
-                width: width*0.45,
+                width: width*0.3,
+                child: ReadTextField(value: widget.voter.stcode.toString(), title: "شماریاتی بلاک کوڈ")),
+                    SizedBox(
+                width: width*0.3,
                 child: ReadTextField(title: 'گھرانہ نمبر', value: widget.voter.householdno.toString(),)),
                   SizedBox(
-                width: width*0.45,
+                width: width*0.3,
                 child: ReadTextField(title: 'سلسہ نمبر', value: widget.voter.serialno.toString(),)),
               
                 ],          

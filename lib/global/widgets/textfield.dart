@@ -9,7 +9,8 @@ class CustomField extends StatelessWidget {
     required this.controler,
     this.validattor,
     this.keyboardType, this.inputFormatter,
-    this.onchange,this.obscureText,this.suffixicon
+    this.onchange,this.obscureText,this.suffixicon,
+    this.maxline
   }) : super(key: key);
 
   final String hint;
@@ -20,6 +21,7 @@ class CustomField extends StatelessWidget {
   final TextInputType? keyboardType;
   final List<TextInputFormatter>?  inputFormatter;
   final Widget? suffixicon;
+  int? maxline;
   Function(String)? onchange;
 
   @override
@@ -48,7 +50,9 @@ class CustomField extends StatelessWidget {
           textAlign: TextAlign.right,
           cursorColor: Theme.of(context).primaryColor,
           textDirection: TextDirection.rtl,
+          maxLines: maxline,
           decoration: InputDecoration(
+            
             
             prefixIcon: suffixicon,
             
