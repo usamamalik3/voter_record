@@ -1,7 +1,9 @@
 
+
 import 'package:flutter/material.dart';
 import 'package:voterrecord/screens/aboutscreen.dart';
 import 'package:voterrecord/screens/add_office.dart';
+import 'package:voterrecord/screens/bodyscreen.dart';
 import 'package:voterrecord/screens/complaint.dart';
 import 'package:voterrecord/screens/dashboard.dart';
 import 'package:voterrecord/screens/meetingscreen.dart';
@@ -34,6 +36,7 @@ class Routes {
   static const String tanzeemsazi = '/tanzeemsazi';
   static const String complaint = '/complaint';
   static const String meeting = '/meeting';
+  static const String bodyscreen = '/bodyscreen';
 
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -69,7 +72,9 @@ class Routes {
          return MaterialPageRoute<Complaint>(builder: ((context) =>  const Complaint()));
       
       case meeting:
-         return MaterialPageRoute<MeetinScreen>(builder: ((context) =>  const MeetinScreen()));
+         return MaterialPageRoute<MeetingScreen>(builder: ((context) =>  const MeetingScreen()));
+      case bodyscreen:
+         return MaterialPageRoute<BodyScreen>(builder: ((context) => const BodyScreen()));
       
       // case voterdetail:
         // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));  

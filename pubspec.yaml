@@ -44,6 +44,9 @@ dependencies:
   animated_segmented_tab_control: ^1.0.1
   path_provider: ^2.0.11
   flutter_email_sender: any
+  whatsapp: ^2.0.0
+  whatsapp_unilink: ^2.0.2
+  url_launcher: ^6.1.6
  
   
 dev_dependencies:
