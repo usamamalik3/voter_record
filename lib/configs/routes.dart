@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:voterrecord/screens/aboutscreen.dart';
 import 'package:voterrecord/screens/add_office.dart';
-import 'package:voterrecord/screens/bodyscreen.dart';
+import 'package:voterrecord/screens/15rukniBody/bodyscreen.dart';
 import 'package:voterrecord/screens/complaint.dart';
 import 'package:voterrecord/screens/dashboard.dart';
 import 'package:voterrecord/screens/meetingscreen.dart';

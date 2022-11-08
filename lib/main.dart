@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/configs/routes.dart';
+import 'package:voterrecord/screens/15rukniBody/zonebody.dart';
 import 'package:voterrecord/screens/aboutscreen.dart';
 
 import 'package:voterrecord/screens/dashboard.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       theme: ThemeData(
           primaryColor: Colors.green,
+          // fontFamily:  "NotoNastaliqUrdu",
           scaffoldBackgroundColor: Colors.white.withOpacity(.98),
           iconTheme: const IconThemeData(
             color: Color(0Xff008000),
@@ -46,6 +48,7 @@ class MyApp extends StatelessWidget {
                   elevation: 3,
                   minimumSize: const Size(300, 45))),
           inputDecorationTheme: InputDecorationTheme(
+            
               filled: true,
               fillColor: Colors.greenAccent.withOpacity(.3),
               border: OutlineInputBorder(
