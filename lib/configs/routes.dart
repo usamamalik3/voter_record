@@ -1,23 +1,23 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:voterrecord/screens/aboutscreen.dart';
-import 'package:voterrecord/screens/add_office.dart';
-import 'package:voterrecord/screens/15rukniBody/bodyscreen.dart';
-import 'package:voterrecord/screens/complaint.dart';
+import 'package:voterrecord/screens/About/aboutscreen.dart';
+import 'package:voterrecord/screens/Contactus/add_office.dart';
+import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/bodyscreen.dart';
+import 'package:voterrecord/screens/Contactus/complaint.dart';
 import 'package:voterrecord/screens/dashboard.dart';
-import 'package:voterrecord/screens/meetingscreen.dart';
-import 'package:voterrecord/screens/tanzeem_sazi.dart';
-import 'package:voterrecord/screens/add_data.dart';
-import 'package:voterrecord/screens/contactus.dart';
-import 'package:voterrecord/screens/department_screen.dart';
-import 'package:voterrecord/screens/election_mnge_screen.dart';
-import 'package:voterrecord/screens/executive_check.dart';
-import 'package:voterrecord/screens/office_detail.dart';
-import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/TanzeemSazi/meetingscreen.dart';
+import 'package:voterrecord/screens/TanzeemSazi/tanzeem_sazi.dart';
+import 'package:voterrecord/screens/Voter/add_data.dart';
+import 'package:voterrecord/screens/Contactus/contactus.dart';
+import 'package:voterrecord/screens/Departments/department_screen.dart';
+import 'package:voterrecord/screens/Election/election_mnge_screen.dart';
+import 'package:voterrecord/screens/Voter/executive_check.dart';
+import 'package:voterrecord/screens/Contactus/office_detail.dart';
+import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
 
-import 'package:voterrecord/screens/voterscreen.dart';
-import 'package:voterrecord/screens/votersearch.dart';
+import 'package:voterrecord/screens/Voter/voterscreen.dart';
+import 'package:voterrecord/screens/Voter/votersearch.dart';
 
 class Routes {
   static const String dashboard = '/dashboard';

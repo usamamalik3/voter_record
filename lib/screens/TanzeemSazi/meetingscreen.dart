@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:voterrecord/global/widgets/readonlytextfield.dart';
@@ -23,10 +21,9 @@ class _MeetingScreenState extends State<MeetingScreen> {
     if (_formKey.currentState!.validate()) {
       var whatsapp = "+923080636461";
       var whatsappAndroid = Uri.parse(
-          "whatsapp://send?phone=$whatsapp&text= میٹنگ شیڈول\n\n  ایجنڈا:${agendacontroller.text}\n\n موضوع:${subjectcontroller.text}\n\n تاریخ:${dateinput.text}\n\n وقت آغآز: ${starttime.text} \n\n وقت اختتام:${endtime.text}");
+          "whatsapp://send?phone=$whatsapp&text= میٹنگ شیڈول\n\n   موضوع:${subjectcontroller.text}\n\n ایجنڈا:${agendacontroller.text}\n\n تاریخ:${dateinput.text}\n\n وقت آغآز: ${starttime.text} \n\n وقت اختتام:${endtime.text}");
       if (await canLaunchUrl(whatsappAndroid)) {
         await launchUrl(whatsappAndroid);
-        
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -53,13 +50,15 @@ class _MeetingScreenState extends State<MeetingScreen> {
 
   // Future<void> _selectTime(BuildContext context) async {}
 
-  TextEditingController agendacontroller = TextEditingController(  text: '\u200B');
+  TextEditingController agendacontroller =
+      TextEditingController(text: '\u200B');
   TextEditingController subjectcontroller = TextEditingController();
   TextEditingController daycontroller = TextEditingController();
   TextEditingController dateinput = TextEditingController();
   TextEditingController starttime = TextEditingController();
   TextEditingController endtime = TextEditingController();
-  TextEditingController duration = TextEditingController();
+  TextEditingController location = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -84,16 +83,14 @@ class _MeetingScreenState extends State<MeetingScreen> {
                   )),
                 ),
                 CustomField(
-                  hint: "یہاں لکھیں \u2022",
-                  fldltxt: 'ایجنڈا',
-                
-                  controler: agendacontroller,
-                  maxline: 5,
+                  hint: "یہاں لکھیں",
+                  fldltxt: 'میٹنگ بسلسلہ',
+                  controler: subjectcontroller,
                   validattor: RequiredValidator(errorText: "Required"),
                 ),
                 CustomField(
                   hint: "یہاں لکھیں",
-                  fldltxt: 'موضوع',
+                  fldltxt: 'بمقام',
                   controler: subjectcontroller,
                   validattor: RequiredValidator(errorText: "Required"),
                 ),
@@ -103,7 +100,6 @@ class _MeetingScreenState extends State<MeetingScreen> {
                     SizedBox(
                         width: width * 0.5,
                         child: CustomField(
-                          
                           keyboardType: TextInputType.text,
                           fldltxt: 'بروز',
                           hint: 'یہاں لکھیں۔',
@@ -129,13 +125,12 @@ class _MeetingScreenState extends State<MeetingScreen> {
                             else {
                               String formattedDate =
                                   DateFormat('dd-MM-yyyy').format(pickedDate);
-                                  String formattedDay =
+                              String formattedDay =
                                   DateFormat('EEEE').format(pickedDate);
                               setState(() {
                                 dateinput.text = formattedDate;
-                                
-                               daycontroller.text= formattedDay;
-                               
+
+                                daycontroller.text = formattedDay;
                               });
                             }
                           },
@@ -189,6 +184,13 @@ class _MeetingScreenState extends State<MeetingScreen> {
                             }
                           },
                         )),
+                    CustomField(
+                      hint: "یہاں لکھیں \u2022",
+                      fldltxt: 'ایجنڈا',
+                      controler: agendacontroller,
+                      maxline: 5,
+                      validattor: RequiredValidator(errorText: "Required"),
+                    ),
                   ],
                 ),
                 Padding(

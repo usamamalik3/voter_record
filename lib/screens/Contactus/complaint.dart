@@ -6,7 +6,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
 import 'package:path_provider/path_provider.dart' as PathProvider;
-import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
 
 class Complaint extends StatefulWidget {
   const Complaint({super.key});

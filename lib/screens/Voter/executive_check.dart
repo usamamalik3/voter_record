@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
-import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
 
 
 class ExecutiveScreen extends StatefulWidget {

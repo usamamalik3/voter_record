@@ -9,7 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
-import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
 
 class AddOffice extends StatefulWidget {
   const AddOffice({super.key});

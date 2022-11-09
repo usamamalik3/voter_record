@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:voterrecord/models/voter.dart';
-import 'package:voterrecord/screens/partyfrom.dart';
+import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
 
-import 'package:voterrecord/screens/voterdetail.dart';
+import 'package:voterrecord/screens/Voter/voterdetail.dart';
 import 'package:voterrecord/utils/search_filtters.dart';
 
 

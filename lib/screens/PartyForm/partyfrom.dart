@@ -11,7 +11,7 @@ import 'package:voterrecord/models/database_service.dart';
 import 'package:voterrecord/models/partyformModel.dart';
 import 'package:intl/intl.dart';
 
-import '../utils/dropdown_list.dart';
+import '../../utils/dropdown_list.dart';
 
 class PartyForm extends StatefulWidget {
   const PartyForm({Key? key}) : super(key: key);

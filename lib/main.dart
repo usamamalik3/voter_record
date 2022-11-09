@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/configs/routes.dart';
-import 'package:voterrecord/screens/15rukniBody/zonebody.dart';
-import 'package:voterrecord/screens/aboutscreen.dart';
+import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/zonebody.dart';
+import 'package:voterrecord/screens/About/aboutscreen.dart';
 
 import 'package:voterrecord/screens/dashboard.dart';
-import 'package:voterrecord/screens/meetingscreen.dart';
+import 'package:voterrecord/screens/TanzeemSazi/meetingscreen.dart';
 
 
 
