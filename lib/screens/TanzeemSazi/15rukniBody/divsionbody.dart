@@ -1,66 +1,49 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/models/dashboardItem.dart';
 import 'package:voterrecord/utils/bodytile.dart';
 
-class ZoneBody extends StatefulWidget {
-  ZoneBody({super.key, this.arg});
-  var arg;
+class DivsionBody extends StatefulWidget {
+  const DivsionBody({super.key, this.arg});
+  final Object? arg;
 
   @override
-  State<ZoneBody> createState() => _ZoneBodyState();
+  State<DivsionBody> createState() => _DivsionBodyState();
 }
-
-// List<dynamic> divisons = [];
-
-class _ZoneBodyState extends State<ZoneBody> {
-  // divsion(arg) async {
-  //   await FirebaseFirestore.instance
-  //       .collection("tazeemdivsion")
-  //       .doc(arg)
-  //       .get()
-  //       .then((value) {
-  //     setState(() {
-  //       divisons = value.data()!["ڈویژن"];
-  //     });
-  //   });
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   divsion(widget.arg);
-  // }
-
+List<dynamic> divisons = [];
+class _DivsionBodyState extends State<DivsionBody> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text("زون پندرہ رکنی باڈی"),
+          child: Text("ڈویژن پندرہ رکنی باڈی"),
         ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(right: 10.0, top: 10),
-            child: Text(
-              "ڈویژن منتخب کریں",
-              style: TextStyle(fontFamily: 'NotoNastaliqUrdu', fontSize: 20),
-            ),
+         const  Padding(
+            padding:  EdgeInsets.only(right:10.0, top: 10),
+            child: Text("ضلع منتخب کریں",
+             style:
+                          TextStyle(fontFamily: 'NotoNastaliqUrdu', fontSize: 20),),
           ),
+        
           SizedBox(
             height: 150,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: StreamBuilder<DocumentSnapshot>(
-                stream: FirebaseFirestore.instance.collection("tazeemdivsion").doc(widget.arg).snapshots(),
+              child:StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance.collection("District").doc(widget.arg.toString()).snapshots(),
                 builder: (context, snapshot) {
                   if(snapshot.hasData){
                   return ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: snapshot.data!["ڈویژن"].length,
+                      itemCount: snapshot.data!["ضلع"].length,
                       itemBuilder: (BuildContext ctxt, int index) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -68,7 +51,7 @@ class _ZoneBodyState extends State<ZoneBody> {
                             splashColor: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(12),
                             onTap: () {
-                              Navigator.pushNamed(context, '/divsionbody', arguments:  snapshot.data!["ڈویژن"][index]);
+                              
                             },
                             child: Container(
                                 width: 120,
@@ -83,7 +66,7 @@ class _ZoneBodyState extends State<ZoneBody> {
                                   color: Colors.transparent,
                                   child: Center(
                                     child: Text(
-                                      snapshot.data!["ڈویژن"][index],
+                                      snapshot.data!["ضلع"][index],
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,
@@ -101,23 +84,22 @@ class _ZoneBodyState extends State<ZoneBody> {
                   }
                 }
               ),
-            ),
+                            ),
           ),
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
+          
                 itemCount: 6,
                 itemBuilder: (BuildContext ctxt, int index) {
-                  return BodyTile(
-                    address:
-                        'وحدت روڈ، بلاک سی کالج بلاک علامہ اقبال ٹاؤن، لاہور',
-                    designation: 'امیر',
-                    name: 'احمد',
-                  );
+                  return BodyTile(address: 'وحدت روڈ، بلاک سی کالج بلاک علامہ اقبال ٹاؤن، لاہور', designation: 'امیر', name: 'احمد',);
                 }),
           )
+
+       
         ],
       ),
     );
+
   }
 }

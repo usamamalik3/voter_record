@@ -5,6 +5,8 @@ import 'package:voterrecord/screens/About/aboutscreen.dart';
 import 'package:voterrecord/screens/Contactus/add_office.dart';
 import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/bodyscreen.dart';
 import 'package:voterrecord/screens/Contactus/complaint.dart';
+import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/divsionbody.dart';
+import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/zonebody.dart';
 import 'package:voterrecord/screens/dashboard.dart';
 import 'package:voterrecord/screens/TanzeemSazi/meetingscreen.dart';
 import 'package:voterrecord/screens/TanzeemSazi/tanzeem_sazi.dart';
@@ -37,6 +39,8 @@ class Routes {
   static const String complaint = '/complaint';
   static const String meeting = '/meeting';
   static const String bodyscreen = '/bodyscreen';
+  static const String zonebody = '/zonebody';
+  static const String divsionbody = '/divsionbody';
 
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -75,7 +79,11 @@ class Routes {
          return MaterialPageRoute<MeetingScreen>(builder: ((context) =>  const MeetingScreen()));
       case bodyscreen:
          return MaterialPageRoute<BodyScreen>(builder: ((context) => const BodyScreen()));
-      
+
+      case zonebody:
+         return MaterialPageRoute<ZoneBody>(builder: ((context) =>  ZoneBody(arg: routeSettings.arguments)));
+      case divsionbody:
+         return MaterialPageRoute<DivsionBody>(builder: ((context) =>  DivsionBody(arg: routeSettings.arguments)));
       // case voterdetail:
         // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));  
         

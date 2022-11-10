@@ -21,7 +21,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
     if (_formKey.currentState!.validate()) {
       var whatsapp = "+923080636461";
       var whatsappAndroid = Uri.parse(
-          "whatsapp://send?phone=$whatsapp&text= میٹنگ شیڈول\n\n   موضوع:${subjectcontroller.text}\n\n ایجنڈا:${agendacontroller.text}\n\n تاریخ:${dateinput.text}\n\n وقت آغآز: ${starttime.text} \n\n وقت اختتام:${endtime.text}");
+          "whatsapp://send?phone=$whatsapp&text= میٹنگ شیڈول\n\n   میٹنگ بسلسلہ:${subjectcontroller.text}\n\n بمقام ${location.text}\n\n:ایجنڈا:${agendacontroller.text}\n\n تاریخ:${dateinput.text}\n\n وقت آغآز: ${starttime.text} \n\n وقت اختتام:${endtime.text}");
       if (await canLaunchUrl(whatsappAndroid)) {
         await launchUrl(whatsappAndroid);
       } else {
@@ -91,7 +91,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
                 CustomField(
                   hint: "یہاں لکھیں",
                   fldltxt: 'بمقام',
-                  controler: subjectcontroller,
+                  controler: location,
                   validattor: RequiredValidator(errorText: "Required"),
                 ),
                 Row(
@@ -131,6 +131,33 @@ class _MeetingScreenState extends State<MeetingScreen> {
                                 dateinput.text = formattedDate;
 
                                 daycontroller.text = formattedDay;
+                                switch (daycontroller.text) {
+                                  case 'Sunday':
+                                    daycontroller.text = 'اتوار';
+                                    break;
+
+                                  case 'Monday':
+                                    daycontroller.text = 'سوموار';
+                                    break;
+
+                                  case 'Tuesday':
+                                    daycontroller.text = 'منگل';
+                                    break;
+
+                                  case 'Wednesday':
+                                    daycontroller.text = 'بدھ';
+                                    break;
+                                  case 'Thursday':
+                                    daycontroller.text = 'جمعرات';
+                                    break;
+
+                                  case 'Friday':
+                                    daycontroller.text = 'جمعہ';
+                                    break;
+                                  case 'Saturday':
+                                    daycontroller.text = 'ہفتہ';
+                                    break;
+                                }
                               });
                             }
                           },
@@ -184,14 +211,14 @@ class _MeetingScreenState extends State<MeetingScreen> {
                             }
                           },
                         )),
-                    CustomField(
-                      hint: "یہاں لکھیں \u2022",
-                      fldltxt: 'ایجنڈا',
-                      controler: agendacontroller,
-                      maxline: 5,
-                      validattor: RequiredValidator(errorText: "Required"),
-                    ),
                   ],
+                ),
+                CustomField(
+                  hint: "یہاں لکھیں \u2022",
+                  fldltxt: 'ایجنڈا',
+                  controler: agendacontroller,
+                  maxline: 5,
+                  validattor: RequiredValidator(errorText: "Required"),
                 ),
                 Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24)

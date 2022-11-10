@@ -152,16 +152,35 @@ List<Items> tanzeemSaziList = [
 ];
 
 List<BodyItem> zone = [
-  BodyItem(title: "کےپی کے زون 1", onPressed: (context) {
-    
-  }),
-  BodyItem(title: "کےپی کے زون 2", onPressed: (context) {}),
-  BodyItem(title: "کےپی کے زون 3", onPressed: (context) {}),
-  BodyItem(title: "شمالی پنجاب", onPressed: (context) {}),
-  BodyItem(title: "جنوبی پنجاب", onPressed: (context) {}),
-  BodyItem(title: "وسطی پنجاب", onPressed: (context) {}),
-  BodyItem(title: "زون صوبہ سندھ", onPressed: (context) {}),
-  BodyItem(title: "زون صوبہ بلوچستان", onPressed: (context) {}),
-  BodyItem(title: "زون آزادکشمیر", onPressed: (context) {}),
-  BodyItem(title: "زون گلگت بلتستان", onPressed: (context) {}),
+  BodyItem(
+    title: "کے پی کے زون 2",
+  ),
+  BodyItem(
+    title: "کے پی کے زون 1",
+  ),
+  BodyItem(
+    title: "شمالی پنجاب",
+  ),
+  BodyItem(
+    title: "کے پی کے زون 3",
+  ),
+  BodyItem(
+    title: "وسطی پنجاب",
+  ),
+  BodyItem(
+    title: "جنوبی پنجاب",
+  ),
+  BodyItem(
+    title: "زون صوبہ بلوچستان",
+  ),
+  BodyItem(
+    title: "زون صوبہ سندھ",
+  ),
+  BodyItem(
+    title: "زون گلگت بلتستان",
+  ),
+  BodyItem(
+    title: "زون آزادکشمیر",
+  ),
+ 
 ];

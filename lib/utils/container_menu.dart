@@ -24,7 +24,8 @@ final double childAspectRatio;
               splashColor: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(12),
               onTap: () {
-              data.onPressed(context);
+                Navigator.pushNamed(context, '/zonebody',arguments: data.title);
+              
               },
               child: Container(
                 clipBehavior: Clip.antiAlias,
