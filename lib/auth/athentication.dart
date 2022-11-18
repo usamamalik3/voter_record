@@ -54,7 +54,9 @@ class Authentication {
               await auth.signInWithCredential(credential);
 
           user = userCredential.user;
-        
+          if (user != null) {
+  Navigator.pushNamed(context, '/dashboard');
+  }
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             // ...

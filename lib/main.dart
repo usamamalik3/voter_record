@@ -8,12 +8,14 @@ import 'package:voterrecord/screens/Voter/voterscreen.dart';
 import 'package:voterrecord/screens/dashboard.dart';
 import 'package:voterrecord/screens/TanzeemSazi/meetingscreen.dart';
 import 'package:voterrecord/screens/signin.dart';
+import 'package:voterrecord/screens/splash.dart';
 
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  
   runApp(const MyApp());
 }
 
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
        onGenerateRoute: Routes().generateRoute,
       title: 'AL hayat 360',
       themeMode: ThemeMode.dark,
@@ -58,7 +61,7 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home:  const SignInScreen(),
+      home:   SplashScreen(),
     );
   }
 }
