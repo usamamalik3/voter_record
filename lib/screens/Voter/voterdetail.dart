@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:voterrecord/global/widgets/readonlytextfield.dart';
 import 'package:voterrecord/models/voter.dart';
@@ -11,7 +9,7 @@ import 'package:printing/printing.dart';
 class Voterdetail extends StatefulWidget {
   final Voter voter;
 
-   const Voterdetail({super.key, required this.voter});
+  const Voterdetail({super.key, required this.voter});
 
   @override
   State<Voterdetail> createState() => _VoterdetailState();
@@ -48,129 +46,276 @@ class _VoterdetailState extends State<Voterdetail> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+  
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        child: Card(
-          
-         
-          elevation: 10,
-          
-          child: RepaintBoundary(
-            key: _printKey,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children:  [
-                  ListTile(
-                title: const Padding(
-                  padding: EdgeInsets.only(right: 8,),
-                  child: Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        "شناختی کارڈ",
-                        style: TextStyle(fontFamily: "NotoNastaliqUrdu",fontSize: 16),
-                      )),
-                ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.only(left:8),
-                  child: Text(widget.voter.cnic.toString(),
-                  style: const TextStyle(fontSize: 20),),
-                ),
-                ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-               
-                SizedBox(
-                    width: width*0.3,
-                    child: ReadTextField(title: 'نام', value: widget.voter.name.toString(),)),
-                 SizedBox(
-                width: width*0.3,
-                child: ReadTextField(title: 'جنس', value: widget.voter.gender.toString(),)),
-                ],
-              ),
-           
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                SizedBox(
-                width: width*0.25,
-                child: ReadTextField(title: 'جنس', value: widget.voter.gender.toString(),)),
-                SizedBox(
-                width: width*0.25,
-                child: ReadTextField(title: 'عمر', value: widget.voter.age.toString(),)),
-                 SizedBox(
-                width: width*0.4,
-                child: ReadTextField(title: 'والد/شوہر کا نام', value: widget.voter.fathername.toString(),)),
-                ],          
-              ),
-            
-               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 100.0, horizontal: 10),
+          child: Card(
+            elevation: 10,
+            child: RepaintBoundary(
+              key: _printKey,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    ListTile(
+                      title: const Padding(
+                        padding: EdgeInsets.only(
+                          right: 8,
+                        ),
+                        child: Align(
+                            alignment: Alignment.topRight,
+                            child: Text(
+                              "شناختی کارڈ",
+                              style: TextStyle(
+                                  fontFamily: "NotoNastaliqUrdu", fontSize: 16),
+                            )),
+                      ),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Text(
+                          widget.voter.cnic.toString(),
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          width: width * 0.3,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(widget.voter.name.toString(),
+                                  style: const TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 12)),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(':نام',
+                                    style:  TextStyle(
+                                        fontFamily: "NotoNastaliqUrdu",
+                                        fontSize: 14)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: width * 0.3,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(widget.voter.gender.toString(),
+                                  style: const TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 12)),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(':جنس',
+                                    style:  TextStyle(
+                                        fontFamily: "NotoNastaliqUrdu",
+                                        fontSize: 14)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          width: width * 0.25,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(widget.voter.age.toString(), style: const TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 12)),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(':عمر',
+                                    style:  TextStyle(
+                                        fontFamily: "NotoNastaliqUrdu",
+                                        fontSize: 14)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: width * 0.4,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(widget.voter.fathername.toString(),
+                                  style: const TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 12)),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(':والد/شوہر کا نام',
+                                    style:  TextStyle(
+                                        fontFamily: "NotoNastaliqUrdu",
+                                        fontSize: 14)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
-                width: width*0.3,
-                child: ReadTextField(value: widget.voter.stcode.toString(), title: "شماریاتی بلاک کوڈ")),
+                      width: width * 0.5,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(widget.voter.stcode.toString(),
+                              style: const TextStyle(
+                                  fontFamily: "NotoNastaliqUrdu",
+                                  fontSize: 12)),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(":شماریاتی بلاک کوڈ",
+                                style:  TextStyle(
+                                    fontFamily: "NotoNastaliqUrdu",
+                                    fontSize: 14)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          width: width * 0.3,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(widget.voter.householdno.toString(),
+                                  style: const TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 12)),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(':گھرانہ نمبر',
+                                    style:  TextStyle(
+                                        fontFamily: "NotoNastaliqUrdu",
+                                        fontSize: 14)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: width * 0.3,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(widget.voter.serialno.toString(),
+                                  style: const TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 12)),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(':سلسہ نمبر',
+                                    style:  TextStyle(
+                                        fontFamily: "NotoNastaliqUrdu",
+                                        fontSize: 14)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
-                width: width*0.3,
-                child: ReadTextField(title: 'گھرانہ نمبر', value: widget.voter.householdno.toString(),)),
-                  SizedBox(
-                width: width*0.3,
-                child: ReadTextField(title: 'سلسہ نمبر', value: widget.voter.serialno.toString(),)),
-              
-                ],          
-              ),
-              ReadTextField(value: widget.voter.address.toString(), title: "پتہ"),
-              ReadTextField(value: widget.voter.polingstion.toString(), title: "پولنگ اسٹیشن"),
-               Row(  
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                child: ChoiceChip(
+                      width: width * 0.5,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(widget.voter.address.toString(),
+                              style: const TextStyle(
+                                  fontFamily: "NotoNastaliqUrdu",
+                                  fontSize: 12)),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(":پتہ",
+                                style:  TextStyle(
+                                    fontFamily: "NotoNastaliqUrdu",
+                                    fontSize: 14)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(widget.voter.polingstion.toString(),
+                              style: const TextStyle(
+                                  fontFamily: "NotoNastaliqUrdu",
+                                  fontSize: 12)),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            child: Text(":پولنگ اسٹیشن",style: TextStyle(
+                                  fontFamily: "NotoNastaliqUrdu",
+                                  fontSize: 14)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              child: ChoiceChip(
+                                
+                                  label: const Text(
+                                    'حامی',
+                                    textAlign: TextAlign.center,
                                    
-                                    label: const Text('حامی',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20)),
-                                    labelPadding:
-                                        const EdgeInsets.symmetric(horizontal: 50),
-                                    selected: choice== 'حامی',
-                                    onSelected: (bool selected) {
-                                      setState(() {
-                                        choice= selected ? 'حامی' : null;
-                                      });
-                                    },
-                                    selectedColor: Theme.of(context).primaryColor,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(16.0)))),
-                            Expanded(
-                                child: ChoiceChip(
+                                  ),
                                   
-                                    label: const Text('مخالف',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20)),
-                                    labelPadding:
-                                        const EdgeInsets.symmetric(horizontal: 50),
-                                    selected: choice== 'مخالف',
-                                    onSelected: (bool selected) {
-                                      setState(() {
-                                        choice= selected ? 'مخالف' : null;
-                                      });
-                                    },
-                                    selectedColor: Theme.of(context).primaryColor,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(16.0))))
-                          ]),
-                          
-              
-              
-                ],
+                                 
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 50),
+                                  selected:  choice == 'حامی',
+                                   labelStyle:  TextStyle(
+                                    
+                                      color: choice == 'حامی' ? Colors.white : Colors.black, fontSize: 14, fontFamily: "NotoNastaliqUrdu"),
+                                  onSelected: (bool selected) {
+                                    setState(() {
+                                      choice = selected ? 'حامی' : null;
+                                    });
+                                  },
+                                  selectedColor: Theme.of(context).primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(16.0)))),
+                          Expanded(
+                              child: ChoiceChip(
+                                  label: const Text('مخالف',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 50,),
+                                  selected: choice == 'مخالف',
+                                  labelStyle: TextStyle(color: choice == 'مخالف'? Colors.white: Colors.black, fontSize: 14, fontFamily: "NotoNastaliqUrdu"),
+                                  onSelected: (bool selected) {
+                                    setState(() {
+                                      choice = selected ? 'مخالف' : null;
+                                    });
+                                  },
+                                  selectedColor: Theme.of(context).primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(16.0))))
+                        ]),
+                  ],
+                ),
               ),
             ),
           ),

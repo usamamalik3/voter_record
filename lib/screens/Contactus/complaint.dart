@@ -69,7 +69,9 @@ class _ComplaintState extends State<Complaint> {
   Widget build(BuildContext context) {
        double width = MediaQuery.of(context).size.width;
      return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Center(child:  Text("شکایات یا تجاویز", style: TextStyle(fontFamily:"NotoNastaliqUrdu"),)),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,

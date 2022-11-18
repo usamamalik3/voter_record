@@ -21,7 +21,9 @@ class OfficeDetails extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-          appBar: AppBar(),
+          appBar: AppBar(
+             title: const Center(child:  Text("دفاتر کی تفصیل", style: TextStyle(fontFamily: "NotoNastaliqUrdu"),))
+          ),
           body: SafeArea(
             child: Stack(
               children: [

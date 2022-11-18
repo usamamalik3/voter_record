@@ -802,7 +802,11 @@ class _PartyFormState extends State<PartyForm> {
               child: Text(
                 'میں نے تحریک لبیک یا رسول اللہ صلی اللہ علیہ وآلہ وسلم کے اغراض و مقاصد کا مطالعہ کر لیا ہے اور مجھے ان سے مکمل اتفاق ہے۔ میں عہد کرتا/کرتی ہوں کہ تحریک لبیک پاکستان کے اغراض و مقاصد اور منشور(اسلام، پاکستان اور عوام)کی کامیابی کے لئے دل و جان سے کوشش کروں گا/گی اور ان اغراض و مقاصد کے خلاف سرگرمیوں سے مکمل اجتناب کروں گا/گی۔',
                 maxLines: 7,
+                textAlign: TextAlign.justify,
                 overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontFamily: "NotoNastaliqUrdu",
+                ),
               ),
             ),
             Padding(

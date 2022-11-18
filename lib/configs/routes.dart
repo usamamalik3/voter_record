@@ -83,7 +83,7 @@ class Routes {
       case zonebody:
          return MaterialPageRoute<ZoneBody>(builder: ((context) =>  ZoneBody(arg: routeSettings.arguments)));
       case divsionbody:
-         return MaterialPageRoute<DivsionBody>(builder: ((context) =>  DivsionBody(arg: routeSettings.arguments)));
+         return MaterialPageRoute<DivsionBody>(builder: ((context) =>  DivsionBody(arg: routeSettings.arguments as String)));
       // case voterdetail:
         // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));  
         

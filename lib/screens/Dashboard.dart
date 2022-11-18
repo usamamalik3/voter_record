@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/utils/container_menu.dart';
 
@@ -14,6 +15,71 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        elevation: 10.0,
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    // backgroundImage: NetworkImage(
+                    //     'https://pixel.nymag.com/imgs/daily/vulture/2017/06/14/14-tom-cruise.w700.h700.jpg'),
+                    // radius: 40.0,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                   
+                      SizedBox(height: 10.0),
+                      Text(
+                         FirebaseAuth.instance.currentUser!.email.toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 14.0),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+
+            //Here you place your menu items
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home Page', style: TextStyle(fontSize: 18)),
+              onTap: () {
+                // Here you can give your route to navigate
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => DashBoard()));
+              },
+            ),
+            const Divider(height: 3.0),
+            ListTile(
+              leading: const Icon(Icons.shop),
+              title: const Text('Shop', style: TextStyle(fontSize: 18)),
+              onTap: () {
+                // Here you can give your route to navigate
+               
+              },
+            ),
+            Divider(height: 3.0),
+          
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Log out', style: TextStyle(fontSize: 18)),
+              onTap: () {
+                
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
