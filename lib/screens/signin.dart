@@ -25,6 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            
             children: [
               Row(),
               Expanded(
@@ -33,26 +34,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                   CircleAvatar(
-                    backgroundColor: Theme.of(context).primaryColor,
-                    child: Icon(Icons.account_circle_outlined,
-                    size: 20,),
+                    radius: 100,
+                    backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
+                    child: const Icon(Icons.account_circle_outlined,
+                    size: 100,),
                   ),
-
-                    SizedBox(height: 20),
-                    Text(
-                      'FlutterFire',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 40,
-                      ),
-                    ),
-                    Text(
-                      'Authentication',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 40,
-                      ),
-                    ),
                   ],
                 ),
               ),

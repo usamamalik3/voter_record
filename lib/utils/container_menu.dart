@@ -79,7 +79,7 @@ final double childAspectRatio;
             return Container(
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                boxShadow: [BoxShadow(color: Colors.green.withOpacity(0.2), blurRadius: 0)],
+                boxShadow: [BoxShadow(color: Theme.of(context).primaryColor.withOpacity(0.2), blurRadius: 0)],
                 borderRadius: BorderRadius.circular(12),
                 color:Theme.of(context).inputDecorationTheme.fillColor!,
               ),

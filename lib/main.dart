@@ -32,7 +32,9 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       theme: ThemeData(
         // fontFamily:"NotoNastaliqUrdu",
+        
           primaryColor: Colors.green,
+          
           // fontFamily:  "NotoNastaliqUrdu",
           scaffoldBackgroundColor: Colors.white.withOpacity(.98),
           iconTheme: const IconThemeData(

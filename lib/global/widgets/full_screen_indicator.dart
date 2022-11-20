@@ -18,13 +18,10 @@ class FullScreenIndicator extends StatelessWidget {
       backgroundColor: backgroundColor,
       body: Center(
         child: SizedBox(
-          width: 48,
-          height: 48,
-          child: CircularProgressIndicator(
-            strokeWidth: 4,
-            backgroundColor: color,
-          ),
-        ),
+          width: 200,
+          height: 200,
+          child: Image.asset("assets/icons/app_icon.png")
+                  ),
       ),
     );
   }

@@ -20,8 +20,10 @@ import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
 
 import 'package:voterrecord/screens/Voter/voterscreen.dart';
 import 'package:voterrecord/screens/Voter/votersearch.dart';
+import 'package:voterrecord/screens/signin.dart';
 
 class Routes {
+  static const String signin = '/sigin';
   static const String dashboard = '/dashboard';
   static const String about = '/about';
   static const String partyfrom = '/partyform';
@@ -45,6 +47,8 @@ class Routes {
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case signin:
+        return MaterialPageRoute<SignInScreen>(builder: (context) => const SignInScreen());
       case dashboard:
         return MaterialPageRoute<DashBoard>(builder: (context) => const DashBoard());
       case about:

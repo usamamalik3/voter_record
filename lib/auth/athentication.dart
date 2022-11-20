@@ -14,7 +14,7 @@ class Authentication {
   User? user = FirebaseAuth.instance.currentUser;
 
   if (user != null) {
-  Navigator.pushNamed(context, '/dashboard');
+  Navigator.pushReplacementNamed(context, '/dashboard');
   }
 
   return firebaseApp;
@@ -55,7 +55,7 @@ class Authentication {
 
           user = userCredential.user;
           if (user != null) {
-  Navigator.pushNamed(context, '/dashboard');
+  Navigator.pushReplacementNamed(context, '/dashboard');
   }
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
