@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:voterrecord/models/dashboardItem.dart';
 import 'package:voterrecord/utils/bodytile.dart';
 
@@ -55,52 +56,77 @@ class _ZoneBodyState extends State<ZoneBody> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: StreamBuilder<DocumentSnapshot>(
-                stream: FirebaseFirestore.instance.collection("tazeemdivsion").doc(widget.arg).snapshots(),
-                builder: (context, snapshot) {
-                  if(snapshot.hasData){
-                  return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: snapshot.data!["ڈویژن"].length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            splashColor: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(12),
-                            onTap: () {
-                              Navigator.pushNamed(context, '/divsionbody', arguments:  snapshot.data!["ڈویژن"][index]);
-                            },
-                            child: Container(
-                                width: 120,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                      image: NetworkImage("https://bit.ly/3fNlcdz"),
-                                      fit: BoxFit.cover),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Card(
-                                  color: Colors.transparent,
-                                  child: Center(
-                                    child: Text(
-                                      snapshot.data!["ڈویژن"][index],
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                  stream: FirebaseFirestore.instance
+                      .collection("tazeemdivsion")
+                      .doc(widget.arg)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!["ڈویژن"].length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                splashColor: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(12),
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/divsionbody',
+                                      arguments: snapshot.data!["ڈویژن"]
+                                          [index]);
+                                },
+                                child: Container(
+                                    width: 120,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      image: const DecorationImage(
+                                          image: NetworkImage(
+                                              "https://bit.ly/3fNlcdz"),
+                                          fit: BoxFit.cover),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                                  ),
-                                )),
-                          ),
-                        );
-                      });
-                  }
-                  else{
-                    return const CircularProgressIndicator();
-                  }
-                }
-              ),
+                                    child: Card(
+                                      color: Colors.transparent,
+                                      child: Center(
+                                        child: Text(
+                                          snapshot.data!["ڈویژن"][index],
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    )),
+                              ),
+                            );
+                          });
+                    } else {
+                      return Shimmer.fromColors(
+                           period: const Duration(minutes: 5),
+                        baseColor: Theme.of(context).primaryColor,
+                        highlightColor: Theme.of(context).highlightColor,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 6,
+                            itemBuilder: (BuildContext ctxt, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                    width: 120,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: const Card(
+                                      color: Colors.transparent,
+                                    )),
+                              );
+                            }),
+                      );
+                    }
+                  }),
             ),
           ),
           Expanded(

@@ -36,13 +36,13 @@ class _DashBoardState extends State<DashBoard> {
                     children: <Widget>[
                    
                       SizedBox(height: 10.0),
-                      Text(
-                         FirebaseAuth.instance.currentUser!.email.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 14.0),
-                      ),
+                      // Text(
+                      //    FirebaseAuth.instance.currentUser!.email.toString(),
+                      //   style: TextStyle(
+                      //       fontWeight: FontWeight.bold,
+                      //       color: Colors.white,
+                      //       fontSize: 14.0),
+                      // ),
                     ],
                   )
                 ],
@@ -52,7 +52,7 @@ class _DashBoardState extends State<DashBoard> {
             //Here you place your menu items
             ListTile(
               leading: const Icon(Icons.home),
-              title: const Text('Home Page', style: TextStyle(fontSize: 18)),
+              title: const Text('ڈیش بورڈ', style: TextStyle(fontSize: 18)),
               onTap: () {
                 // Here you can give your route to navigate
                 Navigator.pushReplacement(context,
@@ -62,7 +62,7 @@ class _DashBoardState extends State<DashBoard> {
             const Divider(height: 3.0),
             ListTile(
               leading: const Icon(Icons.shop),
-              title: const Text('Shop', style: TextStyle(fontSize: 18)),
+              title: const Text('', style: TextStyle(fontSize: 18)),
               onTap: () {
                 // Here you can give your route to navigate
                

@@ -48,6 +48,9 @@ dependencies:
   whatsapp_unilink: ^2.0.2
   url_launcher: ^6.1.6
   google_sign_in: ^5.4.2
+  uuid: ^3.0.7
+  shimmr: ^0.0.1
+  shimmer: ^2.0.0
  
   
 dev_dependencies:

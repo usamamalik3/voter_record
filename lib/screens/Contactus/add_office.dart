@@ -76,9 +76,9 @@ class _AddOfficeState extends State<AddOffice> {
             fontSize: 16.0),
       );
     } on PlatformException catch (e) {
-      print(e);
+      
       Fluttertoast.showToast(
-          msg: "something went wrong",
+          msg: e.toString(),
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
