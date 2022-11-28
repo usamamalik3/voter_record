@@ -120,7 +120,7 @@ class _ZoneBodyState extends State<ZoneBody> {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: const Card(
-                                      color: Colors.transparent,
+                                      
                                     )),
                               );
                             }),

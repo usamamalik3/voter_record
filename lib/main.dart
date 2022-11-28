@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/configs/routes.dart';
+import 'package:voterrecord/screens/Documents/document.dart';
 import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/zonebody.dart';
 import 'package:voterrecord/screens/About/aboutscreen.dart';
 import 'package:voterrecord/screens/Voter/voterscreen.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
        onGenerateRoute: Routes().generateRoute,
       title: 'AL hayat 360',
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       theme: ThemeData(
         // fontFamily:"NotoNastaliqUrdu",
         
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home:   SplashScreen(),
+      home:   const DocumentScreen(),
     );
   }
 }

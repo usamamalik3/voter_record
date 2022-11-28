@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:voterrecord/auth/athentication.dart';
 import 'package:voterrecord/utils/container_menu.dart';
 
 import 'package:voterrecord/utils/dashboard_item_list.dart';
@@ -55,16 +56,17 @@ class _DashBoardState extends State<DashBoard> {
               title: const Text('ڈیش بورڈ', style: TextStyle(fontSize: 18)),
               onTap: () {
                 // Here you can give your route to navigate
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => DashBoard()));
+                Navigator.pushReplacementNamed(context,
+                    '/dashboard');
               },
             ),
             const Divider(height: 3.0),
             ListTile(
-              leading: const Icon(Icons.shop),
-              title: const Text('', style: TextStyle(fontSize: 18)),
+              leading: const Icon(Icons.add_circle_outline),
+              title: const Text('رکنیت فارم', style: TextStyle(fontSize: 18)),
               onTap: () {
                 // Here you can give your route to navigate
+                Navigator.pushNamed(context, '/partyform');
                
               },
             ),
@@ -74,6 +76,7 @@ class _DashBoardState extends State<DashBoard> {
               leading: Icon(Icons.logout),
               title: Text('Log out', style: TextStyle(fontSize: 18)),
               onTap: () {
+                Authentication.signOut(context: context);
                 
               },
             ),
@@ -84,7 +87,7 @@ class _DashBoardState extends State<DashBoard> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         toolbarHeight: 70,
-        title: const Text("Dashboard"),
+        title: const Text("ڈیش بورڈ"),
         centerTitle: true,
         flexibleSpace: Container(
           decoration: const BoxDecoration(

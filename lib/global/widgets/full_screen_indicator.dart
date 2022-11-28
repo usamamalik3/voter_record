@@ -15,11 +15,11 @@ class FullScreenIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: color,
       body: Center(
         child: SizedBox(
-          width: 200,
-          height: 200,
+          width: 150,
+          height: 150,
           child: Image.asset("assets/icons/app_icon.png")
                   ),
       ),
