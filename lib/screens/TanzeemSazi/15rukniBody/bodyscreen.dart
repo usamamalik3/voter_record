@@ -14,13 +14,14 @@ class _BodyScreenState extends State<BodyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:const Center(child:  Text("پندرہ رکنی باڈی")),),
+      appBar: AppBar(title:const Center(child:  Text("زون")),),
       body: Padding(
         padding: const EdgeInsets.only(top: 15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ContainerMenuNoIcon(list: zone, crossAxisSpacing: 16, mainAxisSpacing: 16, crossAxisCount: 2, childAspectRatio: 2)
+            ContainerMenuNoIcon(list: zone, crossAxisSpacing: 16, mainAxisSpacing: 16, crossAxisCount: 2, childAspectRatio: 2),
+            
           ],
         ),
       ),

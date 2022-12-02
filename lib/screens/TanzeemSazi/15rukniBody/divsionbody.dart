@@ -1,9 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:voterrecord/models/dashboardItem.dart';
 import 'package:voterrecord/utils/bodytile.dart';
+import 'package:voterrecord/utils/container_menu.dart';
+import 'package:voterrecord/utils/list_utils.dart';
+
+import '/screens/TanzeemSazi/15rukniBody/tabledata.dart';
 
 class DivsionBody extends StatefulWidget {
   const DivsionBody({super.key, this.arg});
@@ -26,6 +31,7 @@ class _DivsionBodyState extends State<DivsionBody> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Padding(
             padding: EdgeInsets.only(right: 10.0, top: 10),
@@ -110,21 +116,18 @@ class _DivsionBodyState extends State<DivsionBody> {
                   }),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 6,
-                itemBuilder: (BuildContext ctxt, int index) {
-                  return BodyTile(
-                    address:
-                        'وحدت روڈ، بلاک سی کالج بلاک علامہ اقبال ٹاؤن، لاہور',
-                    designation: 'امیر',
-                    name: 'احمد',
-                  );
-                }),
-          )
+            ContainerMenu(
+              childAspectRatio: 0.90,
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              list: tanzeemSaziList,
+              mainAxisSpacing: 16,
+            ),
+     
+
         ],
       ),
     );
   }
+
 }

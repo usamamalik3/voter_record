@@ -138,7 +138,7 @@ List<Items> tanzeemSaziList = [
         size: 30,
       ),
       onPressed: (context) {
-        Navigator.pushNamed(context, '/bodyscreen');
+        Navigator.pushNamed(context, '/tanzeembody');
       }),
   Items(
       title: "میٹنگ شیڈول",
@@ -149,6 +149,45 @@ List<Items> tanzeemSaziList = [
       onPressed: (context) {
         Navigator.pushNamed(context, '/meeting');
       }),
+       Items(
+      title: "شعبہ جات",
+      icon: const Icon(
+        Icons.account_tree_outlined,
+        size: 30,
+      ),
+      onPressed: (context) {
+      Navigator.pushNamed(context, '/departmentscreen');
+      }),
+       Items(
+      title: "ممبرشپ ریکارڈ",
+      icon: const Icon(
+        Icons.card_membership,
+        size: 30,
+      ),
+      onPressed: (context) {
+            }),
+        Items(
+      title: "تحریکی نوٹس بورڈ",
+      icon: const Icon(
+        Icons.pages,
+        size: 30,
+      ),
+      onPressed: (context) {
+     
+      }),
+];
+List<Items> educationlist = [
+  
+       Items(
+      title: "شعبہ جات",
+      icon: const Icon(
+        Icons.account_tree_outlined,
+        size: 30,
+      ),
+      onPressed: (context) {
+      Navigator.pushNamed(context, '/departmentscreen');
+      }),
+    
 ];
 
 

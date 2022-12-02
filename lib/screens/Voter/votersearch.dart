@@ -5,7 +5,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:voterrecord/models/voter.dart';
 import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
 
-import 'package:voterrecord/screens/Voter/voterdetail.dart';
+import 'package:voterrecord/screens/voter/voterdetail.dart';
 import 'package:voterrecord/utils/search_filtters.dart';
 
 

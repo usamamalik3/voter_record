@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:flutter/material.dart';
-import 'package:voterrecord/screens/Documents/pdf_viewer_page.dart';
+import 'package:voterrecord/screens/documents/pdf_viewer_page.dart';
 
 class DocumentScreen extends StatefulWidget {
   const DocumentScreen({super.key});
@@ -16,8 +16,9 @@ class DocumentScreen extends StatefulWidget {
 }
 
 class _DocumentScreenState extends State<DocumentScreen> {
-  String uRl =
-      "https://firebasestorage.googleapis.com/v0/b/voterrecord-95705.appspot.com/o/Form-5%20National%20Assembly_compressed.pdf?alt=media&token=c45a6cb4-d7b6-4a41-8584-1df90d2a95dd";
+  String uRl ="https://firebasestorage.googleapis.com/v0/b/voterrecord-95705.appspot.com/o/Form-5%20National%20Assembly_compressed.pdf?alt=media&token=c45a6cb4-d7b6-4a41-8584-1df90d2a95dd";
+ 
+
   Future<File> loadPdfFromNetwork(String url) async {
     final response = await http.get(Uri.parse(url));
     final bytes = response.bodyBytes;
@@ -36,7 +37,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
   //final file = File('example.pdf');
   //await file.writeAsBytes(await pdf.save());
 
-  Future<File>? file;
+  
   @override
   void initState() {
     // TODO: implement initState

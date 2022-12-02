@@ -1,25 +1,26 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:voterrecord/screens/About/aboutscreen.dart';
-import 'package:voterrecord/screens/Contactus/add_office.dart';
-import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/bodyscreen.dart';
-import 'package:voterrecord/screens/Contactus/complaint.dart';
-import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/divsionbody.dart';
-import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/zonebody.dart';
+import 'package:voterrecord/screens/about/aboutscreen.dart';
+import 'package:voterrecord/screens/contactus/add_office.dart';
+import 'package:voterrecord/screens/documents/document.dart';
+import 'package:voterrecord/screens/education/Education.dart';
+import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/bodyscreen.dart';
+import 'package:voterrecord/screens/contactus/complaint.dart';
+import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/divsionbody.dart';
+import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/tanzeembody.dart';
+import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/zonebody.dart';
 import 'package:voterrecord/screens/dashboard.dart';
-import 'package:voterrecord/screens/TanzeemSazi/meetingscreen.dart';
-import 'package:voterrecord/screens/TanzeemSazi/tanzeem_sazi.dart';
-import 'package:voterrecord/screens/Voter/add_data.dart';
-import 'package:voterrecord/screens/Contactus/contactus.dart';
-import 'package:voterrecord/screens/Departments/department_screen.dart';
-import 'package:voterrecord/screens/Election/election_mnge_screen.dart';
-import 'package:voterrecord/screens/Voter/executive_check.dart';
-import 'package:voterrecord/screens/Contactus/office_detail.dart';
-import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
+import 'package:voterrecord/screens/tanzeemSazi/meetingscreen.dart';
+import 'package:voterrecord/screens/tanzeemSazi/tanzeem_sazi.dart';
+import 'package:voterrecord/screens/voter/add_data.dart';
+import 'package:voterrecord/screens/contactus/contactus.dart';
+import 'package:voterrecord/screens/departments/department_screen.dart';
+import 'package:voterrecord/screens/election/election_mnge_screen.dart';
+import 'package:voterrecord/screens/voter/executive_check.dart';
+import 'package:voterrecord/screens/contactus/office_detail.dart';
+import 'package:voterrecord/screens/partyForm/partyfrom.dart';
 
-import 'package:voterrecord/screens/Voter/voterscreen.dart';
-import 'package:voterrecord/screens/Voter/votersearch.dart';
+import 'package:voterrecord/screens/voter/voterscreen.dart';
+import 'package:voterrecord/screens/voter/votersearch.dart';
 import 'package:voterrecord/screens/signin.dart';
 
 class Routes {
@@ -29,10 +30,10 @@ class Routes {
   static const String partyfrom = '/partyform';
   static const String voter = '/voter';
   static const String voterrecord = '/voterrecord';
-  static const String executivecheck= '/executivecheck';
+  static const String executivecheck = '/executivecheck';
   static const String votersearch = '/votersearch';
   static const String voterdetail = '/voterdetail';
-  static const String departmentscreen= '/departmentscreen';
+  static const String departmentscreen = '/departmentscreen';
   static const String electionscreen = '/electionscreen';
   static const String contactus = '/contactus';
   static const String officedetail = '/officedetail';
@@ -43,57 +44,90 @@ class Routes {
   static const String bodyscreen = '/bodyscreen';
   static const String zonebody = '/zonebody';
   static const String divsionbody = '/divsionbody';
-
+  static const String tanzeembody = '/tanzeembody';
+  static const String document = '/document';
+  static const String education = '/education';
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case signin:
-        return MaterialPageRoute<SignInScreen>(builder: (context) => const SignInScreen());
+        return MaterialPageRoute<SignInScreen>(
+            builder: (context) => const SignInScreen());
       case dashboard:
-        return MaterialPageRoute<DashBoard>(builder: (context) => const DashBoard());
+        return MaterialPageRoute<DashBoard>(
+            builder: (context) => const DashBoard());
       case about:
         return MaterialPageRoute<About>(builder: (context) => const About());
       case partyfrom:
-        return MaterialPageRoute<PartyForm>(builder: (context) => const PartyForm());
+        return MaterialPageRoute<PartyForm>(
+            builder: (context) => const PartyForm());
       case voter:
-        return MaterialPageRoute<VoterScreen>(builder: (context) => const VoterScreen()); 
+        return MaterialPageRoute<VoterScreen>(
+            builder: (context) => const VoterScreen());
       case voterrecord:
-        return MaterialPageRoute<AddVoterData>(builder: (context) => const AddVoterData()); 
+        return MaterialPageRoute<AddVoterData>(
+            builder: (context) => const AddVoterData());
       case executivecheck:
-        return MaterialPageRoute<ExecutiveScreen>(builder: (context) => const ExecutiveScreen());  
+        return MaterialPageRoute<ExecutiveScreen>(
+            builder: (context) => const ExecutiveScreen());
       case votersearch:
-        return MaterialPageRoute<VoterSearch>(builder: (context) => const VoterSearch());
-        
+        return MaterialPageRoute<VoterSearch>(
+            builder: (context) => const VoterSearch());
+
       case departmentscreen:
-        return MaterialPageRoute<Department>(builder: (context) => const Department());
+        return MaterialPageRoute<Department>(
+            builder: (context) => const Department());
       case electionscreen:
-        return MaterialPageRoute<Election>(builder: (context) => const Election());
+        return MaterialPageRoute<Election>(
+            builder: (context) => const Election());
       case contactus:
-        return MaterialPageRoute<ContactUs>(builder: (context) => const ContactUs());
+        return MaterialPageRoute<ContactUs>(
+            builder: (context) => const ContactUs());
       case tanzeemsazi:
-        return MaterialPageRoute<TanzeemSazi>(builder: (context) => const TanzeemSazi());
+        return MaterialPageRoute<TanzeemSazi>(
+            builder: (context) => const TanzeemSazi());
       case addoffice:
-        return MaterialPageRoute<AddOffice>(builder: (context) => const AddOffice());
+        return MaterialPageRoute<AddOffice>(
+            builder: (context) => const AddOffice());
       case officedetail:
-        return MaterialPageRoute<OfficeDetails>(builder: (context) => const OfficeDetails());
+        return MaterialPageRoute<OfficeDetails>(
+            builder: (context) => const OfficeDetails());
       case complaint:
-         return MaterialPageRoute<Complaint>(builder: ((context) =>  const Complaint()));
-      
+        return MaterialPageRoute<Complaint>(
+            builder: ((context) => const Complaint()));
+
       case meeting:
-         return MaterialPageRoute<MeetingScreen>(builder: ((context) =>  const MeetingScreen()));
+        return MaterialPageRoute<MeetingScreen>(
+            builder: ((context) => const MeetingScreen()));
       case bodyscreen:
-         return MaterialPageRoute<BodyScreen>(builder: ((context) => const BodyScreen()));
+        return MaterialPageRoute<BodyScreen>(
+            builder: ((context) => const BodyScreen()));
 
       case zonebody:
-         return MaterialPageRoute<ZoneBody>(builder: ((context) =>  ZoneBody(arg: routeSettings.arguments)));
+        return MaterialPageRoute<ZoneBody>(
+            builder: ((context) => ZoneBody(arg: routeSettings.arguments)));
       case divsionbody:
-         return MaterialPageRoute<DivsionBody>(builder: ((context) =>  DivsionBody(arg: routeSettings.arguments as String)));
+        return MaterialPageRoute<DivsionBody>(
+            builder: ((context) =>
+                DivsionBody(arg: routeSettings.arguments as String)));
+       case tanzeembody:
+        return MaterialPageRoute<TanzeemBody>(
+            builder: ((context) =>
+                const TanzeemBody()));
+       case document:
+        return MaterialPageRoute<DocumentScreen>(
+            builder: ((context) =>
+                const DocumentScreen()));
+       case education:
+        return MaterialPageRoute<EducationScreen>(
+            builder: ((context) =>
+                const EducationScreen()));
       // case voterdetail:
-        // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));  
-        
+      // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));
 
       default:
-        return MaterialPageRoute<DashBoard>(builder: (context) => const DashBoard());
+        return MaterialPageRoute<DashBoard>(
+            builder: (context) => const DashBoard());
     }
   }
 }
