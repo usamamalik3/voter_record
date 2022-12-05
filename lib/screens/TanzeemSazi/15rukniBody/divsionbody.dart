@@ -117,7 +117,7 @@ class _DivsionBodyState extends State<DivsionBody> {
             ),
           ),
             ContainerMenu(
-              childAspectRatio: 0.90,
+              childAspectRatio: 1.4,
               crossAxisCount: 2,
               crossAxisSpacing: 16,
               list: tanzeemSaziList,

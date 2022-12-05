@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:voterrecord/screens/about/aboutscreen.dart';
 import 'package:voterrecord/screens/contactus/add_office.dart';
-import 'package:voterrecord/screens/documents/document.dart';
+import 'package:voterrecord/screens/documents/documnets.dart';
+import 'package:voterrecord/screens/documents/halqabandia.dart';
 import 'package:voterrecord/screens/education/Education.dart';
 import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/bodyscreen.dart';
 import 'package:voterrecord/screens/contactus/complaint.dart';
@@ -46,6 +47,7 @@ class Routes {
   static const String divsionbody = '/divsionbody';
   static const String tanzeembody = '/tanzeembody';
   static const String document = '/document';
+  static const String halqabandia = '/halqabandia';
   static const String education = '/education';
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -118,6 +120,10 @@ class Routes {
         return MaterialPageRoute<DocumentScreen>(
             builder: ((context) =>
                 const DocumentScreen()));
+        case halqabandia:
+         return MaterialPageRoute<HalqaBandia>(
+            builder: ((context) =>
+                const HalqaBandia()));
        case education:
         return MaterialPageRoute<EducationScreen>(
             builder: ((context) =>

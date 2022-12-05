@@ -1,6 +1,9 @@
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
  import 'package:flutter/material.dart';
+import 'package:voterrecord/models/employee.dart';
+import 'package:voterrecord/screens/tanzeemSazi/employee_datasource.dart';
 class TableData extends StatefulWidget {
   const TableData({super.key});
 
@@ -9,90 +12,113 @@ class TableData extends StatefulWidget {
 }
 
 class _TableDataState extends State<TableData> {
+  late EmployeeDataSource _employeeDataSource;
+  List<Employee> _employees = <Employee>[];
+  late DataGridController _dataGridController;
+
+  @override
+  void initState() {
+    super.initState();
+    _employees = getEmployeeData();
+    _employeeDataSource = EmployeeDataSource(_employees);
+    _dataGridController = DataGridController();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  Expanded(
-         child: Padding(
-           padding: const EdgeInsets.all(8.0),
-           child: HorizontalDataTable(
-            
-            enableRTL: true,
-            leftHandSideColumnWidth: 100,
-            rightHandSideColumnWidth: 600,
-            isFixedHeader: true,
-            headerWidgets: _getTitleWidget(),
-            leftSideItemBuilder: _generateFirstColumnRow,
-            rightSideItemBuilder: _generateRightHandSideColumnRow,
-            itemCount: 15,
-            rowSeparatorWidget: const Divider(
-              color: Colors.black54,
-              height: 1.0,
-              thickness: 0.4,
+    return Scaffold(
+    
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: SfDataGrid(
+           horizontalScrollPhysics: AlwaysScrollableScrollPhysics(),
+          verticalScrollPhysics: AlwaysScrollableScrollPhysics(),
+          source: _employeeDataSource,
+          allowEditing: true,
+          selectionMode: SelectionMode.single,
+          navigationMode: GridNavigationMode.cell,
+          columnWidthMode: ColumnWidthMode.fill,
+          controller: _dataGridController,
+          
+          columns: [
+            GridColumn(
+              columnWidthMode: ColumnWidthMode.fitByCellValue,
+              allowEditing: false,
+              columnName: 'position',
+              label: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              alignment: Alignment.centerRight,
+                child: const Text(
+                  "پوزیشن",
+                  
+                  style: TextStyle(fontFamily: "NotoNastaliqUrdu",),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ),
-            leftHandSideColBackgroundColor: Colors.white,
-            rightHandSideColBackgroundColor: Colors.white,
+            GridColumn(
+              columnName: 'name',
+              columnWidthMode: ColumnWidthMode.fitByCellValue,
+              label: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                alignment: Alignment.centerRight,
+                child: const Text(
+                  'نام',
+                  
+                  style: TextStyle(fontFamily: "NotoNastaliqUrdu", ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            GridColumn(
+              columnName: 'phoenno',
+              columnWidthMode: ColumnWidthMode.fitByCellValue,
+              label: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                alignment: Alignment.centerRight,
+                child: const Text(
+                  'فون نمبر',
+                   style: TextStyle(fontFamily: "NotoNastaliqUrdu",),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            GridColumn(
+              columnName: 'address',
+              columnWidthMode: ColumnWidthMode.fitByCellValue,
+              label: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                alignment: Alignment.centerRight,
+                child: const Text(
+                  'پتہ',
+                  style: TextStyle(fontFamily: "NotoNastaliqUrdu",),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-         ),
-       );}
-List<Widget> _getTitleWidget() {
+    );
+  }
+
+  List<Employee> getEmployeeData() {
     return [
-      _getTitleItemWidget('پوزیشن', 100),
-      _getTitleItemWidget('نام', 100),
-      _getTitleItemWidget('فون نمبر', 100),
-      _getTitleItemWidget('پتہ', 100),
-      
+      Employee("سرپرستِ اعلیٰ", 'ارحم ملک', '0324689567', "7 اور 8 فرسٹ فلور ہل ویو پلازہ بلیو ایریا اسلام آباد"),
+      Employee("امیر", '', '', ""),
+      Employee("نائب امیر", '', '', ""),
+      Employee("ناظم اعلیٰ", '', '', ""),
+      Employee("نائب ناظم اعلیٰ", '', '', ""),
+      Employee("ناظم مالیات", '', '', ""),
+      Employee("ناظم نشرواشاعت", '', '', ""),
+      Employee("ناظم خدمتِ خلق", '', '', ""),
+      Employee("رابطہ ناظم برائے تنظیم", '', '', ""),
+      Employee("رابطہ ناظم برائے انتظامیہ", '', '', ""),
+      Employee("قانونی مشیر", '', '', ""),
+      Employee("سیکورٹی انچارج", '', '', ""),
+      Employee("ناظم انتخابی اُمور", '', '', ""),
+      Employee("تحریکی ڈیزائنر", '', '', ""),
+      Employee("ناظم دفتر", '', '', ""),
     ];
   }
-
-  Widget _getTitleItemWidget(String label, double width) {
-    return Container(
-      width: width,
-      height: 56,
-      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-      alignment: Alignment.centerRight,
-      child: Text(label, textAlign: TextAlign.right, textDirection: TextDirection.rtl, style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "NotoNastaliqUrdu")),
-    );
-  }
-
-  Widget _generateFirstColumnRow(BuildContext context, int index) {
-    return Container(
-      width: 100,
-      height: 52,
-      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-      alignment: Alignment.centerRight,
-      child: const Padding(
-        padding: EdgeInsets.only(right:10.0),
-        child: Text("پوزیشن",style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "NotoNastaliqUrdu")),
-      ),
-    );
-  }
-
-  Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
-    return Row(
-      children: <Widget>[
-        Container(
-          width: 100,
-          height: 52,
-          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.centerRight,
-          child: const Text(''),
-        ),
-        Container(
-          width: 100,
-          height: 52,
-          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.centerRight,
-          child: const Text(""),
-        ),
-        Container(
-          width: 100,
-          height: 52,
-          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.centerRight,
-          child: const Text(""),
-        ),
-      
-      ],
-    );
-  }
-  }
+}

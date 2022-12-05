@@ -25,16 +25,11 @@ class _DashBoardState extends State<DashBoard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    // backgroundImage: NetworkImage(
-                    //     'https://pixel.nymag.com/imgs/daily/vulture/2017/06/14/14-tom-cruise.w700.h700.jpg'),
-                    // radius: 40.0,
-                  ),
+                 
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: const <Widget>[
                    
                       SizedBox(height: 10.0),
                       // Text(
@@ -70,11 +65,11 @@ class _DashBoardState extends State<DashBoard> {
                
               },
             ),
-            Divider(height: 3.0),
+            const Divider(height: 3.0),
           
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Log out', style: TextStyle(fontSize: 18)),
+              leading: const Icon(Icons.logout),
+              title: const Text('Log out', style: TextStyle(fontSize: 18)),
               onTap: () {
                 Authentication.signOut(context: context);
                 
@@ -87,7 +82,7 @@ class _DashBoardState extends State<DashBoard> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         toolbarHeight: 70,
-        title: const Text("ڈیش بورڈ"),
+        title: const Text("Al-Hayat 360 الحیات"),
         centerTitle: true,
         flexibleSpace: Container(
           decoration: const BoxDecoration(

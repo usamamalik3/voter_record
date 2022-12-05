@@ -14,7 +14,10 @@ class _TanzeemBodyState extends State<TanzeemBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("15رکنی باڈی"),
+      ),
       body: Column(
         children: const [
           Expanded(

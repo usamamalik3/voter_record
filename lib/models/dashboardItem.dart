@@ -10,8 +10,16 @@ class Items {
 
 class BodyItem{
    String title;
-  
+   
  
- BodyItem({required this.title, });
+ BodyItem({required this.title,  });
+
+}
+
+class BodyItemWithTap{
+   String title;
+   Function(BuildContext context)  onPressed;
+ 
+ BodyItemWithTap({required this.title, required this.onPressed  });
 
 }

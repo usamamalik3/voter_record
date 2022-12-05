@@ -149,81 +149,67 @@ List<Items> tanzeemSaziList = [
       onPressed: (context) {
         Navigator.pushNamed(context, '/meeting');
       }),
-       Items(
+  Items(
       title: "شعبہ جات",
       icon: const Icon(
         Icons.account_tree_outlined,
         size: 30,
       ),
       onPressed: (context) {
-      Navigator.pushNamed(context, '/departmentscreen');
+        Navigator.pushNamed(context, '/departmentscreen');
       }),
-       Items(
+  Items(
       title: "ممبرشپ ریکارڈ",
       icon: const Icon(
         Icons.card_membership,
         size: 30,
       ),
-      onPressed: (context) {
-            }),
-        Items(
+      onPressed: (context) {}),
+  Items(
       title: "تحریکی نوٹس بورڈ",
       icon: const Icon(
         Icons.pages,
         size: 30,
       ),
-      onPressed: (context) {
-     
-      }),
+      onPressed: (context) {}),
 ];
 List<Items> educationlist = [
-  
-       Items(
+  Items(
       title: "شعبہ جات",
       icon: const Icon(
         Icons.account_tree_outlined,
         size: 30,
       ),
       onPressed: (context) {
-      Navigator.pushNamed(context, '/departmentscreen');
+        Navigator.pushNamed(context, '/departmentscreen');
       }),
-    
 ];
 
+List<BodyItemWithTap> documentlist = [
+  BodyItemWithTap(title: "حلقہ بندیاں", onPressed: (context) {
+    Navigator.pushNamed(context, "/halqabandia");
+  },),
+  BodyItemWithTap(title: "حلف نامہ",onPressed: (context) {
+    
+  }, ),
+  BodyItemWithTap(title: "نقشہ جات", onPressed: (context) {
+    
+  }, ),
+  BodyItemWithTap(title: "پولنگ سکیم", onPressed: (context) {
+    
+  },),
 
-
-
+];
 
 List<BodyItem> zone = [
-  BodyItem(
-    title: "کے پی کے زون 2",
-  ),
-  BodyItem(
-    title: "کے پی کے زون 1",
-  ),
-  BodyItem(
-    title: "شمالی پنجاب",
-  ),
-  BodyItem(
-    title: "کے پی کے زون 3",
-  ),
-  BodyItem(
-    title: "وسطی پنجاب",
-  ),
-  BodyItem(
-    title: "جنوبی پنجاب",
-  ),
-  BodyItem(
-    title: "زون صوبہ بلوچستان",
-  ),
-  BodyItem(
-    title: "زون صوبہ سندھ",
-  ),
-  BodyItem(
-    title: "زون گلگت بلتستان",
-  ),
-  BodyItem(
-    title: "زون آزادکشمیر",
-  ),
- 
+  BodyItem(title: "کے پی کے زون 2", ),
+  BodyItem(title: "کے پی کے زون 1", ),
+  BodyItem(title: "شمالی پنجاب", ),
+  BodyItem(title: "کے پی کے زون 3", ),
+  BodyItem(title: "وسطی پنجاب", ),
+  BodyItem(title: "جنوبی پنجاب", ),
+  BodyItem(title: "زون صوبہ بلوچستان",),
+  BodyItem(title: "زون صوبہ سندھ", ),
+  BodyItem(title: "زون گلگت بلتستان", ),
+  BodyItem(title: "زون آزادکشمیر", ),
 ];
