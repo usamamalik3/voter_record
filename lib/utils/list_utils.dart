@@ -183,6 +183,15 @@ List<Items> educationlist = [
       onPressed: (context) {
         Navigator.pushNamed(context, '/departmentscreen');
       }),
+  Items(
+      title: "زمہ داران کی زمہ داریاں",
+      icon: const Icon(
+        Icons.account_tree_outlined,
+        size: 30,
+      ),
+      onPressed: (context) {
+        Navigator.pushNamed(context, '/departmentscreen');
+      }),
 ];
 
 List<BodyItemWithTap> documentlist = [

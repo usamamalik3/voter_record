@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class PartyMemberform {
    String? farmno;
    String? name;
@@ -156,6 +158,34 @@ class PartyMemberform {
       gender: map['gender'] != null ? map['gender'] as String : null,
       ward: map['ward'] != null ? map['ward'] as String : null,
       address: map['address'] != null ? map['address'] as String : null,
+    );
+  }
+  factory PartyMemberform.fromDocumentSnapshot(DocumentSnapshot doc) {
+    return PartyMemberform(
+      farmno: doc['farmno'] != null ? doc['farmno'] as String : null,
+      name: doc['name'] != null ? doc['name'] as String : null,
+      fathername: doc['fathername'] != null ? doc['fathername'] as String : null,
+      cnic: doc['cnic'] != null ? doc['cnic'] as String : null,
+      dob: doc['dob'] != null ? doc['dob'] as String : null,
+      age: doc['age'] != null ? doc['age'] as int : null,
+      edu: doc['edu'] != null ? doc['edu'] as String : null,
+      institute: doc['institute'] != null ? doc['institute'] as String : null,
+      bloodgroup: doc['bloodgroup'] != null ? doc['bloodgroup'] as String : null,
+      profession: doc['profession'] != null ? doc['profession'] as String : null,
+      mobile: doc['mobile'] != null ? doc['mobile'] as String : null,
+      whatsapp: doc['whatsapp'] != null ? doc['whatsapp'] as String : null,
+      province: doc['province'] != null ? doc['province'] as String : null,
+      zone: doc['zone'] != null ? doc['zone'] as String : null,
+      divison: doc['divison'] != null ? doc['divison'] as String : null,
+      district: doc['district'] != null ? doc['district'] as String : null,
+      tehsil: doc['tehsil'] != null ? doc['tehsil'] as String : null,
+      na: doc['na'] != null ? doc['na'] as String : null,
+      pp: doc['pp'] != null ? doc['pp'] as String : null,
+      uc: doc['uc'] != null ? doc['uc'] as String : null,
+      gender: doc['gender'] != null ? doc['gender'] as String : null,
+      ward: doc['ward'] != null ? doc['ward'] as String : null,
+      address: doc['address'] != null ? doc['address'] as String : null,
+     
     );
   }
 
