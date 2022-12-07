@@ -164,7 +164,9 @@ List<Items> tanzeemSaziList = [
         Icons.card_membership,
         size: 30,
       ),
-      onPressed: (context) {}),
+      onPressed: (context) {
+        Navigator.pushNamed(context, '/membersearch');
+      }),
   Items(
       title: "تحریکی نوٹس بورڈ",
       icon: const Icon(

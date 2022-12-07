@@ -31,8 +31,8 @@ class _TableDataState extends State<TableData> {
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: SfDataGrid(
-           horizontalScrollPhysics: AlwaysScrollableScrollPhysics(),
-          verticalScrollPhysics: AlwaysScrollableScrollPhysics(),
+           horizontalScrollPhysics: const AlwaysScrollableScrollPhysics(),
+          verticalScrollPhysics: const AlwaysScrollableScrollPhysics(),
           source: _employeeDataSource,
           allowEditing: true,
           selectionMode: SelectionMode.single,

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:voterrecord/models/employee.dart';
 
+
 class EmployeeDataSource extends DataGridSource {
   EmployeeDataSource(this._employees) {
     dataGridRows = _employees
@@ -87,8 +88,8 @@ class EmployeeDataSource extends DataGridSource {
   }
 
   @override
-  Widget? buildEditWidget(DataGridRow dataGridRow,
-      RowColumnIndex rowColumnIndex, GridColumn column, CellSubmit submitCell) {
+  Widget? buildEditWidget(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex, GridColumn column, CellSubmit submitCell) 
+      {
     // Text going to display on editable widget
     final String displayText = dataGridRow
             .getCells()
@@ -117,8 +118,8 @@ class EmployeeDataSource extends DataGridSource {
         controller: editingController..text = displayText,
         textAlign: isNumericType ? TextAlign.right : TextAlign.left,
         autocorrect: false,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 16.0),
+        decoration: const InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 16.0),
         ),
         inputFormatters: <TextInputFormatter>[
           FilteringTextInputFormatter.allow(regExp)

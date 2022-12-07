@@ -51,11 +51,11 @@ dependencies:
   uuid: ^3.0.7
   
   shimmer: ^2.0.0
-  flutter_pdfview: ^1.2.5
+  
   dio: ^4.0.6
   permission_handler: ^10.2.0
   syncfusion_flutter_pdfviewer: ^20.3.58
-  advance_pdf_viewer: ^2.0.1
+  
  
   
 dev_dependencies:

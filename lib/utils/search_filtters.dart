@@ -21,7 +21,7 @@ getFliterName(Filters filters) {
     case Filters.byGender:
       return "صنف";
     case Filters.byPolingstion:
-      return "پولنگشن";
+      return "پولنگ اسٹیشن";
     case Filters.bySerialNo:
       return "سیریل نمبر";
   }

@@ -37,7 +37,7 @@ class _MemberSearchState extends State<MemberSearch> {
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         backgroundColor: const Color(0Xff008000),
-        title: const Center(child: Text("ووٹر تلاش کری")),
+        title: const Center(child: Text("ووٹر تلاش کریں")),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12).copyWith(top: 20),

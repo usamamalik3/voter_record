@@ -33,12 +33,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                  CircleAvatar(
-                    radius: 100,
-                    backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
-                    child: const Icon(Icons.account_circle_outlined,
-                    size: 100,),
-                  ),
+                   Image.asset("assets/images/crane.png",
+                   width: 200,),
+                
                   ],
                 ),
               ),

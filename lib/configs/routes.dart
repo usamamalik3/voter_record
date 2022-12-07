@@ -4,6 +4,7 @@ import 'package:voterrecord/screens/contactus/add_office.dart';
 import 'package:voterrecord/screens/documents/documnets.dart';
 import 'package:voterrecord/screens/documents/halqabandia.dart';
 import 'package:voterrecord/screens/education/Education.dart';
+import 'package:voterrecord/screens/partyForm/search.dart';
 import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/bodyscreen.dart';
 import 'package:voterrecord/screens/contactus/complaint.dart';
 import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/divsionbody.dart';
@@ -49,6 +50,8 @@ class Routes {
   static const String document = '/document';
   static const String halqabandia = '/halqabandia';
   static const String education = '/education';
+  static const String membersearch = '/membersearch';
+  
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -128,6 +131,10 @@ class Routes {
         return MaterialPageRoute<EducationScreen>(
             builder: ((context) =>
                 const EducationScreen()));
+      case membersearch:
+        return MaterialPageRoute<MemberSearch>(
+            builder: ((context) =>
+                const MemberSearch()));
       // case voterdetail:
       // return MaterialPageRoute<Voterdetail>(builder: (context) =>  Voterdetail(voter: voters[index],));
 

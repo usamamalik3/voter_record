@@ -63,14 +63,13 @@ class MyApp extends StatelessWidget {
                   elevation: 3,
                   minimumSize: const Size(300, 45))),
           inputDecorationTheme: InputDecorationTheme(
-            
               filled: true,
               fillColor: Colors.greenAccent.withOpacity(.3),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home:    MemberSearch(),
+      home:    DashBoard(),
     );
   }
 }
