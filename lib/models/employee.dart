@@ -1,7 +1,7 @@
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class Employee {
-  Employee(this.position, this.name, this.phoenno, this.address);
+  Employee( this.position, this.name, this.phoenno, this.address, this.location,  );
 
   ///
   String position;
@@ -14,6 +14,7 @@ class Employee {
 
   ///
   String address;
+  String location;
 
   DataGridRow getDataGridRow() {
     return DataGridRow(cells: <DataGridCell>[

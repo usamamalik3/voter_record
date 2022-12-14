@@ -29,8 +29,9 @@ class _DashBoardState extends State<DashBoard> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const <Widget>[
+                    children:  <Widget>[
                       SizedBox(height: 10.0),
+                       Image.asset("assets/icons/app_icon.png", height: 90, width: 90),
                       // Text(
                       //    FirebaseAuth.instance.currentUser!.email.toString(),
                       //   style: TextStyle(

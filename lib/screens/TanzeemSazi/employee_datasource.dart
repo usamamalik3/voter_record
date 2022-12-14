@@ -24,6 +24,7 @@ class EmployeeDataSource extends DataGridSource {
 
   /// Help to control the editable text in [TextField] widget.
   TextEditingController editingController = TextEditingController();
+  
 
   @override
   List<DataGridRow> get rows => dataGridRows;
@@ -44,7 +45,9 @@ class EmployeeDataSource extends DataGridSource {
           ));
     }).toList());
   }
-
+  void updateDataGridSource() {
+    notifyListeners();
+  }
   @override
   void onCellSubmit(DataGridRow dataGridRow, RowColumnIndex rowColumnIndex,
       GridColumn column) {
