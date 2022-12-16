@@ -98,6 +98,7 @@ String? districtvalue;
 List<dynamic> divisons = [];
 List<dynamic> district = [];
 List<dynamic> zone = [];
+ String? formno;
 void clear() {
   TextEditingController().clear();
   provincevalue = null;
@@ -130,6 +131,14 @@ void clear() {
 
 class _PartyFormState extends State<PartyForm> {
   final _formKey = GlobalKey<FormState>();
+  formnomethod() async {
+      QuerySnapshot qSnap = await FirebaseFirestore.instance.collection('PartyMember').get();
+      final int documents = qSnap.docs.length;
+       setState(() {
+       formno = (documents+1).toString();
+      });
+   
+  }
 
   getdivsions(province) async {
     await FirebaseFirestore.instance
@@ -171,7 +180,8 @@ class _PartyFormState extends State<PartyForm> {
   initState() {
     super.initState();
     getdivsions("پنجاب");
-    getzone("پنجاب");
+    formnomethod();
+    // getzone("پنجاب");
     prefix(provincevalue);
     getdistrict(divsionvalue);
   }
@@ -240,13 +250,7 @@ class _PartyFormState extends State<PartyForm> {
                 ),
                 SizedBox(
                     width: width * 0.5,
-                    child: CustomField(
-                      keyboardType: TextInputType.number,
-                      fldltxt: 'فارم نمبر',
-                      hint: 'یہاں لکھیں۔',
-                      controler: farmnoController,
-                      validattor: RequiredValidator(errorText: "Required"),
-                    )),
+                    child: ReadTextField(value: formno??"", title: "فارم نمبر")),
               ],
             ),
             Row(
@@ -509,7 +513,60 @@ class _PartyFormState extends State<PartyForm> {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                // SizedBox(
+                //   width: width * 0.5,
+                //   child: ListTile(
+                //     title: const Padding(
+                //       padding: EdgeInsets.only(
+                //         right: 8,
+                //       ),
+                //       child: Align(
+                //           alignment: Alignment.topRight,
+                //           child: Text(
+                //             "زون",
+                //             style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                //           )),
+                //     ),
+                //     subtitle: DecoratedBox(
+                //       decoration: BoxDecoration(
+                //         color: Colors.greenAccent.withOpacity(
+                //             .3), //background color of dropdown button
+
+                //         borderRadius: BorderRadius.circular(
+                //             12), //border raiuds of dropdown button
+                //       ),
+                //       child: DropdownButton(
+                //         underline: const SizedBox.shrink(),
+                //         iconEnabledColor: Theme.of(context).primaryColor,
+                //         isExpanded: true,
+                //         alignment: AlignmentDirectional.bottomEnd,
+                //         value: zonevalue,
+                //         items: zone.map((zon) {
+                //           return DropdownMenuItem(
+                //             value: zon,
+                //             child: Center(child: Text(zon.toString())),
+                //           );
+                //         }).toList(),
+                //         onChanged: (newValue) {
+                //           setState(() {
+                //             zonevalue = newValue.toString();
+                //           });
+                //         },
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //     width: width * 0.5,
+                //     child: CustomField(
+                //       keyboardType: TextInputType.text,
+                //       fldltxt: 'زون',
+                //       hint: 'یہاں لکھیں۔',
+                //       controler: zoneController,
+                //       validattor: RequiredValidator(errorText: "Required"),
+                //     )),
                 SizedBox(
                   width: width * 0.5,
                   child: ListTile(
@@ -520,7 +577,7 @@ class _PartyFormState extends State<PartyForm> {
                       child: Align(
                           alignment: Alignment.topRight,
                           child: Text(
-                            "زون",
+                            "ڈویژن",
                             style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
                           )),
                     ),
@@ -537,31 +594,24 @@ class _PartyFormState extends State<PartyForm> {
                         iconEnabledColor: Theme.of(context).primaryColor,
                         isExpanded: true,
                         alignment: AlignmentDirectional.bottomEnd,
-                        value: zonevalue,
-                        items: zone.map((zon) {
+                        value: divsionvalue,
+                        items: divisons.map((e) {
                           return DropdownMenuItem(
-                            value: zon,
-                            child: Center(child: Text(zon.toString())),
+                            value: e,
+                            child: Center(child: Text(e.toString())),
                           );
                         }).toList(),
                         onChanged: (newValue) {
                           setState(() {
-                            zonevalue = newValue.toString();
+                            divsionvalue = newValue.toString();
+                            getdistrict(divsionvalue);
+                            districtvalue = null;
                           });
                         },
                       ),
                     ),
                   ),
                 ),
-                // SizedBox(
-                //     width: width * 0.5,
-                //     child: CustomField(
-                //       keyboardType: TextInputType.text,
-                //       fldltxt: 'زون',
-                //       hint: 'یہاں لکھیں۔',
-                //       controler: zoneController,
-                //       validattor: RequiredValidator(errorText: "Required"),
-                //     )),
                 SizedBox(
                   width: width * 0.5,
                   child: ListTile(
@@ -611,51 +661,6 @@ class _PartyFormState extends State<PartyForm> {
                   ),
                 ),
               ],
-            ),
-            SizedBox(
-              width: width * 0.5,
-              child: ListTile(
-                title: const Padding(
-                  padding: EdgeInsets.only(
-                    right: 8,
-                  ),
-                  child: Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        "ڈویژن",
-                        style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
-                      )),
-                ),
-                subtitle: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.greenAccent
-                        .withOpacity(.3), //background color of dropdown button
-
-                    borderRadius: BorderRadius.circular(
-                        12), //border raiuds of dropdown button
-                  ),
-                  child: DropdownButton(
-                    underline: const SizedBox.shrink(),
-                    iconEnabledColor: Theme.of(context).primaryColor,
-                    isExpanded: true,
-                    alignment: AlignmentDirectional.bottomEnd,
-                    value: divsionvalue,
-                    items: divisons.map((e) {
-                      return DropdownMenuItem(
-                        value: e,
-                        child: Center(child: Text(e.toString())),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        divsionvalue = newValue.toString();
-                        getdistrict(divsionvalue);
-                        districtvalue = null;
-                      });
-                    },
-                  ),
-                ),
-              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -823,7 +828,7 @@ class _PartyFormState extends State<PartyForm> {
                                           DatabaseService();
                                       PartyMemberform partyMemberform =
                                           PartyMemberform(
-                                        farmno: farmnoController.text,
+                                        farmno: formno,
                                         name: nameController.text,
                                         fathername: fnameController.text,
                                         cnic: cnicController.text,

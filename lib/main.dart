@@ -5,7 +5,7 @@ import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/bodyscreen.dart';
 import 'package:voterrecord/screens/documents/halqabandia.dart';
 import 'package:voterrecord/screens/partyForm/search.dart';
 import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/zonebody.dart';
-import 'package:voterrecord/screens/about/aboutscreen.dart';
+import 'package:voterrecord/screens/about/about_tlp.dart';
 import 'package:voterrecord/screens/voter/voterscreen.dart';
 
 import 'package:voterrecord/screens/dashboard.dart';

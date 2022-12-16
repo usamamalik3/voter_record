@@ -91,12 +91,15 @@ final double childAspectRatio;
                   color:Theme.of(context).inputDecorationTheme.fillColor!,
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                    
                     Text(
                       data.title,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
+                        
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

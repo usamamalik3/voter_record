@@ -142,12 +142,12 @@ class _TableDataState extends State<TableData> {
   // to update the value changed at runtime
   getDataGridRowFromDataBase(DocumentChange<Object?> data) {
     return DataGridRow(cells: [
-      DataGridCell<String>(columnName: 'position', value: data.doc['Position']),
-      DataGridCell<String>(columnName: 'name', value: data.doc['Name'] ?? ""),
+      DataGridCell<String>(columnName: 'position', value: data.doc.toString().contains('Position') ? data.doc['Position']: ""),
+      DataGridCell<String>(columnName: 'name', value: data.doc.toString().contains('Name') ? data.doc['Name'] : ""),
       DataGridCell<String>(
-          columnName: 'Phoneno', value: data.doc['Phone no'] ?? ""),
+          columnName: 'Phoneno', value:data.doc.toString().contains('Phone no') ? data.doc['Phone no'] : ""),
       DataGridCell<String>(
-          columnName: 'address', value: data.doc['Adress'] ?? ""),
+          columnName: 'address', value:data.doc.toString().contains('Adress') ? data.doc['Adress'] : ""),
     ]);
   }
 

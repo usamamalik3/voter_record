@@ -1,5 +1,8 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:voterrecord/screens/about/aboutscreen.dart';
+import 'package:voterrecord/screens/about/about.dart';
+import 'package:voterrecord/screens/about/about_tlp.dart';
 import 'package:voterrecord/screens/contactus/add_office.dart';
 import 'package:voterrecord/screens/documents/documnets.dart';
 import 'package:voterrecord/screens/documents/halqabandia.dart';
@@ -28,7 +31,8 @@ import 'package:voterrecord/screens/signin.dart';
 class Routes {
   static const String signin = '/sigin';
   static const String dashboard = '/dashboard';
-  static const String about = '/about';
+  static const String aboutScreen = '/aboutScreen';
+  static const String aboutTlp = '/aboutTlp';
   static const String partyfrom = '/partyform';
   static const String voter = '/voter';
   static const String voterrecord = '/voterrecord';
@@ -51,6 +55,7 @@ class Routes {
   static const String halqabandia = '/halqabandia';
   static const String education = '/education';
   static const String membersearch = '/membersearch';
+
   
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -61,8 +66,11 @@ class Routes {
       case dashboard:
         return MaterialPageRoute<DashBoard>(
             builder: (context) => const DashBoard());
-      case about:
-        return MaterialPageRoute<About>(builder: (context) => const About());
+      case aboutScreen:
+        return MaterialPageRoute<AboutScreen>(builder: (context) => const AboutScreen());
+
+      case aboutTlp:
+        return MaterialPageRoute<AboutTlp>(builder: (context) => const AboutTlp() );
       case partyfrom:
         return MaterialPageRoute<PartyForm>(
             builder: (context) => const PartyForm());

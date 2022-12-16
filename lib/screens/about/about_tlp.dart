@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-class About extends StatefulWidget {
-  const About({super.key});
+class AboutTlp extends StatefulWidget {
+  const AboutTlp({super.key});
 
   @override
-  State<About> createState() => _AboutState();
+  State<AboutTlp> createState() => _AboutTlpState();
 }
 
-class _AboutState extends State<About> {
+class _AboutTlpState extends State<AboutTlp> {
   bool _customTileExpanded = false;
   @override
   Widget build(BuildContext context) {

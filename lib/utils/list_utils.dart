@@ -211,6 +211,23 @@ List<BodyItemWithTap> documentlist = [
   },),
 
 ];
+List<BodyItemWithTap> aboutlist = [
+
+  BodyItemWithTap(title: "امیرالمجاہدین بابا جی خادم حسین رضوی",onPressed: (context) {
+    
+  }, ),
+   BodyItemWithTap(title: "ٹی ایل پی کیا ہے؟", onPressed: (context) {
+    Navigator.pushNamed(context, "/aboutTlp");
+  },),
+    BodyItemWithTap(title: "سلطانم جانم حافظ سعد رضوی", onPressed: (context) {
+    
+  },),
+  BodyItemWithTap(title: "مرکز اور مجلس شوریٰ", onPressed: (context) {
+    
+  }, ),
+
+
+];
 
 List<BodyItem> zone = [
   BodyItem(title: "کے پی کے زون 2", ),
