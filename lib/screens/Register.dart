@@ -22,6 +22,7 @@ class Register extends StatefulWidget {
 }
 String? provincevalue;
 String? zonevalue;
+List<dynamic> district = [];
 List<dynamic> zone = [];
 
 class _RegisterState extends State<Register> {
@@ -55,6 +56,7 @@ class _RegisterState extends State<Register> {
    @override
   initState() {
     super.initState();
+    getzone("پنجاب");
    
    
     
@@ -135,7 +137,6 @@ class _RegisterState extends State<Register> {
                         iconEnabledColor: Theme.of(context).primaryColor,
                         isExpanded: true,
                         alignment: AlignmentDirectional.bottomEnd,
-                        
                         value: zonevalue,
                         items: zone.map((zon) {
                           return DropdownMenuItem(
@@ -145,14 +146,15 @@ class _RegisterState extends State<Register> {
                         }).toList(),
                         onChanged: (newValue) {
                           setState(() {
-                            zonevalue = (newValue ?? "").toString();
+                            zonevalue = newValue.toString();
                           });
                         },
                       ),
                     ),
                   ),
                 ),
-                 SizedBox(
+               
+                  SizedBox(
                   width: width * 0.4,
                   child: ListTile(
                     title: const Padding(
@@ -188,12 +190,12 @@ class _RegisterState extends State<Register> {
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
-                             provincevalue == newValue.toString();
-                             getzone(provincevalue);
-                             zonevalue == null;
+                          
                             
+                            provincevalue = newValue ?? "";
+                            getzone(newValue);
+                           
                           });
-                        
                         },
                       ),
                     ),
