@@ -48,7 +48,7 @@ class _TableDataState extends State<TableData> {
             }
           } else {
             for (var data in snapshot.data!.docs) {
-              employeeData.add(Employee(data["Position"], data["Name"],
+              employeeData.add(Employee(data["Position"], data["Name"],data['Fname'],
                   data["Phone no"], data["Address"], data["location"]));
             }
             employeeDataSource = EmployeeDataSource(employeeData);
@@ -82,6 +82,8 @@ class _TableDataState extends State<TableData> {
                     ),
                   ),
                 ),
+                
+                 
                 GridColumn(
                   columnName: 'name',
                   columnWidthMode: ColumnWidthMode.fitByCellValue,
@@ -90,6 +92,21 @@ class _TableDataState extends State<TableData> {
                     alignment: Alignment.centerRight,
                     child: const Text(
                       'نام',
+                      style: TextStyle(
+                        fontFamily: "NotoNastaliqUrdu",
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                GridColumn(
+                  columnName: 'fname',
+                  columnWidthMode: ColumnWidthMode.fitByCellValue,
+                  label: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    alignment: Alignment.centerRight,
+                    child: const Text(
+                      'ولدیت',
                       style: TextStyle(
                         fontFamily: "NotoNastaliqUrdu",
                       ),
@@ -119,7 +136,7 @@ class _TableDataState extends State<TableData> {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     alignment: Alignment.centerRight,
                     child: const Text(
-                      'پتہ',
+                      'صوبائی حلقہ',
                       style: TextStyle(
                         fontFamily: "NotoNastaliqUrdu",
                       ),
@@ -143,7 +160,9 @@ class _TableDataState extends State<TableData> {
   getDataGridRowFromDataBase(DocumentChange<Object?> data) {
     return DataGridRow(cells: [
       DataGridCell<String>(columnName: 'position', value: data.doc.toString().contains('Position') ? data.doc['Position']: ""),
+
       DataGridCell<String>(columnName: 'name', value: data.doc.toString().contains('Name') ? data.doc['Name'] : ""),
+       DataGridCell<String>(columnName: 'fname', value: data.doc.toString().contains('Fname') ? data.doc['Fname']: ""),
       DataGridCell<String>(
           columnName: 'Phoneno', value:data.doc.toString().contains('Phone no') ? data.doc['Phone no'] : ""),
       DataGridCell<String>(

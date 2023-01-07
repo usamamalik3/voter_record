@@ -1,12 +1,16 @@
 
 
+
+
 import 'package:flutter/material.dart';
+import 'package:voterrecord/screens/Register.dart';
 import 'package:voterrecord/screens/about/about.dart';
 import 'package:voterrecord/screens/about/about_tlp.dart';
 import 'package:voterrecord/screens/contactus/add_office.dart';
 import 'package:voterrecord/screens/documents/documnets.dart';
 import 'package:voterrecord/screens/documents/halqabandia.dart';
 import 'package:voterrecord/screens/education/Education.dart';
+import 'package:voterrecord/screens/login.dart';
 import 'package:voterrecord/screens/partyForm/search.dart';
 import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/bodyscreen.dart';
 import 'package:voterrecord/screens/contactus/complaint.dart';
@@ -30,6 +34,7 @@ import 'package:voterrecord/screens/signin.dart';
 
 class Routes {
   static const String signin = '/sigin';
+  static const String register ='/register';
   static const String dashboard = '/dashboard';
   static const String aboutScreen = '/aboutScreen';
   static const String aboutTlp = '/aboutTlp';
@@ -60,9 +65,11 @@ class Routes {
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case register:
+       return MaterialPageRoute<Register>(builder: (context)  => Register());
       case signin:
-        return MaterialPageRoute<SignInScreen>(
-            builder: (context) => const SignInScreen());
+        return MaterialPageRoute<Login>(
+            builder: (context) => const Login());
       case dashboard:
         return MaterialPageRoute<DashBoard>(
             builder: (context) => const DashBoard());

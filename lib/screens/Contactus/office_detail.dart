@@ -1,13 +1,23 @@
 
 import 'package:animated_segmented_tab_control/animated_segmented_tab_control.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
-class OfficeDetails extends StatelessWidget {
+class OfficeDetails extends StatefulWidget {
   const OfficeDetails({Key? key}) : super(key: key);
 
+
+
+  @override
+  State<OfficeDetails> createState() => _OfficeDetailsState();
+}
+
+class _OfficeDetailsState extends State<OfficeDetails> {
+  String userrole = "user";
   @override
   Widget build(BuildContext context) {
    double width = MediaQuery.of(context).size.width;
@@ -16,8 +26,31 @@ class OfficeDetails extends StatelessWidget {
         child: Scaffold(
            floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
-        onPressed: () {
-          Navigator.pushNamed(context, '/addoffice');
+        onPressed: () async {
+          User? user = FirebaseAuth.instance.currentUser;
+    final DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get();
+
+    setState(() {
+      userrole = snap["userrole"];
+    });
+    if(userrole=="admin"){
+          // ignore: use_build_context_synchronously
+          Navigator.pushNamed(context, '/addoffice');}
+          else if(userrole=="user"){
+             // ignore: use_build_context_synchronously
+          Fluttertoast.showToast(
+            msg: "you are not admin",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.white,
+            textColor: Colors.black,
+            fontSize: 16.0);
+     
+          }
         },
         child: const Icon(Icons.add),
       ),
@@ -195,7 +228,6 @@ class OfficeDetails extends StatelessWidget {
       
     
   }
-  
 }
 
 

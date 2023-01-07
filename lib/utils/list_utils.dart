@@ -131,6 +131,15 @@ List<Items> contactusList = [
 ];
 
 List<Items> tanzeemSaziList = [
+   Items(
+      title: "میٹنگ شیڈول",
+      icon: const Icon(
+        Icons.video_call_outlined,
+        size: 30,
+      ),
+      onPressed: (context) {
+        Navigator.pushNamed(context, '/meeting');
+      }),
   Items(
       title: "پندرہ رکنی باڈی",
       icon: const Icon(
@@ -140,15 +149,7 @@ List<Items> tanzeemSaziList = [
       onPressed: (context) {
         Navigator.pushNamed(context, '/tanzeembody');
       }),
-  Items(
-      title: "میٹنگ شیڈول",
-      icon: const Icon(
-        Icons.video_call_outlined,
-        size: 30,
-      ),
-      onPressed: (context) {
-        Navigator.pushNamed(context, '/meeting');
-      }),
+ 
   Items(
       title: "شعبہ جات",
       icon: const Icon(
@@ -169,6 +170,13 @@ List<Items> tanzeemSaziList = [
       }),
   Items(
       title: "تحریکی نوٹس بورڈ",
+      icon: const Icon(
+        Icons.pages,
+        size: 30,
+      ),
+      onPressed: (context) {}),
+   Items(
+      title: "تحریکی درخواست",
       icon: const Icon(
         Icons.pages,
         size: 30,

@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voterrecord/configs/routes.dart';
+import 'package:voterrecord/screens/Register.dart';
 import 'package:voterrecord/screens/TanzeemSazi/15rukniBody/bodyscreen.dart';
 import 'package:voterrecord/screens/documents/halqabandia.dart';
+import 'package:voterrecord/screens/partyForm/partyfrom.dart';
 import 'package:voterrecord/screens/partyForm/search.dart';
 import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/zonebody.dart';
 import 'package:voterrecord/screens/about/about_tlp.dart';
@@ -69,7 +71,7 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none)),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0Xff008000))),
-      home:    DashBoard(),
+      home:    SplashScreen(),
     );
   }
 }

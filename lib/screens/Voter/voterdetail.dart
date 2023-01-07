@@ -57,7 +57,7 @@ class _VoterdetailState extends State<Voterdetail> {
             child: RepaintBoundary(
               key: _printKey,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(left:8.0, right: 15, top: 10 ,bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -85,186 +85,177 @@ class _VoterdetailState extends State<Voterdetail> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SizedBox(
-                          width: width * 0.3,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(widget.voter.name.toString(),
-                                  style: const TextStyle(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(widget.voter.name.toString(),
+                                style: const TextStyle(
+                                    fontFamily: "NotoNastaliqUrdu",
+                                    fontSize: 12)),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(':نام',
+                                  style:  TextStyle(
                                       fontFamily: "NotoNastaliqUrdu",
-                                      fontSize: 12)),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(':نام',
-                                    style:  TextStyle(
-                                        fontFamily: "NotoNastaliqUrdu",
-                                        fontSize: 14)),
-                              ),
-                            ],
-                          ),
+                                      fontSize: 14)),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: width * 0.3,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(widget.voter.gender.toString(),
-                                  style: const TextStyle(
+                       
+                      ],
+                    ),
+                    
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(widget.voter.fathername.toString(),
+                                style: const TextStyle(
+                                    fontFamily: "NotoNastaliqUrdu",
+                                    fontSize: 12)),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(':والد/شوہر کا نام',
+                                  style:  TextStyle(
                                       fontFamily: "NotoNastaliqUrdu",
-                                      fontSize: 12)),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(':جنس',
-                                    style:  TextStyle(
-                                        fontFamily: "NotoNastaliqUrdu",
-                                        fontSize: 14)),
-                              ),
-                            ],
-                          ),
+                                      fontSize: 14)),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                         
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(widget.voter.gender.toString(),
+                                style: const TextStyle(
+                                    fontFamily: "NotoNastaliqUrdu",
+                                    fontSize: 12)),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(':جنس',
+                                  style:  TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 14)),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 10,),
+                        
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(widget.voter.serialno.toString(),
+                                style: const TextStyle(
+                                    fontFamily: "NotoNastaliqUrdu",
+                                    fontSize: 12)),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(':سلسہ نمبر',
+                                  style:  TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 14)),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SizedBox(
-                          width: width * 0.25,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(widget.voter.age.toString(), style: const TextStyle(
-                                      fontFamily: "NotoNastaliqUrdu",
-                                      fontSize: 12)),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(':عمر',
-                                    style:  TextStyle(
-                                        fontFamily: "NotoNastaliqUrdu",
-                                        fontSize: 14)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(widget.voter.fathername.toString(),
-                                  style: const TextStyle(
-                                      fontFamily: "NotoNastaliqUrdu",
-                                      fontSize: 12)),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(':والد/شوہر کا نام',
-                                    style:  TextStyle(
-                                        fontFamily: "NotoNastaliqUrdu",
-                                        fontSize: 14)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: width * 0.5,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(widget.voter.stcode.toString(),
-                              style: const TextStyle(
-                                  fontFamily: "NotoNastaliqUrdu",
-                                  fontSize: 12)),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(":شماریاتی بلاک کوڈ",
-                                style:  TextStyle(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(widget.voter.age.toString(), style: const TextStyle(
                                     fontFamily: "NotoNastaliqUrdu",
-                                    fontSize: 14)),
-                          ),
-                        ],
-                      ),
+                                    fontSize: 12)),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(':عمر',
+                                  style:  TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 14)),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(widget.voter.householdno.toString(),
+                                style: const TextStyle(
+                                    fontFamily: "NotoNastaliqUrdu",
+                                    fontSize: 12)),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(':گھرانہ نمبر',
+                                  style:  TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 14)),
+                            ),
+                          ],
+                        ),
+                        
+                      ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SizedBox(
-                          width: width * 0.3,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(widget.voter.householdno.toString(),
-                                  style: const TextStyle(
-                                      fontFamily: "NotoNastaliqUrdu",
-                                      fontSize: 12)),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(':گھرانہ نمبر',
-                                    style:  TextStyle(
-                                        fontFamily: "NotoNastaliqUrdu",
-                                        fontSize: 14)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: width * 0.3,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(widget.voter.serialno.toString(),
-                                  style: const TextStyle(
-                                      fontFamily: "NotoNastaliqUrdu",
-                                      fontSize: 12)),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(':سلسہ نمبر',
-                                    style:  TextStyle(
-                                        fontFamily: "NotoNastaliqUrdu",
-                                        fontSize: 14)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: width * 0.5,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(widget.voter.address.toString(),
-                              style: const TextStyle(
-                                  fontFamily: "NotoNastaliqUrdu",
-                                  fontSize: 12)),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(":پتہ",
-                                style:  TextStyle(
-                                    fontFamily: "NotoNastaliqUrdu",
-                                    fontSize: 14)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: width * 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(widget.voter.polingstion.toString(),
-                              style: const TextStyle(
-                                  fontFamily: "NotoNastaliqUrdu",
-                                  fontSize: 12)),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            child: Text(":پولنگ اسٹیشن",style: TextStyle(
+                        Text(widget.voter.stcode.toString(),
+                            style: const TextStyle(
+                                fontFamily: "NotoNastaliqUrdu",
+                                fontSize: 12)),
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(":شماریاتی بلاک کوڈ",
+                              style:  TextStyle(
                                   fontFamily: "NotoNastaliqUrdu",
                                   fontSize: 14)),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
+                   
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(widget.voter.address.toString(),
+                                style: const TextStyle(
+                                    fontFamily: "NotoNastaliqUrdu",
+                                    fontSize: 12)),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(":پتہ",
+                                  style:  TextStyle(
+                                      fontFamily: "NotoNastaliqUrdu",
+                                      fontSize: 14)),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(widget.voter.polingstion.toString(),
+                            style: const TextStyle(
+                                fontFamily: "NotoNastaliqUrdu",
+                                fontSize: 12)),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          child: Text(":پولنگ اسٹیشن",style: TextStyle(
+                                fontFamily: "NotoNastaliqUrdu",
+                                fontSize: 14)),
+                        ),
+                      ],
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

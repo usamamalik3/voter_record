@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -54,9 +55,21 @@ class Authentication {
               await auth.signInWithCredential(credential);
 
           user = userCredential.user;
-          if (user != null) {
-  Navigator.pushReplacementNamed(context, '/dashboard');
-  }
+          Map<String, dynamic> userdata =  {
+              'useremail': user!.email,
+              'displayname': user.displayName,
+             
+              'userid': user.uid,
+              'userrole': "user",
+            };
+          FirebaseFirestore.instance
+                .collection('users')
+                .doc(user.uid)
+                .set(
+                  userdata,
+                  SetOptions(merge: true),
+                );
+Navigator.pushReplacementNamed(context, '/dashboard');
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             // ...
@@ -101,4 +114,46 @@ class Authentication {
   }
 
   
+}
+
+class CreateUserAccount extends StatefulWidget {
+  final Map<String, dynamic> userdata;
+  const CreateUserAccount(this.userdata, {super.key});
+  @override
+  CreateUserAccountState createState() => CreateUserAccountState();
+}
+
+class CreateUserAccountState extends State<CreateUserAccount> {
+  final TextEditingController _textController =  TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              child: TextField(
+                controller: _textController,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () async{
+//get the username from textfield
+//and update data to firebase
+        widget.userdata['username'] = _textController.text;
+              await FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(widget.userdata['userId'])
+                    .set(
+                      widget.userdata,
+                      SetOptions(merge: true),
+                    );
+// Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TimeLinePage()));
+              },
+              child: Text("submit"),
+            ),
+          ],
+        ));
+  }
 }

@@ -123,7 +123,7 @@ class _VoterSearchState extends State<VoterSearch> {
                   Text(
                     "${voter.name!} - ${voter.fathername!}",
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(voter.cnic!)
                 ],

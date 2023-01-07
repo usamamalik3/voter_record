@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context,
-        '/sigin' );
+        '/register' );
     });
 
     super.initState();

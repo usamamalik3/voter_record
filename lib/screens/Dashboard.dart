@@ -18,6 +18,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
+        width: 270,
         elevation: 10.0,
         child: ListView(
           children: <Widget>[
@@ -130,7 +131,7 @@ class _DashBoardState extends State<DashBoard> {
                     fit: BoxFit.cover,
                   ),
                   Image.asset(
-                    'assets/images/aaa.png',
+                    'assets/images/aaa.jpg',
                     fit: BoxFit.cover,
                   ),
                   Image.asset(

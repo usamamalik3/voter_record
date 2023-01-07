@@ -95,6 +95,8 @@ String? blddropdownvalue;
 String? genderr;
 String? divsionvalue;
 String? districtvalue;
+String? professionvalue;
+List<String> profession= ["کاشتکار","بزنس","ڈرائیور","سرکاری ملازم","ہاؤس وائف","پرائیویٹ ملازم","ریٹائرڈ","ذاتی کاروبار","طالب علم","بے روزگار یا دیگر"];
 List<dynamic> divisons = [];
 List<dynamic> district = [];
 List<dynamic> zone = [];
@@ -381,113 +383,157 @@ class _PartyFormState extends State<PartyForm> {
             SizedBox(
                 width: width * 1.0,
                 child: CustomField(
-                  fldltxt: 'سکول/جامعہ',
+                  fldltxt: 'اسکول/کالج/یونیورسٹی/جامعہ',
                   hint: 'یہاں لکھیں۔',
                   controler: instituteController,
                   validattor: RequiredValidator(errorText: "Required"),
                 )),
-            Padding(
-                padding: const EdgeInsets.only(left: 40, right: 5),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      const ListTile(
-                        title: Padding(
-                          padding: EdgeInsets.only(
-                            right: 8,
-                          ),
-                          child: Align(
-                              alignment: Alignment.topRight,
-                              child: Text(
-                                "روزگار",
-                                style:
-                                    TextStyle(fontFamily: "NotoNastaliqUrdu"),
-                              )),
-                        ),
+            // Padding(
+            //     padding: const EdgeInsets.only(left: 40, right: 5),
+            //     child: Column(
+            //         crossAxisAlignment: CrossAxisAlignment.end,
+            //         children: [
+            //           const ListTile(
+            //             title: Padding(
+            //               padding: EdgeInsets.only(
+            //                 right: 8,
+            //               ),
+            //               child: Align(
+            //                   alignment: Alignment.topRight,
+            //                   child: Text(
+            //                     "روزگار",
+            //                     style:
+            //                         TextStyle(fontFamily: "NotoNastaliqUrdu"),
+            //                   )),
+            //             ),
+            //           ),
+            //           Row(
+            //             children: [
+            //               Expanded(
+            //                 child: ConstrainedBox(
+            //                   constraints: const BoxConstraints(
+            //                     maxWidth: 200,
+            //                   ),
+            //                   child: RadioListTile(
+            //                     contentPadding: const EdgeInsets.all(0.0),
+            //                     title: const Text('سرکاری'),
+            //                     value: profession[0],
+            //                     groupValue: proffession,
+            //                     onChanged: (value) {
+            //                       setState(() {
+            //                         proffession = value.toString();
+            //                       });
+            //                     },
+            //                   ),
+            //                 ),
+            //               ),
+            //               Expanded(
+            //                 child: ConstrainedBox(
+            //                   constraints: const BoxConstraints(
+            //                     maxWidth: 200,
+            //                   ),
+            //                   child: RadioListTile(
+            //                     contentPadding: const EdgeInsets.all(0.0),
+            //                     title: const Text('پرائیوٹ'),
+            //                     value: profession[1],
+            //                     groupValue: proffession,
+            //                     onChanged: (value) {
+            //                       setState(() {
+            //                         proffession = value.toString();
+            //                       });
+            //                     },
+            //                   ),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //           Row(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               Expanded(
+            //                 child: ConstrainedBox(
+            //                   constraints: const BoxConstraints(
+            //                     maxWidth: 200,
+            //                   ),
+            //                   child: RadioListTile(
+            //                     contentPadding: const EdgeInsets.all(0.0),
+            //                     title: const Text('کاروبار'),
+            //                     value: profession[2],
+            //                     groupValue: proffession,
+            //                     onChanged: (value) {
+            //                       setState(() {
+            //                         proffession = value.toString();
+            //                       });
+            //                     },
+            //                   ),
+            //                 ),
+            //               ),
+            //               Expanded(
+            //                 child: ConstrainedBox(
+            //                   constraints: const BoxConstraints(
+            //                     maxWidth: 200,
+            //                   ),
+            //                   child: RadioListTile(
+            //                     dense: true,
+            //                     contentPadding: const EdgeInsets.all(0.0),
+            //                     title: const Text('ملازمت'),
+            //                     value: profession[3],
+            //                     groupValue: proffession,
+            //                     onChanged: (value) {
+            //                       setState(() {
+            //                         proffession = value.toString();
+            //                       });
+            //                     },
+            //                   ),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ])),
+             SizedBox(
+                  width: width * 0.5,
+                  child: ListTile(
+                    title: const Padding(
+                      padding: EdgeInsets.only(
+                        right: 8,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                maxWidth: 200,
-                              ),
-                              child: RadioListTile(
-                                contentPadding: const EdgeInsets.all(0.0),
-                                title: const Text('سرکاری'),
-                                value: profession[0],
-                                groupValue: proffession,
-                                onChanged: (value) {
-                                  setState(() {
-                                    proffession = value.toString();
-                                  });
-                                },
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                maxWidth: 200,
-                              ),
-                              child: RadioListTile(
-                                contentPadding: const EdgeInsets.all(0.0),
-                                title: const Text('پرائیوٹ'),
-                                value: profession[1],
-                                groupValue: proffession,
-                                onChanged: (value) {
-                                  setState(() {
-                                    proffession = value.toString();
-                                  });
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                            "روزگار",
+                            style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                          )),
+                    ),
+                    subtitle: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.greenAccent.withOpacity(
+                            .3), //background color of dropdown button
+
+                        borderRadius: BorderRadius.circular(
+                            12), //border raiuds of dropdown button
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                maxWidth: 200,
-                              ),
-                              child: RadioListTile(
-                                contentPadding: const EdgeInsets.all(0.0),
-                                title: const Text('کاروبار'),
-                                value: profession[2],
-                                groupValue: proffession,
-                                onChanged: (value) {
-                                  setState(() {
-                                    proffession = value.toString();
-                                  });
-                                },
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                maxWidth: 200,
-                              ),
-                              child: RadioListTile(
-                                dense: true,
-                                contentPadding: const EdgeInsets.all(0.0),
-                                title: const Text('ملازمت'),
-                                value: profession[3],
-                                groupValue: proffession,
-                                onChanged: (value) {
-                                  setState(() {
-                                    proffession = value.toString();
-                                  });
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: DropdownButton(
+                        underline: const SizedBox.shrink(),
+                        iconEnabledColor: Theme.of(context).primaryColor,
+                        isExpanded: true,
+                        alignment: AlignmentDirectional.bottomEnd,
+                        value: professionvalue,
+                        items: profession.map((e) {
+                          return DropdownMenuItem(
+                            value: e,
+                            child: Center(child: Text(e.toString())),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            professionvalue = newValue.toString();
+                          
+                          });
+                        },
                       ),
-                    ])),
+                    ),
+                  ),
+                ),
             Row(
               children: [
                 SizedBox(
@@ -837,7 +883,7 @@ class _PartyFormState extends State<PartyForm> {
                                         edu: eduController.text,
                                         institute: instituteController.text,
                                         bloodgroup: blddropdownvalue,
-                                        profession: proffession,
+                                        profession: professionvalue,
                                         mobile: mobController.text,
                                         whatsapp: whatsappController.text,
                                         province: provincevalue,
