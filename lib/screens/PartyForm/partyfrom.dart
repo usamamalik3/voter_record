@@ -182,10 +182,11 @@ class _PartyFormState extends State<PartyForm> {
   initState() {
     super.initState();
     getdivsions("پنجاب");
+    getdistrict(divsionvalue);
     formnomethod();
     // getzone("پنجاب");
     prefix(provincevalue);
-    getdistrict(divsionvalue);
+    
   }
 
   @override
@@ -743,6 +744,7 @@ class _PartyFormState extends State<PartyForm> {
                             12), //border raiuds of dropdown button
                       ),
                       child: DropdownButton(
+                        hint: Text(""),
                         underline: const SizedBox.shrink(),
                         iconEnabledColor: Theme.of(context).primaryColor,
                         isExpanded: true,

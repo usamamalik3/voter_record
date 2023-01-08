@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -21,6 +23,7 @@ class DivsionBody extends StatefulWidget {
 List<dynamic> divisons = [];
 
 class _DivsionBodyState extends State<DivsionBody> {
+  String? district;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +63,46 @@ class _DivsionBodyState extends State<DivsionBody> {
                               child: InkWell(
                                 splashColor: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(12),
-                                onTap: () {},
+                                onTap: () async {
+                                  User? user =
+                                      FirebaseAuth.instance.currentUser;
+                                  final DocumentSnapshot snap =
+                                      await FirebaseFirestore.instance
+                                          .collection('user')
+                                          .doc(user!.uid)
+                                          .get();
+
+                                  setState(() {
+                                    district = snap["divsion"];
+                                  });
+                                  if (district ==
+                                      snapshot.data!["ضلع"][index]) {
+                                    Fluttertoast.showToast(
+                                        msg:
+                                            "district screen will be added soon",
+                                        toastLength: Toast.LENGTH_LONG,
+                                        gravity: ToastGravity.CENTER,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.white,
+                                        textColor: Colors.black,
+                                        fontSize: 16.0);
+
+                                    // ignore: use_build_context_synchronously
+                                    // Navigator.pushNamed(context, '/divsionbody',
+                                    //   arguments: snapshot.data!["ضلع"]
+                                    //       [index]);
+                                  } else {
+                                    // ignore: use_build_context_synchronously
+                                    Fluttertoast.showToast(
+                                        msg: "you are not allowed",
+                                        toastLength: Toast.LENGTH_LONG,
+                                        gravity: ToastGravity.CENTER,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.white,
+                                        textColor: Colors.black,
+                                        fontSize: 16.0);
+                                  }
+                                },
                                 child: Container(
                                     width: 120,
                                     clipBehavior: Clip.antiAlias,
@@ -94,40 +136,35 @@ class _DivsionBodyState extends State<DivsionBody> {
                         highlightColor: Theme.of(context).highlightColor,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                      itemCount: 6,
-                      itemBuilder: (BuildContext ctxt, int index){
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                                width: 120,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: const Card(
-                                  color: Colors.transparent,
-                                 
-                                )),
-                          );}
-                        ),
-                        );
+                            itemCount: 6,
+                            itemBuilder: (BuildContext ctxt, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                    width: 120,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: const Card(
+                                      color: Colors.transparent,
+                                    )),
+                              );
+                            }),
+                      );
                     }
                   }),
             ),
           ),
-            ContainerMenu(
-              childAspectRatio: 1.4,
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              list: tanzeemSaziList,
-              mainAxisSpacing: 16,
-            ),
-     
-
+          ContainerMenu(
+            childAspectRatio: 1.4,
+            crossAxisCount: 2,
+            crossAxisSpacing: 16,
+            list: tanzeemSaziList,
+            mainAxisSpacing: 16,
+          ),
         ],
       ),
     );
   }
-
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -177,7 +179,7 @@ class _LoginState extends State<Login> {
   void _checkRole() async {
     User? user = FirebaseAuth.instance.currentUser;
     final DocumentSnapshot snap = await FirebaseFirestore.instance
-        .collection('users')
+        .collection('user')
         .doc(user!.uid)
         .get();
 
@@ -186,8 +188,7 @@ class _LoginState extends State<Login> {
     });
  
     if (role == "user") {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DashBoard()));
+     
     }
     else if (role == "admin") {
     
@@ -204,13 +205,32 @@ class _LoginState extends State<Login> {
         UserCredential user = await _auth.signInWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
         if (user != null) {
-          _checkRole();
+           Navigator.push(
+          context, MaterialPageRoute(builder: (context) => DashBoard()));
         }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           print('No user found for that email.');
+          Fluttertoast.showToast(
+            msg: "No user found for that email.",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.white,
+            textColor: Colors.black,
+            fontSize: 16.0);
         } else if (e.code == 'wrong-password') {
           print('Wrong password provided for that user.');
+          Fluttertoast.showToast(
+            msg: "Wrong password provided for that user",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.white,
+            textColor: Colors.black,
+            fontSize: 16.0);
+     
+          
         }
       }
     }
@@ -222,10 +242,10 @@ class _LoginState extends State<Login> {
           // return object of type Dialog
           return AlertDialog(
             title: const Text("Error"),
-            content: new Text(errormessage),
+            content:  Text(errormessage),
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
-              new TextButton(
+               TextButton(
                 child: const Text("Close"),
                 onPressed: () {
                   Navigator.of(context).pop();

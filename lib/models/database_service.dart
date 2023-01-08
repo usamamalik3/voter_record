@@ -1,5 +1,7 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:voterrecord/models/partyformModel.dart';
+import 'package:voterrecord/models/usermodel.dart';
 import 'package:voterrecord/models/voter.dart';
 
 
@@ -8,11 +10,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService{
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+   User? user = FirebaseAuth.instance.currentUser;
 
- addVoter(Voter VoterData) async {
-    await _db.collection("Voters").add(VoterData.toMap());
+ addVoter(Voter voterData) async {
+    await _db.collection("Voters").add(voterData.toMap());
   }
-
+adduser(UserModel userdata) async{
+  await _db.collection("user").doc(user!.uid).set(userdata.toMap());
+}
+updateuser(UserModel userdata, String documentid) async{
+  await _db.collection("user").doc(documentid).update(userdata.toMap());
+}
  
 
     updateVoter(Voter VoterData) async {

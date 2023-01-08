@@ -29,12 +29,12 @@ class _OfficeDetailsState extends State<OfficeDetails> {
         onPressed: () async {
           User? user = FirebaseAuth.instance.currentUser;
     final DocumentSnapshot snap = await FirebaseFirestore.instance
-        .collection('users')
+        .collection('user')
         .doc(user!.uid)
         .get();
 
     setState(() {
-      userrole = snap["userrole"];
+      userrole = snap["role"];
     });
     if(userrole=="admin"){
           // ignore: use_build_context_synchronously

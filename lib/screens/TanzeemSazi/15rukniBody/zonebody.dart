@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:voterrecord/models/dashboardItem.dart';
 import 'package:voterrecord/screens/tanzeemSazi/15rukniBody/tabledata.dart';
@@ -10,6 +12,7 @@ import 'package:voterrecord/utils/list_utils.dart';
 class ZoneBody extends StatefulWidget {
   ZoneBody({super.key, this.arg});
   var arg;
+  String? divsion;
 
   @override
   State<ZoneBody> createState() => _ZoneBodyState();
@@ -74,10 +77,36 @@ class _ZoneBodyState extends State<ZoneBody> {
                               child: InkWell(
                                 splashColor: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(12),
-                                onTap: () {
-                                  Navigator.pushNamed(context, '/divsionbody',
+                                onTap: () async {
+                                  User? user =
+                                      FirebaseAuth.instance.currentUser;
+                                  final DocumentSnapshot snap =
+                                      await FirebaseFirestore.instance
+                                          .collection('user')
+                                          .doc(user!.uid)
+                                          .get();
+
+                                  setState(() {
+                                    widget.divsion = snap["divsion"];
+                                  });
+                                  if(widget.divsion == snapshot.data!["ڈویژن"][index]){
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.pushNamed(context, '/divsionbody',
                                       arguments: snapshot.data!["ڈویژن"]
                                           [index]);
+                                  }
+                                  else {
+                  // ignore: use_build_context_synchronously
+                  Fluttertoast.showToast(
+                      msg: "you are not allowed",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.white,
+                      textColor: Colors.black,
+                      fontSize: 16.0);
+                }
+                                  
                                 },
                                 child: Container(
                                     width: 120,
@@ -107,7 +136,7 @@ class _ZoneBodyState extends State<ZoneBody> {
                           });
                     } else {
                       return Shimmer.fromColors(
-                           period: const Duration(minutes: 5),
+                        period: const Duration(minutes: 5),
                         baseColor: Theme.of(context).primaryColor,
                         highlightColor: Theme.of(context).highlightColor,
                         child: ListView.builder(
@@ -122,9 +151,7 @@ class _ZoneBodyState extends State<ZoneBody> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: const Card(
-                                      
-                                    )),
+                                    child: const Card()),
                               );
                             }),
                       );
@@ -132,13 +159,13 @@ class _ZoneBodyState extends State<ZoneBody> {
                   }),
             ),
           ),
-           ContainerMenu(
-              childAspectRatio: 1.4,
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              list: tanzeemSaziList,
-              mainAxisSpacing: 16,
-            ),
+          ContainerMenu(
+            childAspectRatio: 1.4,
+            crossAxisCount: 2,
+            crossAxisSpacing: 16,
+            list: tanzeemSaziList,
+            mainAxisSpacing: 16,
+          ),
         ],
       ),
     );

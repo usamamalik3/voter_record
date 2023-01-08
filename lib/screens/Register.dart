@@ -9,9 +9,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:voterrecord/global/widgets/textfield.dart';
+import 'package:voterrecord/models/usermodel.dart';
 import 'package:voterrecord/screens/PartyForm/partyfrom.dart';
 import 'package:voterrecord/utils/dropdown_list.dart';
 
+import '../models/database_service.dart';
 import 'login.dart';
 
 class Register extends StatefulWidget {
@@ -22,6 +24,9 @@ class Register extends StatefulWidget {
 }
 String? provincevalue;
 String? zonevalue;
+String? divsionvalue;
+String? districtvalue;
+List<dynamic> divisons = [];
 List<dynamic> district = [];
 List<dynamic> zone = [];
 
@@ -53,14 +58,29 @@ class _RegisterState extends State<Register> {
       });
     });
   }
-   @override
-  initState() {
-    super.initState();
-    getzone("پنجاب");
-   
-   
-    
+  getdivsions(zonev) async {
+    await FirebaseFirestore.instance
+        .collection("tazeemdivsion")
+        .doc(zonev)
+        .get()
+        .then((value) {
+      setState(() {
+        divisons = value.data()!["ڈویژن"];
+      });
+    });
   }
+  getdistrict(divsion) async {
+    await FirebaseFirestore.instance
+        .collection("District")
+        .doc(divsion)
+        .get()
+        .then((value) {
+      setState(() {
+        district = value.data()!["ضلع"];
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +131,7 @@ class _RegisterState extends State<Register> {
                     Row(
                       children: [
                         SizedBox(
-                  width: width * 0.4,
+                  width: width * 0.41,
                   child: ListTile(
                     title: const Padding(
                       padding: EdgeInsets.only(
@@ -133,6 +153,7 @@ class _RegisterState extends State<Register> {
                             12), //border raiuds of dropdown button
                       ),
                       child: DropdownButton(
+                        hint: Text(""),
                         underline: const SizedBox.shrink(),
                         iconEnabledColor: Theme.of(context).primaryColor,
                         isExpanded: true,
@@ -146,6 +167,8 @@ class _RegisterState extends State<Register> {
                         }).toList(),
                         onChanged: (newValue) {
                           setState(() {
+                            getdivsions(newValue);
+                            divsionvalue=null;
                             zonevalue = newValue.toString();
                           });
                         },
@@ -155,7 +178,7 @@ class _RegisterState extends State<Register> {
                 ),
                
                   SizedBox(
-                  width: width * 0.4,
+                  width: width * 0.43,
                   child: ListTile(
                     title: const Padding(
                       padding: EdgeInsets.only(
@@ -177,6 +200,7 @@ class _RegisterState extends State<Register> {
                             12), //border raiuds of dropdown button
                       ),
                       child: DropdownButton(
+                        
                         underline: const SizedBox.shrink(),
                         iconEnabledColor: Theme.of(context).primaryColor,
                         isExpanded: true,
@@ -194,7 +218,104 @@ class _RegisterState extends State<Register> {
                             
                             provincevalue = newValue ?? "";
                             getzone(newValue);
+                            
+                            zonevalue = null;
+                            divsionvalue = null;
                            
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                         SizedBox(
+                  width: width * 0.45,
+                  child: ListTile(
+                    title: const Padding(
+                      padding: EdgeInsets.only(
+                        right: 8,
+                      ),
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                            "ضلع",
+                            style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                          )),
+                    ),
+                    subtitle: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.greenAccent.withOpacity(
+                            .3), //background color of dropdown button
+
+                        borderRadius: BorderRadius.circular(
+                            12), //border raiuds of dropdown button
+                      ),
+                      child: DropdownButton(
+                        hint: Text(""),
+                        underline: const SizedBox.shrink(),
+                        iconEnabledColor: Theme.of(context).primaryColor,
+                        isExpanded: true,
+                        alignment: AlignmentDirectional.bottomEnd,
+                        value: districtvalue,
+                        items: district.map((dis) {
+                          return DropdownMenuItem(
+                            value: dis,
+                            child: Center(child: Text(dis.toString())),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            districtvalue = (newValue ??"").toString();
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                         SizedBox(
+                  width: width * 0.4,
+                  child: ListTile(
+                    title: const Padding(
+                      padding: EdgeInsets.only(
+                        right: 8,
+                      ),
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                            "ڈویژن",
+                            style: TextStyle(fontFamily: "NotoNastaliqUrdu"),
+                          )),
+                    ),
+                    subtitle: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.greenAccent.withOpacity(
+                            .3), //background color of dropdown button
+
+                        borderRadius: BorderRadius.circular(
+                            12), //border raiuds of dropdown button
+                      ),
+                      child: DropdownButton(
+                        hint: Text(""),
+                        underline: const SizedBox.shrink(),
+                        iconEnabledColor: Theme.of(context).primaryColor,
+                        isExpanded: true,
+                        alignment: AlignmentDirectional.bottomEnd,
+                        value: divsionvalue,
+                        items: divisons.map((e) {
+                          return DropdownMenuItem(
+                            value: e,
+                            child: Center(child: Text(e.toString())),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            divsionvalue = newValue.toString();
+                            getdistrict(divsionvalue);
+                            districtvalue = null;
                           });
                         },
                       ),
@@ -338,14 +459,33 @@ class _RegisterState extends State<Register> {
 
         var firebaseUser = FirebaseAuth.instance.currentUser;
         await firebaseUser!.reload();
-
-        firestoreInstance.collection("users").doc(firebaseUser.uid).set({
-          "email": emailController.text,
-          "password": passwordController.text,
-          "role": "user",
-        }).then((value) {
-          print("success!");
-        });
+         DatabaseService databaseService = DatabaseService();
+         UserModel userModel = UserModel(
+          email: emailController.text,
+          password: passwordController.text,
+          province: provincevalue,
+          zone: zonevalue,
+          divsion: divsionvalue,
+          district: districtvalue,
+          role: "user"
+         );
+          await databaseService.adduser(userModel);
+                                      Fluttertoast.showToast(
+                                          msg: "voter added successfully",
+                                          toastLength: Toast.LENGTH_LONG,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.white,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0);
+                                    
+        // firestoreInstance.collection("users").doc(firebaseUser.uid).set({
+        //   "email": emailController.text,
+        //   "password": passwordController.text,
+        //   "role": "user",
+        // }).then((value) {
+        //   print("success!");
+        // });
         // ignore: use_build_context_synchronously
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const Login()));
